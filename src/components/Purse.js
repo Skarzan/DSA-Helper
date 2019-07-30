@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../styles/purse.css";
+import "../styles/purse.scss";
 
 export default function Purse(props) {
   let [money, setMoney] = useState(0);

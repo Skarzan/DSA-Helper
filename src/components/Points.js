@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import "../styles/points.css";
+import "../styles/points.scss";
 
 export default function Points(props) {
   let [currentPoints, setCurrentPoints] = useState(props.current);

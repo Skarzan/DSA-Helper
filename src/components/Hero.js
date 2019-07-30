@@ -2,7 +2,7 @@ import React from "react";
 import Purse from "./Purse";
 import Points from "./Points";
 
-import "../styles/hero.css";
+import "../styles/hero.scss";
 
 export default function Hero(props) {
   return (

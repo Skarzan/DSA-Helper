@@ -2,18 +2,21 @@
   border: 1px solid black;
   display: flex;
   border-radius: 10px;
+
+  .pointsHero {
+    width: 80%;
+  }
+  
+   .pointsButton {
+    text-align: center;
+    display: inline-block;
+    width: 10%;
+    cursor: pointer;
+  }
+
 }
 
-.pointsContainer .pointsHero {
-  width: 80%;
-}
 
-.pointsContainer .pointsButton {
-  text-align: center;
-  display: inline-block;
-  width: 10%;
-  cursor: pointer;
-}
 
 .subButton {
   border-right: 1px solid black;
