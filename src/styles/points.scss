@@ -1,17 +1,25 @@
+@import './global.scss';
+
 .pointsContainer {
-  border: 1px solid black;
   display: flex;
+  position: relative;
   border-radius: 10px;
+  height: 50px;
+  padding: 0 4%;
 
   .pointsHero {
-    width: 80%;
+    display: flex;
+    width: 100%;
+    height: 100%;
   }
   
    .pointsButton {
-    text-align: center;
-    display: inline-block;
-    width: 10%;
+    @include center;
+    width: 5%;
     cursor: pointer;
+    height: 100%;
+    position: absolute;
+
   }
 
 }
@@ -19,9 +27,11 @@
 
 
 .subButton {
-  border-right: 1px solid black;
+  border-right: 1px solid rgb(255, 255, 255);
+  left: 0;
 }
 
 .addButton {
-  border-left: 1px solid black;
+  border-left: 1px solid rgb(255, 255, 255);
+  right: 0;
 }

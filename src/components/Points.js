@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 
+import ProgressBar from 'react-bootstrap/ProgressBar'
+import Button from 'react-bootstrap/Button'
+
 import "../styles/points.scss";
 
 export default function Points(props) {
@@ -15,19 +18,37 @@ export default function Points(props) {
     }
   };
 
+  let setColor = name => {
+    switch (name) {
+      case "LeP":
+        return "danger";
+      case "AsP":
+        return "info";
+      case "KaP":
+        return "success"
+    
+      default:
+        break;
+    }
+  }
+
   return (
     <div class="pointsContainer">
-      <div class="subButton pointsButton" onClick={() => sub()}>
+      <ProgressBar 
+        className="pointsHero" 
+        variant={setColor(props.name)} 
+        now={(currentPoints * 100) / props.maxPoints} 
+        label={`${props.name}: ${currentPoints}/${props.maxPoints}`}
+
+      />
+
+      <Button variant={setColor(props.name)} className="subButton pointsButton" onClick={() => sub()}>
         -
-      </div>
+      </Button>
 
-      <div class="pointsHero">
-        {props.name}: {currentPoints}/{props.maxPoints}
-      </div>
-
-      <div class="addButton pointsButton" onClick={() => add()}>
+      <Button variant={setColor(props.name)} className="addButton pointsButton" onClick={() => add()}>
         +
-      </div>
+      </Button>
     </div>
   );
 }

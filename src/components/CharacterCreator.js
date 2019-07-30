@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Button from 'react-bootstrap/Button';
 
 export default function CharacterCreator(props) {
   let [character, setCharacter] = useState({});
@@ -60,9 +61,7 @@ export default function CharacterCreator(props) {
           />
         </div>
       </div>
-      <div onClick={() => props.submitCharacter(character)}>
-        Create Character
-      </div>
+      <Button variant="primary" onClick={() => props.submitCharacter(character)}>Create Character</Button>
     </div>
   );
 }
