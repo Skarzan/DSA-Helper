@@ -1,24 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import heroes from './assets/heroes'
+import Hero from './components/Hero'
+import Battle from './components/Battle'
+
+
+let showHeroes = () => {
+  return heroes.map(hero => {
+    return <Hero hero={hero} />;
+  });
+};
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {showHeroes()}
+      <Battle />
     </div>
   );
 }
