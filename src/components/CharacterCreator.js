@@ -7,7 +7,7 @@ import "../styles/characterCreator.scss";
 export default function CharacterCreator(props) {
   let [character, setCharacter] = 
     useState({
-      name: "sd",
+      name: "",
       maxLep: 0,
       maxAsp: 0,
       maxKap: 0,

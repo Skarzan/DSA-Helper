@@ -6,10 +6,14 @@
 
   .characterCreator {
     width: 20%;
-    margin: 10px;
+    margin: 0 10px;
   }
 
   .battleFighterList {
-    width: 70%;
+    width: 80%;
+
+    .fighterCard {
+      width: calc(30% - 10px);
+    }
   }
 }
