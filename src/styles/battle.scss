@@ -1,0 +1,15 @@
+@import "./global.scss";
+
+.battle {
+
+  display: flex;
+
+  .characterCreator {
+    width: 20%;
+    margin: 10px;
+  }
+
+  .battleFighterList {
+    width: 70%;
+  }
+}

@@ -1,67 +1,80 @@
 import React, { useState } from "react";
 import Button from 'react-bootstrap/Button';
+import Form from "react-bootstrap/Form";
+
+import "../styles/characterCreator.scss";
 
 export default function CharacterCreator(props) {
-  let [character, setCharacter] = useState({});
+  let [character, setCharacter] = 
+    useState({
+      name: "sd",
+      maxLep: 0,
+      maxAsp: 0,
+      maxKap: 0,
+      initiative: 0
+    });
 
   let handleChange = e => {
     setCharacter({ ...character, [e.target.name]: e.target.value });
   };
 
   return (
-    <div>
-      <h1>Create</h1>
-      <div>
-        <div>
-          <label>Name: </label>{" "}
-          <input
-            name="name"
+    <div className="characterCreator">
+
+      <Form>
+        <h3>Create Character</h3>
+        <Form.Group controlId="formName">
+          <Form.Label>Name: </Form.Label>
+          <Form.Control  
             type="text"
+            name="name"
             value={character.name}
             onChange={e => handleChange(e)}
           />
-        </div>
-        <div>
-          <label>max. LeP: </label>{" "}
-          <input
-            name="maxLep"
+        </Form.Group>
+        <Form.Group controlId="formLep">
+          <Form.Label>max. LeP: </Form.Label>
+          <Form.Control 
             type="number"
+            name="maxLep"
             value={character.maxLep}
             onChange={e => handleChange(e)}
           />
-        </div>
-        <div>
-          <label>max AsP: </label>{" "}
-          <input
-            name="maxAsp"
+        </Form.Group>
+        <Form.Group controlId="formAsp">
+          <Form.Label>max. AsP: </Form.Label>
+          <Form.Control 
             type="number"
-            min="0"
+            name="maxAsp"
             value={character.maxAsp}
             onChange={e => handleChange(e)}
           />
-        </div>
-        <div>
-          <label>max KaP: </label>{" "}
-          <input
-            name="maxKap"
+        </Form.Group>
+        <Form.Group controlId="formKap">
+          <Form.Label>max. KaP: </Form.Label>
+          <Form.Control 
             type="number"
-            min="0"
+            name="maxKap"
             value={character.maxKap}
             onChange={e => handleChange(e)}
           />
-        </div>
-        <div>
-          <label>Initiative: </label>{" "}
-          <input
-            name="initiative"
+        </Form.Group>
+        <Form.Group controlId="formInitiative">
+          <Form.Label>Initiative: </Form.Label>
+          <Form.Control 
             type="number"
-            min="0"
+            name="initiative"
             value={character.initiative}
             onChange={e => handleChange(e)}
           />
-        </div>
-      </div>
-      <Button variant="primary" onClick={() => props.submitCharacter(character)}>Create Character</Button>
+        </Form.Group>
+        <Button 
+          variant="secondary" 
+          onClick={() => props.submitCharacter(character)}
+        >
+          Create Character
+        </Button>
+      </Form>
     </div>
   );
 }

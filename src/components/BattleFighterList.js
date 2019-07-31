@@ -23,5 +23,5 @@ export default function BattleFighterList(props) {
     });
   };
 
-  return <div>{listFighters()}</div>;
+  return <div className="battleFighterList">{listFighters()}</div>;
 }

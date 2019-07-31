@@ -1,5 +1,8 @@
 import React from "react";
 import Points from "./Points";
+import Card from "react-bootstrap/Card"
+import Row from "react-bootstrap/Row"
+import Col from "react-bootstrap/Col"
 
 export default function FighterCard(props) {
   return (

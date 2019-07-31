@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import CharacterCreator from "./CharacterCreator";
 import BattleFighterList from "./BattleFighterList";
 
+import "../styles/battle.scss";
+
 export default function Battle(props) {
   let [fighter, setFighter] = useState([]);
 
@@ -10,9 +12,9 @@ export default function Battle(props) {
   };
 
   return (
-    <div>
-      <BattleFighterList fighter={fighter} />
+    <div className="battle">
       <CharacterCreator submitCharacter={addEnemy} />
+      <BattleFighterList fighter={fighter} />
     </div>
   );
 }
