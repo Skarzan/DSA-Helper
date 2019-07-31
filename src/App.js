@@ -1,19 +1,12 @@
 import React from 'react';
-import heroes from './assets/heroes'
-import Hero from './components/Hero'
 import Battle from './components/Battle'
-
-
-let showHeroes = () => {
-  return heroes.map(hero => {
-    return <Hero hero={hero} />;
-  });
-};
+import HeroList from "./components/HeroList"
 
 function App() {
   return (
     <div className="App">
-      {showHeroes()}
+      
+      <HeroList />
       <Battle />
     </div>
   );

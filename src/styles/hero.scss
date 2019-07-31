@@ -1,10 +1,14 @@
-.pointsHero {
-  display: flex;
+.hero {
+}
+
+.heroInner {
+  padding: 5px;
 }
 
 .lep,
 .asp,
 .kap {
-  width: 50%;
-  margin: 0 5%;
+  width: 100%;
+  height: 45px;
+  margin: 10px 0;
 }

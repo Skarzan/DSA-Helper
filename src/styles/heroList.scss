@@ -1,0 +1,11 @@
+.heroList {
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  .hero {
+    width: 48%;
+    margin: 15px 1%;
+  }
+}

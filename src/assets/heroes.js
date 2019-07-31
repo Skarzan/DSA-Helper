@@ -18,5 +18,15 @@ export default [
     asp: 0,
     kap: 0,
     money: 10790
+  },
+  {
+    name: "Priester",
+    maxLep: 29,
+    maxAsp: 0,
+    maxKap: 21,
+    lep: 5,
+    asp: 0,
+    kap: 18,
+    money: 20203
   }
 ];

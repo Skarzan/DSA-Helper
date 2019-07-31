@@ -1,4 +1,31 @@
-.purse input {
-  width: 2em;
-  text-align: center;
+@import "./global.scss";
+
+.purse {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+
+  .purseSection {
+    @include center;
+    width: 25%;
+    min-width: 130px;
+  }
+
+  .coinImage {
+    width: 30px;
+  }
+
+  input {
+    width: 2em;
+    height: 100%;
+    text-align: center;
+  }
+
+  .btn {
+    @include center;
+    border-radius: 0;
+    width: 10px;
+  }
 }
+
+
