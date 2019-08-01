@@ -2,4 +2,19 @@
 
 .fighterCard {
   margin-bottom: 5px;
+  
+
+  .status {
+    left: 0;
+    transition: left 0.6s;
+  }
+
+  .moved {
+    position: relative;
+    left: 50px;
+  }
+
+  .active {
+    background: green;
+  }
 }

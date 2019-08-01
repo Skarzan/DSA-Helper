@@ -1,15 +1,15 @@
 import React from "react";
 import Points from "./Points";
-import Card from "react-bootstrap/Card"
-import Row from "react-bootstrap/Row"
-import Col from "react-bootstrap/Col"
+import Card from "react-bootstrap/Card";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
-import "../styles/fighterCard.scss"
+import "../styles/fighterCard.scss";
 
 export default function FighterCard(props) {
   return (
     <div className="fighterCard">
-      <Card>
+      <Card className={props.status + " status"}>
         <Card.Header as="h4">{props.fighter.name}</Card.Header>
         <Card.Text className="heroInner">
           <Row className="row">
@@ -44,14 +44,12 @@ export default function FighterCard(props) {
                 ) : (
                   ""
                 )}
-                </div>
-                <div>Initiative: {props.fighter.initiative}</div>
-              </Col>
-              
-            </Row>
-      </Card.Text>      
-    </Card>
-
+              </div>
+              <div>Initiative: {props.fighter.initiative}</div>
+            </Col>
+          </Row>
+        </Card.Text>
+      </Card>
     </div>
   );
 }

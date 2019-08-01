@@ -18,8 +18,20 @@ export default function BattleFighterList(props) {
 
   let listFighters = () => {
     let sortedFighters = sortFightersByInitiavive();
-    return sortedFighters.map(character => {
-      return <FighterCard key={character.name} fighter={character} />;
+    return sortedFighters.map((character, index) => {
+      return (
+        <FighterCard
+          key={character.id}
+          fighter={character}
+          status={
+            props.activeFighter <= index
+              ? props.activeFighter === index
+                ? "notMoved active"
+                : "notMoved"
+              : "moved"
+          }
+        />
+      );
     });
   };
 
