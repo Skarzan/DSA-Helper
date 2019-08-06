@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 
 import "../styles/battle.scss";
 
-export default function Battle(props) {
+export default function Battle() {
   let [fighter, setFighter] = useState([]);
   let [battleRound, setBattleRound] = useState(1);
   let [activeFighter, setActiveFighter] = useState(0);
@@ -29,10 +29,28 @@ export default function Battle(props) {
     setFighter([...fighter, enemy]);
   };
 
+  let killEnemy = enemyId => {
+    correctActiveFighter(enemyId);
+    let newList = fighter.filter(function(enemy) {
+      return enemy.id !== enemyId;
+    });
+    setFighter(newList);
+  };
+
+  let correctActiveFighter = fighterId => {
+    if (fighter[fighterId - 1].initiative < fighter[activeFighter].initiative) {
+      setActiveFighter(activeFighter - 1);
+    }
+  };
+
   return (
     <div className="battle">
       <CharacterCreator submitCharacter={addEnemy} />
-      <BattleFighterList fighter={fighter} activeFighter={activeFighter} />
+      <BattleFighterList
+        fighter={fighter}
+        activeFighter={activeFighter}
+        killEnemy={killEnemy}
+      />
       <Button
         onClick={() => {
           nextFighter();

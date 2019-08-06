@@ -2,6 +2,12 @@
 
 .fighterCard {
   margin-bottom: 5px;
+  min-width: 250px;
+
+  .fighterCardHeader {
+    display: flex;
+    justify-content: space-between;
+  }
   
 
   .status {

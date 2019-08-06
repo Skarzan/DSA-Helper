@@ -7,7 +7,23 @@ export default [
     lep: 23,
     asp: 30,
     kap: 0,
-    money: 20421
+    money: 20421,
+    conditions: [
+      {
+        id: 0,
+        conditionId: 1,
+        level: 2,
+        remainingRounds: 3,
+        comment: ""
+      },
+      {
+        id: 1,
+        conditionId: 2,
+        level: 1,
+        remainingRounds: 5,
+        comment: "Comment"
+      }
+    ]
   },
   {
     name: "Lizy",
@@ -17,7 +33,23 @@ export default [
     lep: 36,
     asp: 0,
     kap: 0,
-    money: 10790
+    money: 10790,
+    conditions: [
+      {
+        id: 0,
+        conditionId: 0,
+        level: 2,
+        remainingRounds: 3,
+        comment: ""
+      },
+      {
+        id: 1,
+        conditionId: 2,
+        level: 1,
+        remainingRounds: 5,
+        comment: "Comment"
+      }
+    ]
   },
   {
     name: "Priester",
@@ -27,6 +59,7 @@ export default [
     lep: 5,
     asp: 0,
     kap: 18,
-    money: 20203
+    money: 20203,
+    conditions: []
   }
 ];

@@ -1,8 +1,10 @@
 import React from "react";
 import Points from "./Points";
+import ConditionBox from "./ConditionBox";
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
 
 import "../styles/fighterCard.scss";
 
@@ -10,7 +12,20 @@ export default function FighterCard(props) {
   return (
     <div className="fighterCard">
       <Card className={props.status + " status"}>
-        <Card.Header as="h4">{props.fighter.name}</Card.Header>
+        <Card.Header as="h4" className="fighterCardHeader">
+          <div>{props.fighter.name}</div>
+          <div className="fighterButtons">
+            <Button
+              variant="danger"
+              size="sm"
+              onClick={() => {
+                props.killEnemy(props.fighter.id);
+              }}
+            >
+              X
+            </Button>
+          </div>
+        </Card.Header>
         <Card.Text className="heroInner">
           <Row className="row">
             <Col sm="12">
@@ -46,6 +61,9 @@ export default function FighterCard(props) {
                 )}
               </div>
               <div>Initiative: {props.fighter.initiative}</div>
+              <div>
+                <ConditionBox conditions={props.fighter.conditions} />
+              </div>
             </Col>
           </Row>
         </Card.Text>

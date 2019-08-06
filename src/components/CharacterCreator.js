@@ -10,7 +10,8 @@ export default function CharacterCreator(props) {
     maxLep: 0,
     maxAsp: 0,
     maxKap: 0,
-    initiative: 0
+    initiative: 0,
+    conditions: []
   });
 
   let handleChange = e => {

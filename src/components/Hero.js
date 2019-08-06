@@ -1,18 +1,16 @@
 import React from "react";
 import Purse from "./Purse";
 import Points from "./Points";
-import Card from "react-bootstrap/Card"
-import Row from "react-bootstrap/Row"
-import Col from "react-bootstrap/Col"
-
+import ConditionBox from "./ConditionBox";
+import Card from "react-bootstrap/Card";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 import "../styles/hero.scss";
 
 export default function Hero(props) {
   return (
-
     <div className="hero">
-
       <Card>
         <Card.Header as="h4">{props.hero.name}</Card.Header>
         <Card.Text className="heroInner">
@@ -48,17 +46,23 @@ export default function Hero(props) {
                 ) : (
                   ""
                 )}
-                </div>
-              </Col>
-              
-            </Row>
-            <Row>
-              <Col>
-                <Purse startMoney={props.hero.money} />
-              </Col>
-            </Row>
-      </Card.Text>      
-    </Card>
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Purse startMoney={props.hero.money} />
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <div>
+                <ConditionBox conditions={props.hero.conditions} />
+              </div>
+            </Col>
+          </Row>
+        </Card.Text>
+      </Card>
     </div>
   );
 }
