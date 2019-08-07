@@ -11,7 +11,7 @@ export default [
     conditions: [
       {
         id: 0,
-        conditionId: 1,
+        conditionId: 15,
         level: 2,
         remainingRounds: 3,
         comment: ""

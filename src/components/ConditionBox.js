@@ -6,7 +6,7 @@ import "../styles/conditionBox.scss";
 export default function ConditionBox(props) {
   let createConditionList = () => {
     return props.conditions.map(condition => {
-      return <ConditionIcon condition={condition} />;
+      return <ConditionIcon condition={condition} key={condition.id}/>;
     });
   };
 
