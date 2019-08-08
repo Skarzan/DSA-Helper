@@ -24,3 +24,12 @@ export const addConditionToHero = payload => ({
   type: "ADDCONDITIONTOHERO",
   payload
 });
+
+/**
+ *
+ * @param {*} payload contains array [heroId, conditionObject]
+ */
+export const changeCondition = payload => ({
+  type: "CHANGECONDITION",
+  payload
+});

@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import Popover from "react-bootstrap/Popover";
 import { OverlayTrigger } from "react-bootstrap";
+import Form from "react-bootstrap/Form";
 
 import { useDispatch } from "react-redux";
-import { deleteConditionFromHero } from "../actions";
+import { deleteConditionFromHero, changeCondition } from "../actions";
 
 import { HeroId } from "./Hero";
 
@@ -13,6 +14,7 @@ import conditionsInformation from "../assets/conditionsInformation";
 
 export default function ConditionIcon(props) {
   const [id, setId] = useState(0);
+  const heroId = useContext(HeroId);
 
   useEffect(() => {
     setId(props.condition.conditionId);
@@ -38,7 +40,14 @@ export default function ConditionIcon(props) {
     }
   };
 
-  const heroId = useContext(HeroId);
+  const handleInput = e => {
+    dispatch(
+      changeCondition([
+        heroId,
+        { ...props.condition, [e.target.name]: e.target.value }
+      ])
+    );
+  };
 
   return (
     <div className="conditionIcon">
@@ -56,12 +65,40 @@ export default function ConditionIcon(props) {
                 >
                   delete
                 </button>
-                <h3>
-                  {conditionsInformation[id].name}{" "}
-                  {conditionsInformation[id].hasLevel ? showLevel() : ""}{" "}
-                </h3>
+                <h3>{conditionsInformation[id].name} </h3>
+                {conditionsInformation[id].hasLevel ? (
+                  <div>
+                    {" "}
+                    <Form.Label>Stufe</Form.Label>
+                    <Form.Control
+                      className="romanFont"
+                      as="select"
+                      name="level"
+                      value={props.condition.level}
+                      onChange={e => handleInput(e)}
+                    >
+                      <option value="1">I</option>
+                      <option value="2">II</option>
+                      <option value="3">III</option>
+                      <option value="4">IV</option>
+                    </Form.Control>
+                  </div>
+                ) : (
+                  ""
+                )}{" "}
               </div>
-              <div>Runden: {props.condition.remainingRounds}</div>
+              <div>
+                Runden:{" "}
+                <Form.Control
+                  type="number"
+                  name="remainingRounds"
+                  min="1"
+                  value={props.condition.remainingRounds}
+                  onChange={e => {
+                    handleInput(e);
+                  }}
+                />
+              </div>
             </Popover.Content>
           </Popover>
         }
@@ -76,7 +113,7 @@ export default function ConditionIcon(props) {
             {props.condition.remainingRounds}
           </div>
           {conditionsInformation[props.condition.conditionId].hasLevel ? (
-            <div className="level">{showLevel()}</div>
+            <div className="level romanFont">{showLevel()}</div>
           ) : (
             ""
           )}

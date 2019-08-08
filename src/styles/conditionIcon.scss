@@ -3,8 +3,11 @@
   cursor: pointer;
 
   .conditionImage {
-    width: 55px;
-    height: 55px;
+    min-width: 55px;
+    min-height: 55px;
+
+    max-width: 85px;
+    max-height: 85px;
   }
 
   .level {

@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { useDispatch } from "react-redux";
 import { HeroId } from "./Hero";
 import conditionsInformation from "../assets/conditionsInformation";
-import { addConditionToHero } from "../actions";
+import { addConditionToHero, changeCondition } from "../actions";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
@@ -102,6 +102,7 @@ export default function ConditionsAddBox(props) {
                 <div>
                   <Form.Label>Stufe</Form.Label>
                   <Form.Control
+                    className="romanFont"
                     as="select"
                     name="level"
                     value={formData.level}

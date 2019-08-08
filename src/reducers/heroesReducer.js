@@ -33,6 +33,23 @@ const heroesReducer = (state = heroes, action) => {
         return hero;
       });
     }
+    case "CHANGECONDITION": {
+      const heroId = action.payload[0];
+      const condition = action.payload[1];
+
+      //let newConditions = [...state[heroId].conditions];
+
+      return state.map(hero => {
+        if (hero.id === heroId) {
+          let index = hero.conditions.findIndex(cond => {
+            return cond.id === condition.id;
+          });
+
+          hero.conditions[index] = condition;
+        }
+        return hero;
+      });
+    }
     default:
       return state;
   }

@@ -1,5 +1,11 @@
+@import url("https://fonts.googleapis.com/css?family=Noto+Serif&display=swap");
+
 @mixin center {
   display: flex;
   justify-content: center;
-  align-items: center;  
+  align-items: center;
+}
+
+.romanFont {
+  font-family: "Noto Serif", serif;
 }
