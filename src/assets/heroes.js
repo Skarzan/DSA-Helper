@@ -1,5 +1,6 @@
 export default [
   {
+    id: 0,
     name: "Galarius",
     maxLep: 25,
     maxAsp: 35,
@@ -11,21 +12,22 @@ export default [
     conditions: [
       {
         id: 0,
-        conditionId: 15,
-        level: 2,
+        conditionId: 13,
+        level: "2",
         remainingRounds: 3,
         comment: ""
       },
       {
         id: 1,
         conditionId: 2,
-        level: 1,
+        level: "1",
         remainingRounds: 5,
         comment: "Comment"
       }
     ]
   },
   {
+    id: 1,
     name: "Lizy",
     maxLep: 36,
     maxAsp: 0,
@@ -52,6 +54,7 @@ export default [
     ]
   },
   {
+    id: 2,
     name: "Priester",
     maxLep: 29,
     maxAsp: 0,

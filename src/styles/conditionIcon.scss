@@ -1,7 +1,27 @@
 .conditionIcon {
+  position: relative;
+  cursor: pointer;
 
   .conditionImage {
     width: 55px;
     height: 55px;
+  }
+
+  .level {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 0px 7px;
+    border-radius: 50px;
+    background: rgb(226, 79, 79);
+  }
+
+  .remainingRounds {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0px 7px;
+    border-radius: 50px;
+    background: rgb(142, 142, 224);
   }
 }
