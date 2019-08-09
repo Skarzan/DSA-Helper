@@ -5,7 +5,9 @@
   justify-content: center;
 
   .hero {
-    width: 48%;
-    margin: 15px 1%;
+/*     width: 48%;
+    margin: 15px 1%; */
+    flex: 1 0 400px;
+    margin: 15px;
   }
 }

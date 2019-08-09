@@ -51,13 +51,23 @@ export default function Battle() {
         activeFighter={activeFighter}
         killEnemy={killEnemy}
       />
-      <Button
-        onClick={() => {
-          nextFighter();
-        }}
-      >
-        Nächster Kämpfer
-      </Button>
+      <div className="battleFooter">
+        {fighter.length > 0 ? (
+          <div className="footerFighterName">
+            Aktiver Kämpfer: <span>{fighter[activeFighter].name}</span>
+          </div>
+        ) : (
+          <span>{""}</span>
+        )}
+        <Button
+          className="footerButton"
+          onClick={() => {
+            nextFighter();
+          }}
+        >
+          Nächster Kämpfer
+        </Button>
+      </div>
     </div>
   );
 }

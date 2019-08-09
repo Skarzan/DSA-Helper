@@ -1,11 +1,10 @@
 .conditionIcon {
   position: relative;
   cursor: pointer;
+  margin: 0 5px;
 
   .conditionImage {
-    min-width: 55px;
-    min-height: 55px;
-
+    width: 100%;
     max-width: 85px;
     max-height: 85px;
   }

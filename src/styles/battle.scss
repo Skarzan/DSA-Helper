@@ -16,4 +16,30 @@
       width: calc(30% - 10px);
     }
   }
+
+  .battleFooter {
+    padding: 5px;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    width: 100%;
+    background: rgb(202, 202, 202);
+
+    .footerFighterName {
+      align-self: center;
+      font-size: 20px;
+      margin-left: 10px;
+
+      span {
+        font-weight: bold;
+      }
+    }
+
+    .footerButton {
+      
+    }
+  }
+
 }

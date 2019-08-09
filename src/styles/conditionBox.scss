@@ -1,9 +1,9 @@
 .conditionBox{
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  margin: 10px 5px;
 
   .conditionIcon {
-    display: inline-block;
-    max-width: 30%;
+    flex: 0 1 calc(10% - 10px);
   }
 }
