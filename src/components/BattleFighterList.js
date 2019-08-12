@@ -24,6 +24,9 @@ export default function BattleFighterList(props) {
           key={character.id}
           fighter={character}
           killFighter={props.killFighter}
+          deleteCondition={props.deleteCondition}
+          changeCondition={props.changeCondition}
+          addCondition={props.addCondition}
           status={
             props.activeFighter <= index
               ? props.activeFighter === index

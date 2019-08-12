@@ -20,7 +20,9 @@ function App() {
     <div className="App">
       <Provider store={store}>
         <Router>
-          <Header />
+          <header>
+            <Header />
+          </header>
           <ModalBox />
           <Switch>
             <Route exact path="/" component={HeroList} />

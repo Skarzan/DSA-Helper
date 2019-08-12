@@ -45,11 +45,6 @@ export default function Hero(props) {
           `${props.hero.name} besitzt diesen Zustand bereits`
         ])
       );
-      /**
-          |--------------------------------------------------
-          | TODO handle already existing condition
-          |--------------------------------------------------
-          */
     } else {
       // get the highest id of the existing conditions to make sure there is no duplicate id
       const id = Math.max.apply(

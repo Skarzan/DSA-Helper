@@ -38,7 +38,9 @@ export default () => {
 
   return (
     <div className="header">
-      <div className="menu">{createLinks()}</div>
+      <nav>
+        <div className="menu">{createLinks()}</div>
+      </nav>
     </div>
   );
 };

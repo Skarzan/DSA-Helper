@@ -7,8 +7,11 @@
   .fighterCardHeader {
     display: flex;
     justify-content: space-between;
+
+    .fighterButtons {
+      display: flex;
+    }
   }
-  
 
   .status {
     left: 0;

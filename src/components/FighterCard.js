@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import Points from "./Points";
+import ConditionsAddBox from "./ConditionsAddBox";
 import ConditionBox from "./ConditionBox";
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
@@ -9,12 +10,37 @@ import Button from "react-bootstrap/Button";
 import "../styles/fighterCard.scss";
 
 export default function FighterCard(props) {
+  const [showConditionsAddBox, setShowConditionsAddBox] = useState(false);
+
+  const changeFighterCondition = condition => {
+    props.changeCondition(props.fighter.id, condition);
+  };
+
+  const deleteCondition = conditionId => {
+    props.deleteCondition(props.fighter.id, conditionId);
+  };
+
+  const addCondition = condition => {
+    props.addCondition(props.fighter.id, condition);
+    setShowConditionsAddBox(!showConditionsAddBox);
+  };
+
   return (
     <div className="fighterCard">
       <Card className={props.status + " status"}>
         <Card.Header as="h4" className="fighterCardHeader">
           <div>{props.fighter.name}</div>
           <div className="fighterButtons">
+            <div>
+              <Button
+                variant="secondary"
+                onClick={() => {
+                  setShowConditionsAddBox(!showConditionsAddBox);
+                }}
+              >
+                Zustand/Status
+              </Button>
+            </div>
             <Button
               variant="danger"
               size="sm"
@@ -27,6 +53,15 @@ export default function FighterCard(props) {
           </div>
         </Card.Header>
         <Card.Text className="heroInner">
+          <Row>
+            <Col sm="12">
+              {showConditionsAddBox ? (
+                <ConditionsAddBox addCondition={addCondition} />
+              ) : (
+                ""
+              )}
+            </Col>
+          </Row>
           <Row className="row">
             <Col sm="12">
               <div className="pointsHero">
@@ -62,7 +97,11 @@ export default function FighterCard(props) {
               </div>
               <div>Initiative: {props.fighter.initiative}</div>
               <div>
-                <ConditionBox conditions={props.fighter.conditions} />
+                <ConditionBox
+                  conditions={props.fighter.conditions}
+                  changeCondition={changeFighterCondition}
+                  deleteCondition={deleteCondition}
+                />
               </div>
             </Col>
           </Row>
