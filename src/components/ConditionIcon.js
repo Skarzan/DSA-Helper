@@ -4,13 +4,7 @@ import { OverlayTrigger } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 
 import { useDispatch } from "react-redux";
-import {
-  deleteConditionFromHero,
-  changeCondition,
-  showModal
-} from "../actions";
-
-import { HeroId } from "./Hero";
+import { showModal } from "../actions";
 
 import "../styles/conditionIcon.scss";
 
@@ -18,7 +12,6 @@ import conditionsInformation from "../assets/conditionsInformation";
 
 export default function ConditionIcon(props) {
   const [id, setId] = useState(0);
-  const heroId = useContext(HeroId);
 
   useEffect(() => {
     setId(props.condition.conditionId);
@@ -26,7 +19,7 @@ export default function ConditionIcon(props) {
   const dispatch = useDispatch();
 
   let deleteCondition = () => {
-    dispatch(deleteConditionFromHero([heroId, props.condition.conditionId]));
+    props.deleteCondition(props.condition.conditionId);
   };
 
   const showLevel = () => {
@@ -45,12 +38,8 @@ export default function ConditionIcon(props) {
   };
 
   const handleInput = e => {
-    dispatch(
-      changeCondition([
-        heroId,
-        { ...props.condition, [e.target.name]: e.target.value }
-      ])
-    );
+    const condition = { ...props.condition, [e.target.name]: e.target.value };
+    props.changeCondition(condition);
   };
 
   const showInformation = () => {

@@ -1,19 +1,13 @@
 import React, { useState, useContext } from "react";
-import { useDispatch } from "react-redux";
-import { HeroId } from "./Hero";
+
 import conditionsInformation from "../assets/conditionsInformation";
-import { addConditionToHero, changeCondition } from "../actions";
+
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
-import { useSelector } from "react-redux";
 
 export default function ConditionsAddBox(props) {
-  const heroId = useContext(HeroId);
-  const dispatch = useDispatch();
-  const hero = useSelector(state => state.heroes)[heroId];
-
   const [roundsSwitch, setRoundsSwitch] = useState(false);
 
   const [formData, setFormData] = useState({
@@ -41,38 +35,14 @@ export default function ConditionsAddBox(props) {
   const submitData = e => {
     e.preventDefault();
 
-    // check if conditionId is already there
-    if (
-      hero.conditions.find(condition => {
-        return condition.conditionId == formData.conditionId;
-      })
-    ) {
-      /**
-      |--------------------------------------------------
-      | TODO handle already existing condition
-      |--------------------------------------------------
-      */
-    } else {
-      //manage rounds
-      if (!roundsSwitch) {
-        const helper = formData;
-        helper.remainingRounds = null;
-        setFormData(helper);
-      }
-
-      // get the highest id of the existing conditions to make sure there is no duplicate id
-      const id = Math.max.apply(
-        Math,
-        hero.conditions.map(function(o) {
-          return o.id;
-        })
-      );
-      let helper = formData;
-      helper.id = id + 1;
-      dispatch(addConditionToHero([heroId, helper]));
+    //manage rounds
+    if (!roundsSwitch) {
+      const helper = formData;
+      helper.remainingRounds = null;
+      setFormData(helper);
     }
-    console.log("formData", formData);
-    props.closeBox();
+
+    props.addCondition({ formData });
   };
 
   const toggleRounds = () => {

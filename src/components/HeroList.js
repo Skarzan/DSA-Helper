@@ -31,7 +31,7 @@ export default function HeroList() {
 
   return (
     <div className="heroList">
-      <h1 className="party">Heldengruppe</h1>
+      <h1 className="party siteHeading">Heldengruppe</h1>
       <div className="heroes">{showHeroes()}</div>
       <div className="heroCreateButton">
         <Button size="lg" onClick={() => showCharacterCreator()}>

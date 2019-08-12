@@ -55,17 +55,16 @@ export default function Battle() {
 
   return (
     <div className="battle">
-      <div>Runde {battleRound}</div>
+      <h1 class="siteHeading">Kampf</h1>
+      <div className="newFighter">
+        <Button onClick={() => showNewFighterModal()}>Neuer Kämpfer</Button>
+      </div>
+      <div className="round">Runde {battleRound}</div>
       <BattleFighterList
         fighter={fighter}
         activeFighter={activeFighter}
         killFighter={killFighter}
       />
-
-      <div className="newFighter">
-        <Button onClick={() => showNewFighterModal()}>Neuer Kämpfer</Button>
-      </div>
-
       {fighter.length > 0 ? (
         <div className="battleFooter">
           <div className="footerFighterName">
