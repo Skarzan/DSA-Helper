@@ -4,7 +4,11 @@ import { OverlayTrigger } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 
 import { useDispatch } from "react-redux";
-import { deleteConditionFromHero, changeCondition } from "../actions";
+import {
+  deleteConditionFromHero,
+  changeCondition,
+  showModal
+} from "../actions";
 
 import { HeroId } from "./Hero";
 
@@ -49,6 +53,15 @@ export default function ConditionIcon(props) {
     );
   };
 
+  const showInformation = () => {
+    dispatch(
+      showModal([
+        conditionsInformation[id].name,
+        conditionsInformation[id].info
+      ])
+    );
+  };
+
   return (
     <div className="conditionIcon">
       <OverlayTrigger
@@ -56,20 +69,27 @@ export default function ConditionIcon(props) {
         placement="bottom"
         overlay={
           <Popover>
-            <Popover.Content class="Content">
-              <div>
-                <button
-                  onClick={() => {
-                    deleteCondition();
-                  }}
-                >
-                  delete
-                </button>
-                <h3>{conditionsInformation[id].name} </h3>
+            <Popover.Content className="Content">
+              <button
+                onClick={() => {
+                  deleteCondition();
+                }}
+              >
+                delete
+              </button>
+              <button
+                onClick={() => {
+                  showInformation();
+                }}
+              >
+                Info
+              </button>
+              <h3>{conditionsInformation[id].name} </h3>
+              <div className="conditionChange">
                 {conditionsInformation[id].hasLevel ? (
                   <div>
                     {" "}
-                    <Form.Label>Stufe</Form.Label>
+                    <Form.Label>Stufe:</Form.Label>
                     <Form.Control
                       className="romanFont"
                       as="select"
@@ -86,18 +106,18 @@ export default function ConditionIcon(props) {
                 ) : (
                   ""
                 )}{" "}
-              </div>
-              <div>
-                Runden:{" "}
-                <Form.Control
-                  type="number"
-                  name="remainingRounds"
-                  min="1"
-                  value={props.condition.remainingRounds}
-                  onChange={e => {
-                    handleInput(e);
-                  }}
-                />
+                <div>
+                  <Form.Label>Runden:</Form.Label>
+                  <Form.Control
+                    type="number"
+                    name="remainingRounds"
+                    min="1"
+                    value={props.condition.remainingRounds}
+                    onChange={e => {
+                      handleInput(e);
+                    }}
+                  />
+                </div>
               </div>
             </Popover.Content>
           </Popover>

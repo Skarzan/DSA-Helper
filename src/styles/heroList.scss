@@ -1,13 +1,30 @@
-.heroList {
+@import "./global.scss";
 
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+.heroList {
+  .party {
+    color: white;
+    margin-left: 15px;
+  }
+
+  .heroes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .heroCreateButton {
+    @include center;
+
+    button {
+      width: 30%;
+      font-size: 27px;
+    }
+  }
 
   .hero {
-/*     width: 48%;
+    /*     width: 48%;
     margin: 15px 1%; */
-    flex: 1 0 400px;
+    flex: 1 0 calc(50% - 30px);
     margin: 15px;
   }
 }

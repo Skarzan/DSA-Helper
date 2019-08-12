@@ -20,7 +20,7 @@ export default function Hero(props) {
     <div className="hero">
       <HeroId.Provider value={props.hero.id}>
         <Card>
-          <Card.Header as="h4">
+          <Card.Header as="h4" className="heroHeader">
             <div>{props.hero.name}</div>
             <div>
               <Button
@@ -49,7 +49,7 @@ export default function Hero(props) {
             </Row>
             <Row className="row">
               <Col sm="12">
-                <div className="pointsHero">
+                <div className="pointsHeroContainer">
                   <div className="lep">
                     <Points
                       name="LeP"

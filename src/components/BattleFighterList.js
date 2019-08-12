@@ -23,7 +23,7 @@ export default function BattleFighterList(props) {
         <FighterCard
           key={character.id}
           fighter={character}
-          killEnemy={props.killEnemy}
+          killFighter={props.killFighter}
           status={
             props.activeFighter <= index
               ? props.activeFighter === index

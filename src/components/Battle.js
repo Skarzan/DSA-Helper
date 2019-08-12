@@ -1,15 +1,23 @@
 import React, { useState } from "react";
 import CharacterCreator from "./CharacterCreator";
 import BattleFighterList from "./BattleFighterList";
+import { useDispatch } from "react-redux";
+import { showModal, closeModal } from "../actions";
 
 import Button from "react-bootstrap/Button";
 
 import "../styles/battle.scss";
 
 export default function Battle() {
+  const dispatch = useDispatch();
   let [fighter, setFighter] = useState([]);
   let [battleRound, setBattleRound] = useState(1);
   let [activeFighter, setActiveFighter] = useState(0);
+
+  const showNewFighterModal = fighter => {
+    const modal = <CharacterCreator submitCharacter={addFighter} />;
+    dispatch(showModal(["Neuer Kämpfer", modal]));
+  };
 
   let endRound = () => {
     setBattleRound(battleRound + 1);
@@ -24,12 +32,14 @@ export default function Battle() {
     }
   };
 
-  let addEnemy = enemy => {
+  let addFighter = enemy => {
     enemy.id = fighter.length + 1;
     setFighter([...fighter, enemy]);
+
+    dispatch(closeModal());
   };
 
-  let killEnemy = enemyId => {
+  let killFighter = enemyId => {
     correctActiveFighter(enemyId);
     let newList = fighter.filter(function(enemy) {
       return enemy.id !== enemyId;
@@ -45,29 +55,35 @@ export default function Battle() {
 
   return (
     <div className="battle">
-      <CharacterCreator submitCharacter={addEnemy} />
+      <div>Runde {battleRound}</div>
       <BattleFighterList
         fighter={fighter}
         activeFighter={activeFighter}
-        killEnemy={killEnemy}
+        killFighter={killFighter}
       />
-      <div className="battleFooter">
-        {fighter.length > 0 ? (
+
+      <div className="newFighter">
+        <Button onClick={() => showNewFighterModal()}>Neuer Kämpfer</Button>
+      </div>
+
+      {fighter.length > 0 ? (
+        <div className="battleFooter">
           <div className="footerFighterName">
             Aktiver Kämpfer: <span>{fighter[activeFighter].name}</span>
           </div>
-        ) : (
-          <span>{""}</span>
-        )}
-        <Button
-          className="footerButton"
-          onClick={() => {
-            nextFighter();
-          }}
-        >
-          Nächster Kämpfer
-        </Button>
-      </div>
+
+          <Button
+            className="footerButton"
+            onClick={() => {
+              nextFighter();
+            }}
+          >
+            Nächster Kämpfer
+          </Button>
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 }

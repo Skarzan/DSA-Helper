@@ -19,7 +19,7 @@ export default function FighterCard(props) {
               variant="danger"
               size="sm"
               onClick={() => {
-                props.killEnemy(props.fighter.id);
+                props.killFighter(props.fighter.id);
               }}
             >
               X

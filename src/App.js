@@ -2,6 +2,7 @@ import React from "react";
 import Header from "./components/Header";
 import Battle from "./components/Battle";
 import HeroList from "./components/HeroList";
+import ModalBox from "./components/ModalBox";
 
 // Router
 import { Route, Link, BrowserRouter as Router, Switch } from "react-router-dom";
@@ -20,6 +21,7 @@ function App() {
       <Provider store={store}>
         <Router>
           <Header />
+          <ModalBox />
           <Switch>
             <Route exact path="/" component={HeroList} />
             <Route path="/battle" component={Battle} />

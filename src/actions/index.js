@@ -1,3 +1,4 @@
+/* HERO ACTIONS */
 export const addHero = hero => {
   return {
     type: "ADDHERO",
@@ -32,4 +33,23 @@ export const addConditionToHero = payload => ({
 export const changeCondition = payload => ({
   type: "CHANGECONDITION",
   payload
+});
+
+/* MODAL ACTIONS */
+
+/**
+ *
+ * @param {*} payload contains object{heading, text}
+ */
+export const showModal = payload => ({
+  type: "SHOWMODAL",
+  payload
+});
+
+/**
+ *
+ * @param {*} payload contains object{heading, text}
+ */
+export const closeModal = () => ({
+  type: "CLOSEMODAL"
 });

@@ -9,6 +9,7 @@ export default [
     asp: 30,
     kap: 0,
     money: 20421,
+    initiative: 11,
     conditions: [
       {
         id: 0,
@@ -36,6 +37,7 @@ export default [
     asp: 0,
     kap: 0,
     money: 10790,
+    initiative: 15,
     conditions: [
       {
         id: 0,
@@ -63,6 +65,7 @@ export default [
     asp: 0,
     kap: 18,
     money: 20203,
+    initiative: 7,
     conditions: []
   }
 ];

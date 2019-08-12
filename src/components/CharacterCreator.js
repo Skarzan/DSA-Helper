@@ -21,17 +21,13 @@ export default function CharacterCreator(props) {
 
   const submit = e => {
     e.preventDefault();
+    console.log(props);
     props.submitCharacter(character);
   };
 
   return (
     <div className="characterCreator">
       <Form>
-        <Form.Row>
-          <Col>
-            <h3>Neuer Charakter</h3>
-          </Col>
-        </Form.Row>
         <Form.Row>
           <Col>
             <Form.Label>Name: </Form.Label>

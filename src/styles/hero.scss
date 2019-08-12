@@ -1,16 +1,25 @@
 @import "./global.scss";
 
 .hero {
-}
+  .heroHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-.heroInner {
-  padding: 5px;
-}
+  .heroInner {
+    padding: 5px;
 
-.lep,
-.asp,
-.kap {
-  width: 100%;
-  height: 45px;
-  margin: 10px 0;
+    .pointsHeroContainer {
+      min-height: 105px;
+    }
+  }
+
+  .lep,
+  .asp,
+  .kap {
+    width: 100%;
+    height: 45px;
+    margin: 10px 0;
+  }
 }

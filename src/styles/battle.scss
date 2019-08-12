@@ -1,20 +1,13 @@
 @import "./global.scss";
 
 .battle {
-
-  display: flex;
-
-  .characterCreator {
-    width: 20%;
-    margin: 0 10px;
+  .battleFighterList {
+    .fighterCard {
+    }
   }
 
-  .battleFighterList {
-    width: 80%;
-
-    .fighterCard {
-      width: calc(30% - 10px);
-    }
+  .newFighter {
+    @include center;
   }
 
   .battleFooter {
@@ -38,8 +31,6 @@
     }
 
     .footerButton {
-      
     }
   }
-
 }
