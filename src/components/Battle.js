@@ -4,79 +4,123 @@ import BattleFighterList from "./BattleFighterList";
 import { useDispatch } from "react-redux";
 import { showModal, closeModal } from "../actions";
 
-import conditionsInformation from "../assets/conditionsInformation";
-
 import Button from "react-bootstrap/Button";
 
 import "../styles/battle.scss";
 
+/**
+ * Manages a battle. Controls all the fighters and their values.
+ */
 export default function Battle() {
   const dispatch = useDispatch();
+  /** list of all fighters of the battle */
   let [fighter, setFighter] = useState([]);
+  /** counts the round of a battle */
   let [battleRound, setBattleRound] = useState(1);
+  /** indicates the position of the active fighter in the fighter array */
   let [activeFighter, setActiveFighter] = useState(0);
 
-  const showNewFighterModal = fighter => {
+  /**
+   *  Activates the modal and gives it the characterCreator component.
+   *  Injects the addFighter-function when user submits data in the modal
+   */
+  const showNewFighterModal = () => {
     const modal = <CharacterCreator submitCharacter={addFighter} />;
-    dispatch(showModal(["Neuer Kämpfer", modal]));
+    dispatch(showModal(["Neuer Kämpfer", modal])); // redux showModal
   };
 
-  let endRound = () => {
+  /**
+   * Setting all up for a new battle round.
+   */
+  const endRound = () => {
     setBattleRound(battleRound + 1);
   };
 
-  let nextFighter = () => {
+  /**
+   * Sets the active fighter to the next in the list. Checks if a new round has to start
+   */
+  const nextFighter = () => {
     if (fighter.length - 1 === activeFighter) {
-      endRound();
+      endRound(); // start new round
       setActiveFighter(0);
     } else {
       setActiveFighter(activeFighter + 1);
     }
   };
 
-  let addFighter = enemy => {
-    enemy.id = fighter.length + 1;
-    setFighter([...fighter, enemy]);
+  /**
+   * Adds a new fighter to the fighters list
+   * @param {Object} fighter the new fighter about to add to the fighter list
+   */
+  let addFighter = fighter => {
+    fighter.id = fighter.length + 1; //TODO set the greatest id
 
-    dispatch(closeModal());
+    let newFighter = [...fighter];
+    newFighter.push(fighter); //add new fighter
+
+    setFighter(newFighter);
+
+    dispatch(closeModal()); // close the modal
+    //console.log(fighter);
   };
 
-  let killFighter = enemyId => {
-    correctActiveFighter(enemyId);
-    let newList = fighter.filter(function(enemy) {
-      return enemy.id !== enemyId;
-    });
+  /**
+   * Deletes a fighter with a given id
+   * @param {number} fighterId id of the fighter about to delete
+   */
+  const killFighter = fighterId => {
+    correctActiveFighter(fighterId); // check if the activeFighter has to be changed
+    let newList = fighter.filter(function(fighter) {
+      return fighter.id !== fighterId;
+    }); // return an array of all remaining fighters
     setFighter(newList);
   };
 
+  /**
+   * Corrects activeFighter when the fighterList is changed
+   * @param {number} fighterId id of the fighter that is affected
+   */
   let correctActiveFighter = fighterId => {
     if (fighter[fighterId - 1].initiative < fighter[activeFighter].initiative) {
       setActiveFighter(activeFighter - 1);
     }
   };
 
-  /* condition functions */
+  /****************** condition functions ******************/
 
+  /**
+   * Deletes a condition with a given id from the conditions of a given fighter.
+   * @param {number} fighterId the id of the fighter
+   * @param {number} conditionId the id of the conditon
+   */
   const deleteCondition = (fighterId, conditionId) => {
-    const index = fighter.findIndex(character => character.id == fighterId);
+    const index = fighter.findIndex(character => character.id === fighterId); // get the index of the hero in the fighter-list
 
     let filtered = fighter[index].conditions.filter((condition, index, arr) => {
-      return condition.conditionId != conditionId;
-    });
+      return condition.conditionId !== conditionId;
+    }); //return a list of all conditions excluding the condition about to delete
 
-    let newFighter = fighter.map(fighter => {
-      if (fighter.id === fighterId) {
-        fighter.conditions = filtered;
+    let newFighter = fighter.map(character => {
+      // set the new condition list to the right fighter
+      if (character.id === fighterId) {
+        character.conditions = filtered;
       }
-      return fighter;
+      return character;
     });
 
     setFighter(newFighter);
   };
 
+  /**
+   * Replaces a condition with the same id of a given fighetr
+   * @param {number} fighterId the id of the fighter
+   * @param {Object} condition the condition
+   */
   const changeCondition = (fighterId, condition) => {
     let newFighter = fighter.map(character => {
+      // get the hero which conditions has to be changed
       if (character.id === fighterId) {
+        //find index of the condition that has to be replaced
         let index = character.conditions.findIndex(cond => {
           return cond.id === condition.id;
         });
@@ -89,8 +133,39 @@ export default function Battle() {
     setFighter(newFighter);
   };
 
-  const addCondition = (fighterId, oldCondition) => {
-    const condition = oldCondition.formData;
+  /**
+   * Adds a new condition to the condition array of a given fighter
+   * @param {number} fighterId id of the fighter
+   * @param {Object} newCondition the new Condition
+   */
+  const addCondition = (fighterId, newCondition) => {
+    let newFighter = fighter.map(character => {
+      //find the right fighter
+      if (fighterId === character.id) {
+        // check if there are already a condition with the same conditionId
+        if (
+          character.conditions.find(condition => {
+            return condition.conditionId === newCondition.conditionId;
+          })
+        ) {
+          dispatch(
+            showModal([
+              "Hinweis",
+              `${character.name} besitzt diesen zustand bereits`
+            ])
+          );
+        } else {
+          let id = character.conditions.length;
+
+          newCondition.id = id + 1;
+          character.conditions = [...character.conditions, newCondition];
+        }
+      }
+      return character;
+    });
+
+    setFighter(newFighter);
+    /* const condition = oldCondition.formData;
     const index = fighter.findIndex(character => character.id == fighterId);
 
     if (
@@ -122,7 +197,7 @@ export default function Battle() {
         return fighter;
       });
       setFighter(newFighter);
-    }
+    } */
   };
 
   return (

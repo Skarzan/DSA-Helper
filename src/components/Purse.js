@@ -1,25 +1,41 @@
 import React, { useState, useEffect } from "react";
-import Button from "react-bootstrap/Button"
+import Button from "react-bootstrap/Button";
 
 import "../styles/purse.scss";
 
+/**
+ * Displays and calculates a hero´s money. Creates 4 number-inputs
+ * @param {Object} props      the props
+ * @param {number} props.startMoney the amount of money that should be displayed
+ */
 export default function Purse(props) {
   let [money, setMoney] = useState(0);
 
+  // copy props.startMoney to state
   useEffect(() => {
     setMoney(props.startMoney);
   }, [props.startMoney]);
 
-  let changeMoney = (operation, amount) => {
+  /**
+   * Add or subtract a given amount of the money
+   * @param {number} operation determinate if it should add or sub
+   * @param {number} amount the amount
+   */
+  const changeMoney = (operation, amount) => {
     //0 = sub, 1 = add
     if (operation === 0) {
-      setMoney(money - amount);
+      setMoney(money - amount); // subtract
     } else {
-      setMoney(money + amount);
+      setMoney(money + amount); // add
     }
   };
 
-  let directChange = (digit, amount) => {
+  /**
+   * Sets the money as direct input in the form fields on a given amount
+   * @param {number} digit the digit to change: 1: 'dukaten', 2: 'Silber, 3: 'Heller', 4: 'Kreuzer'
+   * @param {*} amount the amount
+   */
+  const directChange = (digit, amount) => {
     switch (digit) {
       case 1:
         setMoney(amount * 1000 + Math.floor(money % 1000));
@@ -41,44 +57,76 @@ export default function Purse(props) {
   return (
     <div class="purse">
       <div className="purseSection">
-        <img class="coinImage" src={require("../assets/img/coins_t_03.png")} alt="Dukaten" />
-        <Button onClick={() => changeMoney(0, 1000)} variant="secondary">-</Button>
+        <img
+          class="coinImage"
+          src={require("../assets/img/coins_t_03.png")}
+          alt="Dukaten"
+        />
+        <Button onClick={() => changeMoney(0, 1000)} variant="secondary">
+          -
+        </Button>
         <input
           type="text"
           value={Math.floor(money / 1000)}
           onChange={e => directChange(1, e.target.value)}
         />
-        <Button onClick={() => changeMoney(1, 1000)} variant="secondary">+</Button>
+        <Button onClick={() => changeMoney(1, 1000)} variant="secondary">
+          +
+        </Button>
       </div>
       <div className="purseSection">
-        <img class="coinImage" src={require("../assets/img/coins_t_01.png")} alt="Silber"/>
-        <Button onClick={() => changeMoney(0, 100)} variant="secondary">-</Button>
+        <img
+          class="coinImage"
+          src={require("../assets/img/coins_t_01.png")}
+          alt="Silber"
+        />
+        <Button onClick={() => changeMoney(0, 100)} variant="secondary">
+          -
+        </Button>
         <input
           type="text"
           value={Math.floor((money % 1000) / 100)}
           onChange={e => directChange(2, e.target.value)}
         />
-        <Button onClick={() => changeMoney(1, 100)} variant="secondary">+</Button>
+        <Button onClick={() => changeMoney(1, 100)} variant="secondary">
+          +
+        </Button>
       </div>
       <div className="purseSection">
-        <img class="coinImage" src={require("../assets/img/coins_t_02.png")} alt="Heller"/>
-        <Button onClick={() => changeMoney(0, 10)} variant="secondary">-</Button>
+        <img
+          class="coinImage"
+          src={require("../assets/img/coins_t_02.png")}
+          alt="Heller"
+        />
+        <Button onClick={() => changeMoney(0, 10)} variant="secondary">
+          -
+        </Button>
         <input
           type="text"
           value={Math.floor((money % 100) / 10)}
           onChange={e => directChange(3, e.target.value)}
         />
-        <Button onClick={() => changeMoney(1, 10)} variant="secondary">+</Button>
+        <Button onClick={() => changeMoney(1, 10)} variant="secondary">
+          +
+        </Button>
       </div>
       <div className="purseSection">
-        <img class="coinImage" src={require("../assets/img/coins_t_04.png")} alt="Kreuzer"/>
-        <Button onClick={() => changeMoney(0, 1)} variant="secondary">-</Button>
+        <img
+          class="coinImage"
+          src={require("../assets/img/coins_t_04.png")}
+          alt="Kreuzer"
+        />
+        <Button onClick={() => changeMoney(0, 1)} variant="secondary">
+          -
+        </Button>
         <input
           type="text"
           value={money % 10}
           onChange={e => directChange(4, e.target.value)}
         />
-        <Button onClick={() => changeMoney(1, 1)} variant="secondary">+</Button>
+        <Button onClick={() => changeMoney(1, 1)} variant="secondary">
+          +
+        </Button>
       </div>
     </div>
   );

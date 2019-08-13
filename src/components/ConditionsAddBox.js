@@ -42,7 +42,7 @@ export default function ConditionsAddBox(props) {
       setFormData(helper);
     }
 
-    props.addCondition({ formData });
+    props.addCondition(formData);
   };
 
   const toggleRounds = () => {

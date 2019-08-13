@@ -5,7 +5,13 @@ import Col from "react-bootstrap/Col";
 
 import "../styles/characterCreator.scss";
 
+/**
+ * Creates a form to create a new character. Gives back the form values with the props.submitCharacter function
+ * @param {Object} props the props
+ * @param {function} props.submitCharacter sends the data of the character form to parent function
+ */
 export default function CharacterCreator(props) {
+  // initialize empty character
   let [character, setCharacter] = useState({
     name: "",
     maxLep: 0,
@@ -15,13 +21,20 @@ export default function CharacterCreator(props) {
     conditions: []
   });
 
-  let handleChange = e => {
+  /**
+   * Takes the name from the form element and changes the corresponding value in the state
+   * @param {*} e event object
+   */
+  const handleChange = e => {
     setCharacter({ ...character, [e.target.name]: e.target.value });
   };
 
+  /**
+   * Submits the state to the parent submitCharacter function
+   * @param {*} e event object
+   */
   const submit = e => {
     e.preventDefault();
-    console.log(props);
     props.submitCharacter(character);
   };
 

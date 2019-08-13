@@ -18,25 +18,44 @@ import { useDispatch } from "react-redux";
 
 import "../styles/hero.scss";
 
+/**
+ * Displays a Card with all informations about a given hero.
+ * Gets an hero object: {id: 1, name: string, maxLep: number, maxAsp: number, maxKap: number, lep: number, asp: number, kap: number, money: number, initiative: number : conditions: any[]}
+ * @param {Object} props the props
+ * @param {Object} props.hero the hero to display
+ */
 export default function Hero(props) {
   const dispatch = useDispatch();
   const [showConditionsAddBox, setShowConditionsAddBox] = useState(false);
 
+  /**
+   * Deletes a condition with a given id from the conditions of the hero. Calls Redux action
+   * @param {number} id the id of the conditon
+   */
   const deleteCondition = id => {
     dispatch(deleteConditionFromHero([props.hero.id, id]));
   };
 
+  /**
+   * Replaces a condition with the same id. Calls Redux action
+   * @param {Object} condition the condition
+   */
   const changeHeroCondition = condition => {
     dispatch(changeCondition([props.hero.id, condition]));
   };
 
+  /**
+   * Adds a new condition to the condition array of the hero. Calls Redux action
+   * @param {Object} data the new Condition
+   */
   const addCondition = data => {
     // check if conditionId is already there
     const formData = data.formData;
 
+    // check if there are already a condition with the same conditionId
     if (
       props.hero.conditions.find(condition => {
-        return condition.conditionId == formData.conditionId;
+        return condition.conditionId === formData.conditionId;
       })
     ) {
       dispatch(
@@ -54,8 +73,7 @@ export default function Hero(props) {
         })
       );
       let helper = formData;
-      helper.id = id + 1;
-      console.log(helper);
+      helper.id = id + 1; //set new id
       dispatch(addConditionToHero([props.hero.id, helper]));
     }
     setShowConditionsAddBox(!showConditionsAddBox);

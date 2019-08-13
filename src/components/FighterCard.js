@@ -9,17 +9,40 @@ import Button from "react-bootstrap/Button";
 
 import "../styles/fighterCard.scss";
 
+/**
+ * Displays a Card with all informations about a given hero.
+ * Gets an hero object: {id: 1, name: string, maxLep: number, maxAsp: number, maxKap: number, lep: number, asp: number, kap: number, money: number, initiative: number : conditions: any[]}
+ * @param {Object}         props                   the props
+ * @param {Object}         props.fighter           the hero to display
+ * @param {function}       props.deleteCondition   function to delete a condition
+ * @param {function}       props.addCondition      function to add a condition
+ * @param {function}       props.changeCondition   function to change a condition
+ * @param {function}       props.activeFighter     function to change the active fighter
+ * @param {function}       props.killFighter       function to delete a fighter
+ */
 export default function FighterCard(props) {
   const [showConditionsAddBox, setShowConditionsAddBox] = useState(false);
 
+  /**
+   * Replaces a condition with the same id of the fighter.
+   * @param {Object} condition the condition
+   */
   const changeFighterCondition = condition => {
     props.changeCondition(props.fighter.id, condition);
   };
 
+  /**
+   * Deletes a condition with a given id from the conditions of the fighetr.
+   * @param {number} conditionId the id of the conditon
+   */
   const deleteCondition = conditionId => {
     props.deleteCondition(props.fighter.id, conditionId);
   };
 
+  /**
+   * Adds a new condition to the condition array of the fighter
+   * @param {Object} data the new Condition
+   */
   const addCondition = condition => {
     props.addCondition(props.fighter.id, condition);
     setShowConditionsAddBox(!showConditionsAddBox);

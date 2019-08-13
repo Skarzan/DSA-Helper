@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Hero from "./Hero";
 import CharacterCreator from "./CharacterCreator";
 import Button from "react-bootstrap/Button";
@@ -9,21 +9,35 @@ import { useSelector, useDispatch } from "react-redux";
 
 import "../styles/heroList.scss";
 
+/**
+ * Renders a list of Hero - Components. Holds and manages the hero list with Redux actions.
+ * Containing a button that shows a modal to add ne Heroes
+ */
 export default function HeroList() {
   const dispatch = useDispatch();
-  const heroes = useSelector(state => state.heroes);
+  const heroes = useSelector(state => state.heroes); // get the array of heroes from redux
 
-  let showHeroes = () => {
+  /**
+   * Creates Hero - Components for all heroes in the heroes - array
+   */
+  const showHeroes = () => {
     return heroes.map(hero => {
       return <Hero hero={hero} />;
     });
   };
 
+  /**
+   * Adds a new hero to the hero list by calling the corrosponding redux function
+   * @param {Object} hero the new hero
+   */
   const addNewHero = hero => {
     dispatch(addHero([hero]));
     dispatch(closeModal());
   };
 
+  /**
+   * Shows a modal with the characterCreator form
+   */
   const showCharacterCreator = () => {
     const creator = <CharacterCreator submitCharacter={addNewHero} />;
     dispatch(showModal(["Neuer Held", creator]));

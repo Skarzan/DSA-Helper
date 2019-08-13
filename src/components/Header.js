@@ -1,8 +1,9 @@
 import React from "react";
-import { NavLink, Switch } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import "../styles/header.scss";
 
+//array of the site links
 const menuLinks = [
   {
     name: "Home",
@@ -18,7 +19,13 @@ const menuLinks = [
   }
 ];
 
+/**
+ * Renders a header with a menu
+ */
 export default () => {
+  /**
+   * Creates a list of NavLinks components. Uses React Router.
+   */
   const createLinks = () => {
     return menuLinks.map(link => {
       return (
