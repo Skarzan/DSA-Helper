@@ -28,7 +28,7 @@ export default function FighterCard(props) {
    * @param {Object} condition the condition
    */
   const changeFighterCondition = condition => {
-    props.changeCondition(props.fighter.id, condition);
+    props.changeCondition(props.index, condition);
   };
 
   /**
@@ -36,7 +36,7 @@ export default function FighterCard(props) {
    * @param {number} conditionId the id of the conditon
    */
   const deleteCondition = conditionId => {
-    props.deleteCondition(props.fighter.id, conditionId);
+    props.deleteCondition(props.index, conditionId);
   };
 
   /**
@@ -44,7 +44,7 @@ export default function FighterCard(props) {
    * @param {Object} data the new Condition
    */
   const addCondition = condition => {
-    props.addCondition(props.fighter.id, condition);
+    props.addCondition(props.index, condition);
     setShowConditionsAddBox(!showConditionsAddBox);
   };
 
@@ -68,7 +68,7 @@ export default function FighterCard(props) {
               variant="danger"
               size="sm"
               onClick={() => {
-                props.killFighter(props.fighter.id);
+                props.killFighter(props.index);
               }}
             >
               X

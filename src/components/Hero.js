@@ -50,7 +50,7 @@ export default function Hero(props) {
    */
   const addCondition = data => {
     // check if conditionId is already there
-    const formData = data.formData;
+    const formData = data;
 
     // check if there are already a condition with the same conditionId
     if (

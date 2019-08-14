@@ -118,9 +118,14 @@ export default function ConditionIcon(props) {
             src={conditionsInformation[props.condition.conditionId].imagePath}
             alt="Zustandsbild"
           />
-          <div className="remainingRounds">
-            {props.condition.remainingRounds}
-          </div>
+          {props.condition.remainingRounds > 0 ? (
+            <div className="remainingRounds">
+              {props.condition.remainingRounds}
+            </div>
+          ) : (
+            ""
+          )}
+
           {conditionsInformation[props.condition.conditionId].hasLevel ? (
             <div className="level romanFont">{showLevel()}</div>
           ) : (

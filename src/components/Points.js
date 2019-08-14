@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import ProgressBar from "react-bootstrap/ProgressBar";
 import Button from "react-bootstrap/Button";
@@ -14,6 +14,10 @@ import "../styles/points.scss";
 export default function Points(props) {
   // the current points of the bar
   const [currentPoints, setCurrentPoints] = useState(props.current);
+
+  useEffect(() => {
+    setCurrentPoints(props.maxPoints);
+  }, [props.maxPoints]);
 
   /**
    * Subtract 1 of currentPoints
