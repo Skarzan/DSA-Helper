@@ -25,6 +25,15 @@ export default function FighterCard(props) {
   const [showConditionsAddBox, setShowConditionsAddBox] = useState(false);
 
   /**
+   * Sets a new value to the given property
+   * @param {number} points the new points
+   * @param {string} name name of the property to change
+   */
+  const setPoint = (points, name) => {
+    props.setPoint(points, name, props.index);
+  };
+
+  /**
    * Replaces a condition with the same id of the fighter.
    * @param {Object} condition the condition
    */
@@ -93,16 +102,20 @@ export default function FighterCard(props) {
                 <div className="lep">
                   <Points
                     name="LeP"
-                    current={props.fighter.maxLep}
+                    current={props.fighter.LeP}
                     maxPoints={props.fighter.maxLep}
+                    setPoint={setPoint}
+                    subP
                   />
                 </div>
                 {props.fighter.maxAsp > 0 ? (
                   <div className="asp">
                     <Points
                       name="AsP"
-                      current={props.fighter.maxAsp}
+                      current={props.fighter.AsP}
                       maxPoints={props.fighter.maxAsp}
+                      setPoint={setPoint}
+                      subP
                     />
                   </div>
                 ) : (
@@ -112,8 +125,9 @@ export default function FighterCard(props) {
                   <div className="kap">
                     <Points
                       name="KaP"
-                      current={props.fighter.maxKap}
+                      current={props.fighter.KaP}
                       maxPoints={props.fighter.maxKap}
+                      setPoint={setPoint}
                     />
                   </div>
                 ) : (

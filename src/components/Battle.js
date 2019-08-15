@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CharacterCreator from "./CharacterCreator";
 import BattleFighterList from "./BattleFighterList";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { showModal, closeModal } from "../actions";
 
 import { ReactComponent as UserPlusButton } from "../assets/svg/icons/user-plus.svg";
@@ -15,6 +15,9 @@ import "../styles/battle.scss";
  * Manages a battle. Controls all the fighters and their values.
  */
 export default function Battle() {
+  /** list of heroes */
+  const heroes = useSelector(state => state.heroes); // get the array of heroes from redux
+
   const dispatch = useDispatch();
   /** list of all fighters of the battle */
   const [fighter, setFighter] = useState([]);
@@ -25,11 +28,29 @@ export default function Battle() {
   /** set the id´s of the conditions TODO solve it in a function */
   const [conditionIdCounter, setConditionIdCounter] = useState(0);
 
+  const addAllHeroes = () => {
+    setFighter([...fighter, ...heroes]);
+  };
+
+  const addHero = (index, initiative) => {
+    console.log(heroes[index]);
+    let hero = heroes[index];
+    hero.initiative = initiative;
+    addFighter(hero);
+  };
+
   /**
    * Adds a new fighter to the fighters list
    * @param {Object} newFighter the new fighter about to add to the fighter list
    */
   const addFighter = newFighter => {
+    newFighter = {
+      ...newFighter,
+      LeP: newFighter.maxLep,
+      AsP: newFighter.maxAsp,
+      KaP: newFighter.maxKap
+    };
+
     setFighter([...fighter, newFighter]);
     dispatch(closeModal());
   };
@@ -44,6 +65,15 @@ export default function Battle() {
 
     setFighter([...newState]);
     correctActiveFighter(fighterIndex);
+  };
+
+  const setPoint = (points, name, fighterIndex) => {
+    console.log(`${points} ${name} ${fighterIndex}`);
+    let newState = fighter;
+    newState[fighterIndex][name] = points;
+
+    setFighter([...newState]);
+    console.log(fighter);
   };
 
   /**
@@ -203,12 +233,14 @@ export default function Battle() {
 
   return (
     <div className="battle">
+      <Button onClick={() => addAllHeroes()}>Füge Helden hinzu</Button>
       <div className="round">Kampfrunde {battleRound}</div>
       <div className="fighterSection">
         <BattleFighterList
           deleteCondition={deleteCondition}
           changeCondition={changeCondition}
           addCondition={addCondition}
+          setPoint={setPoint}
           activeFighter={activeFighter}
           killFighter={killFighter}
           fighter={sortFightersByInitiative()}

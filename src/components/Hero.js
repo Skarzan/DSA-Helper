@@ -7,7 +7,7 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { showModal } from "../actions";
+import { showModal, closeModal, setPoint } from "../actions";
 
 import {
   addConditionToHero,
@@ -26,7 +26,22 @@ import "../styles/hero.scss";
  */
 export default function Hero(props) {
   const dispatch = useDispatch();
-  const [showConditionsAddBox, setShowConditionsAddBox] = useState(false);
+
+  const setNewPoint = (points, name) => {
+    dispatch(setPoint([points, name, props.hero.id]));
+  };
+
+  /**
+   * Shows the modal to add a new condition to the hero
+   */
+  const showConditionAddBox = () => {
+    dispatch(
+      showModal([
+        `Neuer Status für ${props.hero.name}`,
+        <ConditionsAddBox addCondition={addCondition} />
+      ])
+    );
+  };
 
   /**
    * Deletes a condition with a given id from the conditions of the hero. Calls Redux action
@@ -76,7 +91,7 @@ export default function Hero(props) {
       helper.id = id + 1; //set new id
       dispatch(addConditionToHero([props.hero.id, helper]));
     }
-    setShowConditionsAddBox(!showConditionsAddBox);
+    dispatch(closeModal());
   };
 
   return (
@@ -88,7 +103,7 @@ export default function Hero(props) {
             <Button
               variant="secondary"
               onClick={() => {
-                setShowConditionsAddBox(!showConditionsAddBox);
+                showConditionAddBox();
               }}
             >
               Zustand/Status
@@ -96,22 +111,14 @@ export default function Hero(props) {
           </div>
         </Card.Header>
         <Card.Text className="heroInner">
-          <Row>
-            <Col sm="12">
-              {showConditionsAddBox ? (
-                <ConditionsAddBox addCondition={addCondition} />
-              ) : (
-                ""
-              )}
-            </Col>
-          </Row>
           <Row className="row">
             <Col sm="12">
               <div className="pointsHeroContainer">
                 <div className="lep">
                   <Points
                     name="LeP"
-                    current={props.hero.lep}
+                    setPoint={setNewPoint}
+                    current={props.hero.LeP}
                     maxPoints={props.hero.maxLep}
                   />
                 </div>
@@ -119,7 +126,8 @@ export default function Hero(props) {
                   <div className="asp">
                     <Points
                       name="AsP"
-                      current={props.hero.asp}
+                      setPoint={setNewPoint}
+                      current={props.hero.AsP}
                       maxPoints={props.hero.maxAsp}
                     />
                   </div>
@@ -130,7 +138,8 @@ export default function Hero(props) {
                   <div className="kap">
                     <Points
                       name="KaP"
-                      current={props.hero.kap}
+                      setPoint={setNewPoint}
+                      current={props.hero.KaP}
                       maxPoints={props.hero.maxKap}
                     />
                   </div>

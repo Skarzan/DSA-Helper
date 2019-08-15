@@ -6,9 +6,9 @@ const heroesReducer = (state = heroes, action) => {
       let hero = action.payload[0];
       hero.id = state.length;
       hero.conditions = [];
-      hero.lep = hero.maxLep;
-      hero.asp = hero.maxAsp;
-      hero.kap = hero.maxKap;
+      hero.LeP = hero.maxLep;
+      hero.AsP = hero.maxAsp;
+      hero.KaP = hero.maxKap;
       hero.money = 0;
 
       if (hero.maxAsp <= 0) {
@@ -23,6 +23,22 @@ const heroesReducer = (state = heroes, action) => {
 
       return newHeroes;
     }
+
+    case "SETPOINT": {
+      const points = action.payload[0];
+      const name = action.payload[1];
+      const heroId = action.payload[2];
+
+      return state.map(hero => {
+        if (hero.id == heroId) {
+          hero[name] = points;
+          console.log(hero);
+        }
+
+        return hero;
+      });
+    }
+
     case "DELETECONDITIONFROMHERO": {
       const heroId = action.payload[0];
       const conditionId = action.payload[1];

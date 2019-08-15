@@ -1,8 +1,23 @@
 /* HERO ACTIONS */
+
+/**
+ *
+ * @param {*} hero contains all values for a new hero
+ */
 export const addHero = hero => {
   return {
     type: "ADDHERO",
     payload: hero
+  };
+};
+
+/**
+ * @param {*} payload contains array [points, name, id]
+ */
+export const setPoint = payload => {
+  return {
+    type: "SETPOINT",
+    payload
   };
 };
 

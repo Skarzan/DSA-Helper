@@ -8,30 +8,24 @@ import "../styles/points.scss";
 /**
  * Shows a bar of a given maxValue with buttons to control current points.
  * @param {Object} props the props
+ * @param {function} props.setPoint function that sets new Points
  * @param {string} props.name the name of the displayed bar
  * @param {number} props.maxPoints the maximum points of the bar
  */
 export default function Points(props) {
-  // the current points of the bar
-  const [currentPoints, setCurrentPoints] = useState(props.current);
-
-  useEffect(() => {
-    setCurrentPoints(props.maxPoints);
-  }, [props.maxPoints]);
-
   /**
-   * Subtract 1 of currentPoints
+   * Subtract 1 of props.current
    */
   const sub = () => {
-    setCurrentPoints(currentPoints - 1);
+    props.setPoint(props.current - 1, props.name);
   };
 
   /**
-   * Add 1 to currentPoints
+   * Add 1 to props.current
    */
   const add = () => {
-    if (currentPoints < props.maxPoints) {
-      setCurrentPoints(currentPoints + 1);
+    if (props.current < props.maxPoints) {
+      props.setPoint(props.current + 1, props.name);
     }
   };
 
@@ -58,8 +52,8 @@ export default function Points(props) {
       <ProgressBar
         className={`pointsHero ${props.name}`}
         variant={setColor(props.name)}
-        now={(currentPoints * 100) / props.maxPoints}
-        label={`${props.name}: ${currentPoints}/${props.maxPoints}`}
+        now={(props.current * 100) / props.maxPoints}
+        label={`${props.name}: ${props.current}/${props.maxPoints}`}
       />
 
       <Button

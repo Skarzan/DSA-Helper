@@ -26,6 +26,7 @@ export default function BattleFighterList(props) {
           changeCondition={props.changeCondition}
           addCondition={props.addCondition}
           index={index}
+          setPoint={props.setPoint}
           status={
             props.activeFighter <= index
               ? props.activeFighter === index
