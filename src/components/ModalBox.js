@@ -3,6 +3,7 @@ import Modal from "react-bootstrap/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { closeModal } from "../actions";
 
+import "../styles/modalBox.scss";
 /**
  * Shows a modalbox with a given header and content. Can be triggered with Redux action
  */
@@ -25,11 +26,16 @@ export default function ModalBox() {
   };
 
   return (
-    <Modal size="lg" show={modalInformation.show} onHide={handleClose}>
-      <Modal.Header closeButton>
+    <Modal
+      className="ModalBox"
+      size="lg"
+      show={modalInformation.show}
+      onHide={handleClose}
+    >
+      <Modal.Header className="modalHeader" closeButton>
         <Modal.Title>{modalInformation.heading}</Modal.Title>
       </Modal.Header>
-      <Modal.Body>{modalInformation.text}</Modal.Body>
+      <Modal.Body className="modalBody">{modalInformation.text}</Modal.Body>
     </Modal>
   );
 }

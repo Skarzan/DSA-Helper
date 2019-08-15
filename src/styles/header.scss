@@ -1,13 +1,13 @@
 @import "./global.scss";
 
 .header {
-
   .menu {
+    font-family: "Noto Sans JP", sans-serif;
     height: 50px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    background: rgb(33, 45, 48);
+    background: $headerBackground;
 
     .menuLink {
       font-size: 27px;
@@ -18,8 +18,8 @@
     }
 
     .activeMenuLink {
-      color: rgb(211, 3, 3);
+      color: gray;
+      text-decoration: underline;
     }
   }
-
 }

@@ -1,4 +1,33 @@
 @import url("https://fonts.googleapis.com/css?family=Noto+Serif&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap");
+
+body * {
+  padding: 0;
+  margin: 0;
+}
+
+$headerBackground: linear-gradient(
+  to bottom,
+  #104e82 0%,
+  darken(#104e82, 10%) 70%,
+  #030a2446 100%
+);
+$footerBackground: linear-gradient(
+  to bottom,
+  #030a2446 0%,
+  darken(#104e82, 10%) 30%,
+  #104e82 100%
+);
+
+$heroHeaderColor: linear-gradient(to bottom, #fefcea 0%, #f1da36 100%);
+$enemyHeaderColor: linear-gradient(
+  to bottom,
+  rgba(255, 48, 25, 1) 0%,
+  rgba(207, 4, 4, 1) 100%
+);
+$characterCardColor: rgba(233, 233, 233, 0.562);
+
+$formLabelSize: 19px;
 
 @mixin center {
   display: flex;
@@ -6,25 +35,25 @@
   align-items: center;
 }
 
+@mixin roundButton($size) {
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+}
+
 @mixin appBackground {
-  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#45484d+0,000000+100 */
-  background: #45484d; /* Old browsers */
-  background: -moz-linear-gradient(
-    top,
-    #45484d 0%,
-    #000000 100%
-  ); /* FF3.6-15 */
-  background: -webkit-linear-gradient(
-    top,
-    #45484d 0%,
-    #000000 100%
-  ); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(
-    to bottom,
-    #45484d 0%,
-    #000000 100%
-  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+  background-image: url("../assets/img/background.png");
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.svgIconButton {
+  height: 1.5em;
+  margin: 0 7px;
 }
 
 .siteHeading {

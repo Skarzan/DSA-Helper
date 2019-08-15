@@ -2,9 +2,10 @@
 
 .heroList {
   .heroes {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    padding: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(460px, 1fr));
+    grid-gap: 15px;
   }
 
   .heroCreateButton {
@@ -16,10 +17,15 @@
     }
   }
 
-  .hero {
-    /*     width: 48%;
-    margin: 15px 1%; */
-    flex: 1 0 calc(50% - 30px);
-    margin: 15px;
+  @media (max-width: 1000px) {
+    .heroes {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+  }
+
+  @media (max-width: 550px) {
+    .heroes {
+      grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+    }
   }
 }

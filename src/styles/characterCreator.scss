@@ -3,4 +3,23 @@
 .characterCreator {
   /*   min-width: 260px; */
   padding: 5px;
+
+  label {
+    font-size: $formLabelSize;
+  }
+
+  .pointsSection {
+    margin-top: 10px;
+  }
+
+  .characterSubmitButton {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 10px;
+
+    button {
+      font-size: 20px;
+      padding: 10px 20px;
+    }
+  }
 }

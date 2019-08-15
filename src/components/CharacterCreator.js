@@ -62,7 +62,7 @@ export default function CharacterCreator(props) {
             />
           </Col>
         </Form.Row>
-        <Form.Row>
+        <Form.Row className="pointsSection">
           <Col>
             <Form.Label>max. LeP: </Form.Label>
             <Form.Control
@@ -93,9 +93,15 @@ export default function CharacterCreator(props) {
         </Form.Row>
         <Form.Row>
           <Col>
-            <Button type="submit" variant="secondary" onClick={e => submit(e)}>
-              Fertig
-            </Button>
+            <div className="characterSubmitButton">
+              <Button
+                type="submit"
+                variant="secondary"
+                onClick={e => submit(e)}
+              >
+                Erstellen
+              </Button>
+            </div>
           </Col>
         </Form.Row>
       </Form>

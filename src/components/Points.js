@@ -56,7 +56,7 @@ export default function Points(props) {
   return (
     <div class="pointsContainer">
       <ProgressBar
-        className="pointsHero"
+        className={`pointsHero ${props.name}`}
         variant={setColor(props.name)}
         now={(currentPoints * 100) / props.maxPoints}
         label={`${props.name}: ${currentPoints}/${props.maxPoints}`}

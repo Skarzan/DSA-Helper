@@ -1,6 +1,8 @@
 import React from "react";
 import FighterCard from "./FighterCard";
 
+import "../styles/battleFighterList.scss";
+
 /**
  * @param {Object}         props                   the props
  * @param {array}          props.fighter           the fighter array

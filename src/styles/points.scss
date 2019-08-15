@@ -1,4 +1,29 @@
-@import './global.scss';
+@import "./global.scss";
+
+$lepColor: rgb(220, 53, 69);
+$aspColor: rgb(23, 162, 184);
+$kapColor: rgb(40, 167, 69);
+
+@mixin gradientColor($color) {
+  background: linear-gradient(
+    to right,
+    darken($color, 7%) 0%,
+    $color 30%,
+    $color 70%,
+    lighten($color, 7%) 100%
+  );
+  background-size: 400%;
+  animation: bg-animation 6s infinite alternate;
+}
+
+@keyframes bg-animation {
+  0% {
+    background-position: left;
+  }
+  100% {
+    background-position: right;
+  }
+}
 
 .pointsContainer {
   display: flex;
@@ -13,26 +38,39 @@
     height: 100%;
     font-size: 17px;
   }
-  
-   .pointsButton {
+
+  /*the actual bar*/
+  .LeP .progress-bar {
+    @include gradientColor($lepColor);
+  }
+
+  .AsP .progress-bar {
+    @include gradientColor($aspColor);
+  }
+
+  .KaP .progress-bar {
+    @include gradientColor($kapColor);
+  }
+
+  .pointsButton {
     @include center;
     width: 5%;
     cursor: pointer;
     height: 100%;
     position: absolute;
-
   }
-
 }
-
-
 
 .subButton {
   border-right: 1px solid rgb(255, 255, 255);
   left: 0;
+  font-weight: bolder;
+  font-size: 24px;
 }
 
 .addButton {
   border-left: 1px solid rgb(255, 255, 255);
   right: 0;
+  font-weight: bolder;
+  font-size: 24px;
 }

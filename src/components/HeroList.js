@@ -4,6 +4,8 @@ import CharacterCreator from "./CharacterCreator";
 import Button from "react-bootstrap/Button";
 import { showModal, closeModal, addHero } from "../actions";
 
+import { ReactComponent as UserPlusButton } from "../assets/svg/icons/user-plus.svg";
+
 //Redux
 import { useSelector, useDispatch } from "react-redux";
 
@@ -45,11 +47,10 @@ export default function HeroList() {
 
   return (
     <div className="heroList">
-      <h1 className="party siteHeading">Heldengruppe</h1>
       <div className="heroes">{showHeroes()}</div>
       <div className="heroCreateButton">
         <Button size="lg" onClick={() => showCharacterCreator()}>
-          Neuer Held
+          Neuer Held <UserPlusButton className="svgIconButton" />
         </Button>
       </div>
     </div>

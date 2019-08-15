@@ -4,6 +4,9 @@ import BattleFighterList from "./BattleFighterList";
 import { useDispatch } from "react-redux";
 import { showModal, closeModal } from "../actions";
 
+import { ReactComponent as UserPlusButton } from "../assets/svg/icons/user-plus.svg";
+import { ReactComponent as NextSVG } from "../assets/svg/icons/next.svg";
+
 import Button from "react-bootstrap/Button";
 
 import "../styles/battle.scss";
@@ -200,37 +203,38 @@ export default function Battle() {
 
   return (
     <div className="battle">
-      <h1 class="siteHeading">Kampf</h1>
-      <div className="newFighter">
-        <Button onClick={() => showNewFighterModal()}>Neuer Kämpfer</Button>
+      <div className="round">Kampfrunde {battleRound}</div>
+      <div className="fighterSection">
+        <BattleFighterList
+          deleteCondition={deleteCondition}
+          changeCondition={changeCondition}
+          addCondition={addCondition}
+          activeFighter={activeFighter}
+          killFighter={killFighter}
+          fighter={sortFightersByInitiative()}
+        />
       </div>
-      <div className="round">Runde {battleRound}</div>
-      <BattleFighterList
-        deleteCondition={deleteCondition}
-        changeCondition={changeCondition}
-        addCondition={addCondition}
-        activeFighter={activeFighter}
-        killFighter={killFighter}
-        fighter={sortFightersByInitiative()}
-      />
-      {fighter.length > 0 ? (
-        <div className="battleFooter">
+      <div className="battleFooter">
+        <Button onClick={() => showNewFighterModal()}>
+          Neuer Kämpfer
+          <UserPlusButton className="svgIconButton" />
+        </Button>
+        {fighter.length > 0 ? (
           <div className="footerFighterName">
             Aktiver Kämpfer: <span>{fighter[activeFighter].name}</span>
           </div>
-
-          <Button
-            className="footerButton"
-            onClick={() => {
-              nextFighter();
-            }}
-          >
-            Nächster Kämpfer
-          </Button>
-        </div>
-      ) : (
-        ""
-      )}
+        ) : (
+          ""
+        )}
+        <Button
+          className="footerButton"
+          onClick={() => {
+            nextFighter();
+          }}
+        >
+          Nächster Kämpfer <NextSVG className="svgIconButton" />
+        </Button>
+      </div>
     </div>
   );
 }

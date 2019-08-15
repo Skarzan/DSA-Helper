@@ -2,6 +2,10 @@ import React, { useState, useEffect, useContext } from "react";
 import Popover from "react-bootstrap/Popover";
 import { OverlayTrigger } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+
+import { ReactComponent as TrashSVG } from "../assets/svg/icons/trash.svg";
+import { ReactComponent as InfoSVG } from "../assets/svg/icons/info.svg";
 
 import { useDispatch } from "react-redux";
 import { showModal } from "../actions";
@@ -57,55 +61,62 @@ export default function ConditionIcon(props) {
         trigger="click"
         placement="bottom"
         overlay={
-          <Popover>
+          <Popover className="conditionPopover">
             <Popover.Content className="Content">
-              <button
-                onClick={() => {
-                  deleteCondition();
-                }}
-              >
-                delete
-              </button>
-              <button
-                onClick={() => {
-                  showInformation();
-                }}
-              >
-                Info
-              </button>
-              <h3>{conditionsInformation[id].name} </h3>
-              <div className="conditionChange">
-                {conditionsInformation[id].hasLevel ? (
-                  <div>
-                    {" "}
-                    <Form.Label>Stufe:</Form.Label>
-                    <Form.Control
-                      className="romanFont"
-                      as="select"
-                      name="level"
-                      value={props.condition.level}
-                      onChange={e => handleInput(e)}
-                    >
-                      <option value="1">I</option>
-                      <option value="2">II</option>
-                      <option value="3">III</option>
-                      <option value="4">IV</option>
-                    </Form.Control>
-                  </div>
-                ) : (
-                  ""
-                )}{" "}
-                <div>
-                  <Form.Label>Runden:</Form.Label>
-                  <Form.Control
-                    type="number"
-                    name="remainingRounds"
-                    min="1"
-                    value={props.condition.remainingRounds}
-                    onChange={e => {
-                      handleInput(e);
+              <div className="conditionPopoverBody">
+                <h3 className="conditionPopoverHeading">
+                  {conditionsInformation[id].name}{" "}
+                </h3>
+                <div className="conditionButtons">
+                  <Button
+                    variant="info"
+                    onClick={() => {
+                      showInformation();
                     }}
-                  />
+                  >
+                    <InfoSVG className="svgIconButton" />
+                  </Button>
+                  <Button
+                    variant="danger"
+                    onClick={() => {
+                      deleteCondition();
+                    }}
+                  >
+                    <TrashSVG className="svgIconButton" />
+                  </Button>
+                </div>
+                <div className="conditionChange">
+                  {conditionsInformation[id].hasLevel ? (
+                    <div>
+                      <Form.Label>Stufe:</Form.Label>
+                      <Form.Control
+                        className="romanFont"
+                        as="select"
+                        name="level"
+                        value={props.condition.level}
+                        onChange={e => handleInput(e)}
+                      >
+                        <option value="1">I</option>
+                        <option value="2">II</option>
+                        <option value="3">III</option>
+                        <option value="4">IV</option>
+                      </Form.Control>
+                    </div>
+                  ) : (
+                    ""
+                  )}{" "}
+                  <div>
+                    <Form.Label>Runden:</Form.Label>
+                    <Form.Control
+                      type="number"
+                      name="remainingRounds"
+                      min="1"
+                      value={props.condition.remainingRounds}
+                      onChange={e => {
+                        handleInput(e);
+                      }}
+                    />
+                  </div>
                 </div>
               </div>
             </Popover.Content>

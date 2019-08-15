@@ -1,3 +1,13 @@
+@import "./global.scss";
+
+@mixin bagde($backgroundColor) {
+  position: absolute;
+  padding: 0px 7px;
+  border-radius: 50px;
+  background: $backgroundColor;
+  color: white;
+}
+
 .conditionIcon {
   position: relative;
   cursor: pointer;
@@ -10,30 +20,64 @@
   }
 
   .level {
-    position: absolute;
+    @include bagde(rgb(255, 5, 5));
     bottom: 0;
     right: 0;
-    padding: 0px 7px;
-    border-radius: 50px;
-    background: rgb(226, 79, 79);
+    border: 2px solid white;
   }
 
   .remainingRounds {
-    position: absolute;
+    @include bagde(rgb(0, 153, 255));
     top: 0;
     right: 0;
-    padding: 0px 7px;
-    border-radius: 50px;
-    background: rgb(142, 142, 224);
+    border: 2px solid white;
   }
 }
 
-.conditionChange {
-  display: flex;
-  align-items: center;
+.conditionPopover {
+  background: rgb(230, 230, 230);
 
-  div {
-    flex: 1 1 0;
-    margin: 0 3px;
+  .conditionPopoverBody {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    .conditionPopoverHeading {
+      font-size: 28px;
+      font-style: italic;
+      align-self: center;
+      margin: 0;
+    }
+
+    .conditionButtons {
+      display: flex;
+      justify-content: flex-end;
+
+      button {
+        @include center;
+        @include roundButton(40px);
+        margin: 0 2px;
+        border: 2px solid white;
+        font-size: 12px;
+
+        svg {
+          margin: 0;
+        }
+      }
+    }
+
+    .conditionChange {
+      grid-column: 1/3;
+      display: flex;
+      align-items: center;
+
+      div {
+        flex: 1 1 0;
+        margin: 0 3px;
+      }
+
+      label {
+        font-size: $formLabelSize;
+      }
+    }
   }
 }

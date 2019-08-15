@@ -1,0 +1,23 @@
+@import "./global.scss";
+
+$headerBackground: rgb(82, 82, 82);
+$bodyBackground: rgb(230, 230, 230);
+
+.ModalBox {
+  .modalHeader {
+    background: $headerBackground;
+    color: white;
+
+    .close {
+      color: white;
+    }
+  }
+
+  .modalBody {
+    background: $bodyBackground;
+  }
+}
+
+.popover {
+  max-width: 100% !important;
+}

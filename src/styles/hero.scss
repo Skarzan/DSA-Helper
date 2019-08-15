@@ -5,9 +5,16 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background: $heroHeaderColor;
+
+    font-size: 32px;
+    font-weight: 700;
+    font-style: italic;
+    text-shadow: 2px 2px 2px #00000061;
   }
 
   .heroInner {
+    background: $characterCardColor;
     padding: 5px;
 
     .pointsHeroContainer {

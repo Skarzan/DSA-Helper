@@ -7,6 +7,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
+import { ReactComponent as TrashSVG } from "../assets/svg/icons/trash.svg";
 import "../styles/fighterCard.scss";
 
 /**
@@ -54,9 +55,9 @@ export default function FighterCard(props) {
         <Card.Header as="h4" className="fighterCardHeader">
           <div>{props.fighter.name}</div>
           <div className="fighterButtons">
-            <div>
+            <div className="center">
               <Button
-                variant="secondary"
+                variant="info"
                 onClick={() => {
                   setShowConditionsAddBox(!showConditionsAddBox);
                 }}
@@ -65,17 +66,18 @@ export default function FighterCard(props) {
               </Button>
             </div>
             <Button
+              className="deleteButton"
               variant="danger"
               size="sm"
               onClick={() => {
                 props.killFighter(props.index);
               }}
             >
-              X
+              <TrashSVG className="svgIconButton center" />
             </Button>
           </div>
         </Card.Header>
-        <Card.Text className="heroInner">
+        <Card.Text className="fighterBody">
           <Row>
             <Col sm="12">
               {showConditionsAddBox ? (
@@ -87,7 +89,7 @@ export default function FighterCard(props) {
           </Row>
           <Row className="row">
             <Col sm="12">
-              <div className="pointsHero">
+              <div className="pointsFighter">
                 <div className="lep">
                   <Points
                     name="LeP"
@@ -118,7 +120,6 @@ export default function FighterCard(props) {
                   ""
                 )}
               </div>
-              <div>Initiative: {props.fighter.initiative}</div>
               <div>
                 <ConditionBox
                   conditions={props.fighter.conditions}
@@ -129,6 +130,7 @@ export default function FighterCard(props) {
             </Col>
           </Row>
         </Card.Text>
+        <div className="initiative">{props.fighter.initiative}</div>
       </Card>
     </div>
   );
