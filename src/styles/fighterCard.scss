@@ -23,6 +23,14 @@
     box-shadow: 0px 0px 27px 4px #c4c4c4cf;
   }
 
+  .enemy {
+    background: $enemyHeaderColor;
+  }
+
+  .hero {
+    background: $heroHeaderColor;
+  }
+
   .fighterCardHeader {
     display: flex;
     padding: 5px 10px;
@@ -32,7 +40,7 @@
     text-shadow: 2px 2px 2px white;
     justify-content: space-between;
     align-items: center;
-    background: $enemyHeaderColor;
+    
 
     .fighterButtons {
       display: flex;

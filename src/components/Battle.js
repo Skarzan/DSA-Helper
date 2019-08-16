@@ -3,6 +3,7 @@ import CharacterCreator from "./CharacterCreator";
 import BattleFighterList from "./BattleFighterList";
 import { useSelector, useDispatch } from "react-redux";
 import { showModal, closeModal } from "../actions";
+import HeroFightAddForm from "./HeroFightAddForm";
 
 import { ReactComponent as UserPlusButton } from "../assets/svg/icons/user-plus.svg";
 import { ReactComponent as NextSVG } from "../assets/svg/icons/next.svg";
@@ -28,14 +29,21 @@ export default function Battle() {
   /** set the id´s of the conditions TODO solve it in a function */
   const [conditionIdCounter, setConditionIdCounter] = useState(0);
 
-  const addAllHeroes = () => {
-    setFighter([...fighter, ...heroes]);
+  const addAllHeroes = initiative => {
+    let newHeroes = heroes;
+
+    newHeroes.forEach(hero => {
+      hero.isHero = true;
+      hero.initiative = initiative;
+    });
+    setFighter([...fighter, ...newHeroes]);
   };
 
   const addHero = (index, initiative) => {
     console.log(heroes[index]);
     let hero = heroes[index];
     hero.initiative = initiative;
+    hero.isHero = true;
     addFighter(hero);
   };
 
@@ -233,7 +241,8 @@ export default function Battle() {
 
   return (
     <div className="battle">
-      <Button onClick={() => addAllHeroes()}>Füge Helden hinzu</Button>
+      {fighter < 1 ? <HeroFightAddForm /> : ""}
+      <Button onClick={() => addAllHeroes(12)}>Füge Helden hinzu</Button>
       <div className="round">Kampfrunde {battleRound}</div>
       <div className="fighterSection">
         <BattleFighterList

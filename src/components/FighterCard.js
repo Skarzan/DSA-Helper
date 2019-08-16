@@ -58,10 +58,20 @@ export default function FighterCard(props) {
     setShowConditionsAddBox(!showConditionsAddBox);
   };
 
+  /**
+   * Set the class for the header either it is an enemy or a hero
+   */
+  const setHeaderClass = () => {
+    return props.fighter.isHero ? "hero" : "enemy";
+  };
+
   return (
     <div className="fighterCard">
       <Card className={props.status + " status"}>
-        <Card.Header as="h4" className="fighterCardHeader">
+        <Card.Header
+          as="h4"
+          className={`fighterCardHeader ${setHeaderClass()}`}
+        >
           <div>{props.fighter.name}</div>
           <div className="fighterButtons">
             <div className="center">
