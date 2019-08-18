@@ -1,0 +1,20 @@
+.HeroFightAddForm {
+  color: white;
+
+  h4 {
+    text-align: center
+  }
+
+  .heroForm {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  
+  .singleHeroFrom {
+    margin: 10px;
+
+    input {
+      margin-top: 10px;
+    }
+  }
+  }
+}

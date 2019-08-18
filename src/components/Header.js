@@ -5,10 +5,10 @@ import "../styles/header.scss";
 
 //array of the site links
 const menuLinks = [
-  {
+  /*   {
     name: "Home",
     link: "/"
-  },
+  }, */
   {
     name: "Helden",
     link: "/"

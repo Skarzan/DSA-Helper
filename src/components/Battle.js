@@ -32,19 +32,11 @@ export default function Battle() {
   const addAllHeroes = initiative => {
     let newHeroes = heroes;
 
-    newHeroes.forEach(hero => {
+    newHeroes.forEach((hero, index) => {
       hero.isHero = true;
-      hero.initiative = initiative;
+      hero.initiative = initiative[index];
     });
     setFighter([...fighter, ...newHeroes]);
-  };
-
-  const addHero = (index, initiative) => {
-    console.log(heroes[index]);
-    let hero = heroes[index];
-    hero.initiative = initiative;
-    hero.isHero = true;
-    addFighter(hero);
   };
 
   /**
@@ -241,8 +233,7 @@ export default function Battle() {
 
   return (
     <div className="battle">
-      {fighter < 1 ? <HeroFightAddForm /> : ""}
-      <Button onClick={() => addAllHeroes(12)}>Füge Helden hinzu</Button>
+      {fighter < 1 ? <HeroFightAddForm addHeroes={addAllHeroes} /> : ""}
       <div className="round">Kampfrunde {battleRound}</div>
       <div className="fighterSection">
         <BattleFighterList
