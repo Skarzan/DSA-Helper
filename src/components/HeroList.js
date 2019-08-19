@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Hero from "./Hero";
 import CharacterCreator from "./CharacterCreator";
 import Button from "react-bootstrap/Button";
 import { showModal, closeModal, addHero } from "../actions";
 
 import { ReactComponent as UserPlusButton } from "../assets/svg/icons/user-plus.svg";
+//import firebaseDB from "../firebase/firebase";
 
 //Redux
 import { useSelector, useDispatch } from "react-redux";
@@ -18,6 +19,18 @@ import "../styles/heroList.scss";
 export default function HeroList() {
   const dispatch = useDispatch();
   const heroes = useSelector(state => state.heroes); // get the array of heroes from redux
+
+  /*   useEffect(() => {
+    return () => {
+      firebaseDB
+        .collection("DSA")
+        .doc("heroes")
+        .set({ heroes })
+        .catch(function(error) {
+          console.error("Error writing document: ", error);
+        });
+    };
+  }, []); */
 
   /**
    * Creates Hero - Components for all heroes in the heroes - array

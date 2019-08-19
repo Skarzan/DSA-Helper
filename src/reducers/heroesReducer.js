@@ -2,6 +2,9 @@ import heroes from "../assets/heroes";
 
 const heroesReducer = (state = heroes, action) => {
   switch (action.type) {
+    case "SETALLHEROES": {
+      return action.payload;
+    }
     case "ADDHERO": {
       let hero = action.payload[0];
       hero.id = state.length;

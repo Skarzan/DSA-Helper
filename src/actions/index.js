@@ -2,6 +2,17 @@
 
 /**
  *
+ * @param {*} heroes set the new heroes
+ */
+export const setAllHeroes = heroes => {
+  return {
+    type: "SETALLHEROES",
+    payload: heroes
+  };
+};
+
+/**
+ *
  * @param {*} hero contains all values for a new hero
  */
 export const addHero = hero => {

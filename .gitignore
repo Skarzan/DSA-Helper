@@ -8,6 +8,9 @@
 # testing
 /coverage
 
+# firebase
+/src/firebase/credentials.js
+
 # production
 /build
 
