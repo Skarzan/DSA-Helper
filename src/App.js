@@ -3,7 +3,9 @@ import Header from "./components/Header";
 import Battle from "./components/Battle";
 import HeroList from "./components/HeroList";
 import ModalBox from "./components/ModalBox";
+import Toast from "./components/Toast";
 
+import bg from "./assets/img/background.png";
 // Router
 import { Route, Link, BrowserRouter as Router, Switch } from "react-router-dom";
 
@@ -17,13 +19,14 @@ const store = createStore(allReducers);
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" style={{ backgroundImage: `url(${bg})` }}>
       <Provider store={store}>
         <Router>
           <header>
             <Header />
           </header>
           <ModalBox />
+          <Toast />
           <Switch>
             <Route exact path="/" component={HeroList} />
             <Route path="/battle" component={Battle} />

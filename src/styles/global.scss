@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Noto+Serif&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap");
-
 body * {
   padding: 0;
   margin: 0;
@@ -67,7 +66,7 @@ $formLabelSize: 19px;
 }
 
 .App {
-  @include appBackground;
+  //@include appBackground;
   min-height: 100vh;
 }
 

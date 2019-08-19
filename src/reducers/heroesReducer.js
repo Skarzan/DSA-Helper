@@ -1,6 +1,6 @@
 import heroes from "../assets/heroes";
 
-const heroesReducer = (state = [], action) => {
+const heroesReducer = (state = heroes, action) => {
   switch (action.type) {
     case "ADDHERO": {
       let hero = action.payload[0];
@@ -72,8 +72,6 @@ const heroesReducer = (state = [], action) => {
       const heroId = action.payload[0];
       const condition = action.payload[1];
 
-      //let newConditions = [...state[heroId].conditions];
-
       return state.map(hero => {
         if (hero.id === heroId) {
           let index = hero.conditions.findIndex(cond => {
@@ -85,6 +83,19 @@ const heroesReducer = (state = [], action) => {
         return hero;
       });
     }
+    case "CHANGEMONEY": {
+      const heroId = action.payload[0];
+      const money = action.payload[1];
+
+      return state.map(hero => {
+        if (hero.id === heroId) {
+          hero.money = money;
+        }
+
+        return hero;
+      });
+    }
+
     default:
       return state;
   }

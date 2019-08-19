@@ -40,6 +40,7 @@ export default function HeroFightAddForm(props) {
             value={initiative[index]}
             onChange={e => handleChange(e)}
             name={index}
+            min="0"
           />
         </div>
       );

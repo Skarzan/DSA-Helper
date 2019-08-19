@@ -68,14 +68,11 @@ export default function ConditionIcon(props) {
                   {conditionsInformation[id].name}{" "}
                 </h3>
                 <div className="conditionButtons">
-                  <Button
-                    variant="info"
-                    onClick={() => {
-                      showInformation();
-                    }}
-                  >
-                    <InfoSVG className="svgIconButton" />
-                  </Button>
+                  <a href={conditionsInformation[id].wikiLink} target="blank">
+                    <Button variant="info">
+                      <InfoSVG className="svgIconButton" />
+                    </Button>
+                  </a>
                   <Button
                     variant="danger"
                     onClick={() => {

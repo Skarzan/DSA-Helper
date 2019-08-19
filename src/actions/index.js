@@ -23,6 +23,15 @@ export const setPoint = payload => {
 
 /**
  *
+ * @param {*} payload contains object{heroId, money}
+ */
+export const changeMoney = payload => ({
+  type: "CHANGEMONEY",
+  payload
+});
+
+/**
+ *
  * @param {*} payload contains array [heroId, conditionId]
  */
 export const deleteConditionFromHero = payload => {
@@ -67,4 +76,22 @@ export const showModal = payload => ({
  */
 export const closeModal = () => ({
   type: "CLOSEMODAL"
+});
+
+/**
+ *
+ * @param {*} payload contains object{header, body}
+ */
+export const addToast = payload => ({
+  type: "ADDTOAST",
+  payload
+});
+
+/**
+ *
+ * @param {*} payload contains object{heading, text}
+ */
+export const deleteToast = payload => ({
+  type: "DELETETOAST",
+  payload
 });

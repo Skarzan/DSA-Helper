@@ -1,0 +1,30 @@
+@import "./global.scss";
+
+$headerBackground: rgb(80, 174, 217);
+$bodyBackground: rgb(230, 230, 230);
+
+.Toast {
+  position: absolute;
+  top: 50px;
+  right: 0;
+
+  .singleToast {
+    margin-bottom: 3px;
+  }
+
+  .toast-header {
+    justify-content: space-between;
+    background: $headerBackground;
+    color: white;
+    font-size: 17px;
+    font-weight: 600;
+
+    .close {
+      color: white;
+    }
+  }
+
+  .toast-body {
+    background: $bodyBackground;
+  }
+}

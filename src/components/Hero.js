@@ -7,7 +7,7 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { showModal, closeModal, setPoint } from "../actions";
+import { showModal, closeModal, setPoint, changeMoney } from "../actions";
 
 import {
   addConditionToHero,
@@ -29,6 +29,10 @@ export default function Hero(props) {
 
   const setNewPoint = (points, name) => {
     dispatch(setPoint([points, name, props.hero.id]));
+  };
+
+  const changeHeroMoney = money => {
+    dispatch(changeMoney([props.hero.id, money]));
   };
 
   /**
@@ -151,7 +155,7 @@ export default function Hero(props) {
           </Row>
           <Row>
             <Col>
-              <Purse startMoney={props.hero.money} />
+              <Purse money={props.hero.money} changeMoney={changeHeroMoney} />
             </Col>
           </Row>
           <Row>

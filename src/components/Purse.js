@@ -6,15 +6,12 @@ import "../styles/purse.scss";
 /**
  * Displays and calculates a hero´s money. Creates 4 number-inputs
  * @param {Object} props      the props
- * @param {number} props.startMoney the amount of money that should be displayed
+ * @param {number} props.money the amount of money that should be displayed
  */
 export default function Purse(props) {
-  let [money, setMoney] = useState(0);
-
-  // copy props.startMoney to state
-  useEffect(() => {
-    setMoney(props.startMoney);
-  }, [props.startMoney]);
+  const setMoney = money => {
+    props.changeMoney(money);
+  };
 
   /**
    * Add or subtract a given amount of the money
@@ -24,9 +21,9 @@ export default function Purse(props) {
   const changeMoney = (operation, amount) => {
     //0 = sub, 1 = add
     if (operation === 0) {
-      setMoney(money - amount); // subtract
+      setMoney(props.money - amount); // subtract
     } else {
-      setMoney(money + amount); // add
+      setMoney(props.money + amount); // add
     }
   };
 
@@ -38,16 +35,24 @@ export default function Purse(props) {
   const directChange = (digit, amount) => {
     switch (digit) {
       case 1:
-        setMoney(amount * 1000 + Math.floor(money % 1000));
+        setMoney(amount * 1000 + Math.floor(props.money % 1000));
         break;
       case 2:
-        setMoney(money - Math.floor((money % 1000) / 100) * 100 + amount * 100);
+        setMoney(
+          props.money -
+            Math.floor((props.money % 1000) / 100) * 100 +
+            amount * 100
+        );
         break;
       case 3:
-        setMoney(money - Math.floor((money % 100) / 10) * 10 + amount * 10);
+        setMoney(
+          props.money - Math.floor((props.money % 100) / 10) * 10 + amount * 10
+        );
         break;
       case 4:
-        setMoney(money - Math.floor((money % 10) / 1) * 1 + amount * 1);
+        setMoney(
+          props.money - Math.floor((props.money % 10) / 1) * 1 + amount * 1
+        );
         break;
       default:
         break;
@@ -66,9 +71,10 @@ export default function Purse(props) {
           -
         </Button>
         <input
-          type="text"
-          value={Math.floor(money / 1000)}
+          type="number"
+          value={Math.floor(props.money / 1000)}
           onChange={e => directChange(1, e.target.value)}
+          onClick={e => e.target.select()}
         />
         <Button onClick={() => changeMoney(1, 1000)} variant="secondary">
           +
@@ -84,9 +90,10 @@ export default function Purse(props) {
           -
         </Button>
         <input
-          type="text"
-          value={Math.floor((money % 1000) / 100)}
+          type="number"
+          value={Math.floor((props.money % 1000) / 100)}
           onChange={e => directChange(2, e.target.value)}
+          onClick={e => e.target.select()}
         />
         <Button onClick={() => changeMoney(1, 100)} variant="secondary">
           +
@@ -102,9 +109,10 @@ export default function Purse(props) {
           -
         </Button>
         <input
-          type="text"
-          value={Math.floor((money % 100) / 10)}
+          type="number"
+          value={Math.floor((props.money % 100) / 10)}
           onChange={e => directChange(3, e.target.value)}
+          onClick={e => e.target.select()}
         />
         <Button onClick={() => changeMoney(1, 10)} variant="secondary">
           +
@@ -120,9 +128,10 @@ export default function Purse(props) {
           -
         </Button>
         <input
-          type="text"
-          value={money % 10}
+          type="number"
+          value={props.money % 10}
           onChange={e => directChange(4, e.target.value)}
+          onClick={e => e.target.select()}
         />
         <Button onClick={() => changeMoney(1, 1)} variant="secondary">
           +

@@ -2,13 +2,15 @@ import React, { useState, useEffect } from "react";
 import CharacterCreator from "./CharacterCreator";
 import BattleFighterList from "./BattleFighterList";
 import { useSelector, useDispatch } from "react-redux";
-import { showModal, closeModal } from "../actions";
+import { showModal, closeModal, addToast } from "../actions";
 import HeroFightAddForm from "./HeroFightAddForm";
 
 import { ReactComponent as UserPlusButton } from "../assets/svg/icons/user-plus.svg";
 import { ReactComponent as NextSVG } from "../assets/svg/icons/next.svg";
 
 import Button from "react-bootstrap/Button";
+
+import conditionsInformation from "../assets/conditionsInformation";
 
 import "../styles/battle.scss";
 
@@ -146,6 +148,14 @@ export default function Battle() {
           condition.remainingRounds = condition.remainingRounds - 1;
 
           if (condition.remainingRounds === 0) {
+            dispatch(
+              addToast([
+                character.name,
+                `${
+                  conditionsInformation[condition.conditionId].name
+                } wurde entfernt`
+              ])
+            ); //show Toast
             condition = null;
           }
         }
