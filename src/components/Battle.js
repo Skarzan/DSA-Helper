@@ -70,12 +70,48 @@ export default function Battle() {
   };
 
   const setPoint = (points, name, fighterIndex) => {
-    console.log(`${points} ${name} ${fighterIndex}`);
     let newState = fighter;
     newState[fighterIndex][name] = points;
 
+    //check if fighter gets a level of pain
+    if (name === "LeP") {
+      const maxLeP = newState[fighterIndex].maxLep;
+      const painStep = Math.floor(maxLeP / 4);
+      console.log(`${maxLeP} , ${painStep}`);
+      switch (points) {
+        case painStep * 3: {
+          addCondition(fighterIndex, {
+            conditionId: 7,
+            level: "1",
+            remainingRounds: null,
+            comment: ""
+          });
+          break;
+        }
+        case painStep * 2: {
+          addCondition(fighterIndex, {
+            conditionId: 7,
+            level: "2",
+            remainingRounds: null,
+            comment: ""
+          });
+          break;
+        }
+        case painStep: {
+          addCondition(fighterIndex, {
+            conditionId: 7,
+            level: "3",
+            remainingRounds: null,
+            comment: ""
+          });
+          break;
+        }
+        default:
+          break;
+      }
+    }
+
     setFighter([...newState]);
-    console.log(fighter);
   };
 
   /**

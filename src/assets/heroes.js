@@ -10,22 +10,7 @@ export default [
     KaP: 0,
     money: 20421,
     initiative: 11,
-    conditions: [
-      {
-        id: 0,
-        conditionId: 13,
-        level: "2",
-        remainingRounds: 3,
-        comment: ""
-      },
-      {
-        id: 1,
-        conditionId: 2,
-        level: "1",
-        remainingRounds: 5,
-        comment: "Comment"
-      }
-    ]
+    conditions: []
   },
   {
     id: 1,

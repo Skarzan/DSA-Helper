@@ -60,7 +60,7 @@ export default function Purse(props) {
   };
 
   return (
-    <div class="purse">
+    <div className="purse">
       <div className="purseSection">
         <img
           class="coinImage"

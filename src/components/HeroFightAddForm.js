@@ -20,7 +20,6 @@ export default function HeroFightAddForm(props) {
     let newState = initiative;
     newState[e.target.name] = e.target.value;
     setInitiative(newState);
-    console.log(initiative);
   };
 
   const addHeroes = e => {

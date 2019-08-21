@@ -48,7 +48,7 @@ export default function Points(props) {
   };
 
   return (
-    <div class="pointsContainer">
+    <div className="pointsContainer">
       <ProgressBar
         className={`pointsHero ${props.name}`}
         variant={setColor(props.name)}
