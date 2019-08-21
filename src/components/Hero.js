@@ -7,7 +7,13 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { showModal, closeModal, setPoint, changeMoney } from "../actions";
+import {
+  showModal,
+  closeModal,
+  setPoint,
+  changeMoney,
+  addToast
+} from "../actions";
 
 import {
   addConditionToHero,
@@ -28,6 +34,95 @@ export default function Hero(props) {
   const dispatch = useDispatch();
 
   const setNewPoint = (points, name) => {
+    const oldPoints = props.hero.LeP;
+    //check if hero gets or loses a level of pain
+    if (name === "LeP") {
+      const maxLeP = props.hero.maxLep;
+
+      // 0 = not change, 1 = add pain, 2 = remove pain
+      let changePain = 0;
+
+      //get level from pain
+      let painLevel = props.hero.conditions.find(cond => {
+        return cond.pain === true;
+      });
+
+      if (painLevel === undefined) {
+        painLevel = 0;
+      } else {
+        painLevel = painLevel.level;
+      }
+      switch (points) {
+        case 5: {
+          changePain = 1;
+          break;
+        }
+        case Math.round(maxLeP * 0.25): {
+          changePain = 1;
+          break;
+        }
+        case Math.round(maxLeP * 0.5): {
+          changePain = 1;
+          break;
+        }
+        case Math.round(maxLeP * 0.75): {
+          changePain = 1;
+          break;
+        }
+        /* heal pain */
+        case Math.round(maxLeP * 0.75) + 1: {
+          if (oldPoints < points) {
+            const index = props.hero.conditions.findIndex(condition => {
+              return condition.pain === true && condition.conditionId === 7;
+            });
+            if (index >= 0) {
+              deleteCondition(index);
+            }
+            dispatch(
+              addToast([props.hero.name, "Verliert eine Stufe Schmerz"])
+            );
+          }
+          break;
+        }
+        case Math.round(maxLeP * 0.5) + 1: {
+          changePain = 2;
+          break;
+        }
+        case Math.round(maxLeP * 0.25) + 1: {
+          changePain = 2;
+          break;
+        }
+        case 6: {
+          changePain = 2;
+          break;
+        }
+
+        default:
+          break;
+      }
+      if (changePain == 1 && oldPoints > points) {
+        addCondition({
+          conditionId: 7,
+          level: (Number(painLevel) + 1).toString(),
+          remainingRounds: null,
+          pain: true,
+          comment: ""
+        });
+        dispatch(addToast([props.hero.name, "Erhält eine Stufe Schmerz"]));
+      }
+
+      if (changePain == 2 && oldPoints < points) {
+        addCondition({
+          conditionId: 7,
+          level: (Number(painLevel) - 1).toString(),
+          remainingRounds: null,
+          pain: true,
+          comment: ""
+        });
+        dispatch(addToast([props.hero.name, "Verliert eine Stufe Schmerz"]));
+      }
+    }
+
     dispatch(setPoint([points, name, props.hero.id]));
   };
 
@@ -59,43 +154,29 @@ export default function Hero(props) {
    * Replaces a condition with the same id. Calls Redux action
    * @param {Object} condition the condition
    */
-  const changeHeroCondition = condition => {
-    dispatch(changeCondition([props.hero.id, condition]));
+  const changeHeroCondition = (conditionIndex, condition) => {
+    dispatch(changeCondition([props.hero.id, conditionIndex, condition]));
   };
 
   /**
    * Adds a new condition to the condition array of the hero. Calls Redux action
    * @param {Object} data the new Condition
    */
-  const addCondition = data => {
-    // check if conditionId is already there
-    const formData = data;
-
-    // check if there are already a condition with the same conditionId
+  const addCondition = newCondition => {
     if (
+      newCondition.pain === true &&
       props.hero.conditions.find(condition => {
-        return condition.conditionId === formData.conditionId;
+        return condition.pain === true;
       })
     ) {
-      dispatch(
-        showModal([
-          "Hinweis",
-          `${props.hero.name} besitzt diesen Zustand bereits`
-        ])
-      );
+      const index = props.hero.conditions.findIndex(condition => {
+        return condition.pain === true;
+      });
+      changeHeroCondition(index, newCondition);
     } else {
-      // get the highest id of the existing conditions to make sure there is no duplicate id
-      const id = Math.max.apply(
-        Math,
-        props.hero.conditions.map(function(o) {
-          return o.id;
-        })
-      );
-      let helper = formData;
-      helper.id = id + 1; //set new id
-      dispatch(addConditionToHero([props.hero.id, helper]));
+      dispatch(addConditionToHero([props.hero.id, newCondition]));
+      dispatch(closeModal());
     }
-    dispatch(closeModal());
   };
 
   return (

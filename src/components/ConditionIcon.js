@@ -7,9 +7,6 @@ import Button from "react-bootstrap/Button";
 import { ReactComponent as TrashSVG } from "../assets/svg/icons/trash.svg";
 import { ReactComponent as InfoSVG } from "../assets/svg/icons/info.svg";
 
-import { useDispatch } from "react-redux";
-import { showModal } from "../actions";
-
 import "../styles/conditionIcon.scss";
 
 import conditionsInformation from "../assets/conditionsInformation";
@@ -20,10 +17,9 @@ export default function ConditionIcon(props) {
   useEffect(() => {
     setId(props.condition.conditionId);
   }, []);
-  const dispatch = useDispatch();
 
   let deleteCondition = () => {
-    props.deleteCondition(props.condition.conditionId);
+    props.deleteCondition(props.index);
   };
 
   const showLevel = () => {
@@ -43,16 +39,7 @@ export default function ConditionIcon(props) {
 
   const handleInput = e => {
     const condition = { ...props.condition, [e.target.name]: e.target.value };
-    props.changeCondition(condition);
-  };
-
-  const showInformation = () => {
-    dispatch(
-      showModal([
-        conditionsInformation[id].name,
-        conditionsInformation[id].info
-      ])
-    );
+    props.changeCondition(props.index, condition);
   };
 
   return (

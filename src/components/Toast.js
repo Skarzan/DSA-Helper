@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactToast from "react-bootstrap/Toast";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteToast } from "../actions";
@@ -17,6 +17,8 @@ export default function Toast(props) {
           <ReactToast
             show={toast.active}
             onClose={() => dispatch(deleteToast(index))}
+            delay={3000}
+            autohide
           >
             <ReactToast.Header>
               <div>{toast.header}</div>

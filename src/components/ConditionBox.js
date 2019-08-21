@@ -12,13 +12,14 @@ import "../styles/conditionBox.scss";
  */
 export default function ConditionBox(props) {
   let createConditionList = () => {
-    return props.conditions.map(condition => {
+    return props.conditions.map((condition, index) => {
       return (
         <ConditionIcon
           changeCondition={props.changeCondition}
           deleteCondition={props.deleteCondition}
           condition={condition}
           key={condition.id}
+          index={index}
         />
       );
     });

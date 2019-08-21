@@ -4,12 +4,24 @@ $headerBackground: rgb(80, 174, 217);
 $bodyBackground: rgb(230, 230, 230);
 
 .Toast {
-  position: absolute;
+  position: fixed;
   top: 50px;
   right: 0;
+  z-index: 2;
 
   .singleToast {
+    position: relative;
     margin-bottom: 3px;
+    top: -200px;
+    opacity: 0;
+    animation: slide 0.6s forwards;
+  }
+
+  @keyframes slide {
+    100% {
+      top: 0;
+      opacity: 1;
+    }
   }
 
   .toast-header {
@@ -22,9 +34,5 @@ $bodyBackground: rgb(230, 230, 230);
     .close {
       color: white;
     }
-  }
-
-  .toast-body {
-    background: $bodyBackground;
   }
 }

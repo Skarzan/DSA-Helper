@@ -70,44 +70,106 @@ export default function Battle() {
   };
 
   const setPoint = (points, name, fighterIndex) => {
+    const oldPoints = fighter[fighterIndex].LeP;
     let newState = fighter;
     newState[fighterIndex][name] = points;
 
-    //check if fighter gets a level of pain
+    //check if fighter gets or loses a level of pain
     if (name === "LeP") {
       const maxLeP = newState[fighterIndex].maxLep;
-      const painStep = Math.floor(maxLeP / 4);
-      console.log(`${maxLeP} , ${painStep}`);
+
+      // 0 = not change, 1 = add pain, 2 = remove pain
+      let changePain = 0;
+
+      //get level from pain
+      let painLevel = fighter[fighterIndex].conditions.find(cond => {
+        return cond.pain === true;
+      });
+
+      if (painLevel === undefined) {
+        painLevel = 0;
+      } else {
+        painLevel = painLevel.level;
+      }
+
       switch (points) {
-        case painStep * 3: {
-          addCondition(fighterIndex, {
-            conditionId: 7,
-            level: "1",
-            remainingRounds: null,
-            comment: ""
-          });
+        case 5: {
+          changePain = 1;
           break;
         }
-        case painStep * 2: {
-          addCondition(fighterIndex, {
-            conditionId: 7,
-            level: "2",
-            remainingRounds: null,
-            comment: ""
-          });
+        case Math.round(maxLeP * 0.25): {
+          changePain = 1;
           break;
         }
-        case painStep: {
-          addCondition(fighterIndex, {
-            conditionId: 7,
-            level: "3",
-            remainingRounds: null,
-            comment: ""
-          });
+        case Math.round(maxLeP * 0.5): {
+          changePain = 1;
           break;
         }
+        case Math.round(maxLeP * 0.75): {
+          changePain = 1;
+          break;
+        }
+        /* heal pain */
+        case Math.round(maxLeP * 0.75) + 1: {
+          if (oldPoints < points) {
+            const index = fighter[fighterIndex].conditions.findIndex(
+              condition => {
+                return condition.pain === true && condition.conditionId === 7;
+              }
+            );
+            if (index >= 0) {
+              deleteCondition(fighterIndex, index);
+            }
+            dispatch(
+              addToast([
+                fighter[fighterIndex].name,
+                "Verliert eine Stufe Schmerz"
+              ])
+            );
+          }
+          break;
+        }
+        case Math.round(maxLeP * 0.5) + 1: {
+          changePain = 2;
+          break;
+        }
+        case Math.round(maxLeP * 0.25) + 1: {
+          changePain = 2;
+          break;
+        }
+        case 6: {
+          changePain = 2;
+          break;
+        }
+
         default:
           break;
+      }
+
+      if (changePain == 1 && oldPoints > points) {
+        addCondition(fighterIndex, {
+          conditionId: 7,
+          level: (Number(painLevel) + 1).toString(),
+          remainingRounds: null,
+          pain: true,
+          comment: ""
+        });
+        dispatch(
+          addToast([fighter[fighterIndex].name, "Erhält eine Stufe Schmerz"])
+        );
+      }
+
+      if (changePain == 2 && oldPoints < points) {
+        addCondition(fighterIndex, {
+          conditionId: 7,
+          level: (Number(painLevel) - 1).toString(),
+          remainingRounds: null,
+          pain: true,
+          comment: ""
+        });
+        dispatch(
+          addToast([fighter[fighterIndex].name, "Verliert eine Stufe Schmerz"])
+        );
       }
     }
 
@@ -214,16 +276,17 @@ export default function Battle() {
    * @param {number} fighterId the id of the fighter
    * @param {number} conditionId the id of the conditon
    */
-  const deleteCondition = (fighterId, conditionId) => {
-    let filtered = fighter[fighterId].conditions.filter(
+  const deleteCondition = (fighterId, conditionIndex) => {
+    /*     let filtered = fighter[fighterId].conditions.filter(
       (condition, index, arr) => {
         return condition.conditionId !== conditionId;
       }
-    ); //return a list of all conditions excluding the condition about to delete
+    ); //return a list of all conditions excluding the condition about to delete */
 
     let newState = fighter;
 
-    newState[fighterId].conditions = filtered;
+    newState[fighterId].conditions.splice(conditionIndex, 1);
+    //newState[fighterId].conditions = filtered;
     setFighter([...newState]);
   };
 
@@ -232,15 +295,13 @@ export default function Battle() {
    * @param {number} fighterId the id of the fighter
    * @param {Object} condition the condition
    */
-  const changeCondition = (fighterId, condition) => {
+  const changeCondition = (fighterId, index, level, rounds) => {
     //find index of the condition that has to be replaced
-    let index = fighter[fighterId].conditions.findIndex(cond => {
-      return cond.id === condition.id;
-    });
 
     let newState = fighter;
 
-    newState[fighterId].conditions[index] = condition;
+    newState[fighterId].conditions[index].level = level;
+    newState[fighterId].conditions[index].remainingRounds = rounds;
 
     setFighter([...newState]);
   };
@@ -251,11 +312,35 @@ export default function Battle() {
    * @param {Object} newCondition the new Condition
    */
   const addCondition = (fighterId, newCondition) => {
-    newCondition.id = conditionIdCounter;
-    setConditionIdCounter(conditionIdCounter + 1);
-
     let newState = fighter;
-    // check if there are already a condition with the same conditionId
+
+    if (
+      newCondition.pain === true &&
+      fighter[fighterId].conditions.find(condition => {
+        return condition.pain === true;
+      })
+    ) {
+      const index = fighter[fighterId].conditions.findIndex(condition => {
+        return condition.pain === true;
+      });
+      changeCondition(
+        fighterId,
+        index,
+        newCondition.level,
+        newCondition.rounds
+      );
+    } else {
+      newCondition.id = conditionIdCounter;
+      setConditionIdCounter(conditionIdCounter + 1);
+
+      newState[fighterId].conditions = [
+        ...newState[fighterId].conditions,
+        newCondition
+      ];
+      setFighter([...newState]);
+    }
+
+    /*     // check if there are already a condition with the same conditionId
     if (
       fighter[fighterId].conditions.find(condition => {
         return condition.conditionId === newCondition.conditionId;
@@ -263,18 +348,17 @@ export default function Battle() {
     ) {
       // inform user that this fighter already has this condition
       dispatch(
-        showModal([
+        addToast([
           "Hinweis",
           `${fighter[fighterId].name} besitzt diesen zustand bereits`
         ])
       );
-    } else {
-      newState[fighterId].conditions = [
-        ...newState[fighterId].conditions,
-        newCondition
-      ];
     }
-    setFighter(newState);
+    newState[fighterId].conditions = [
+      ...newState[fighterId].conditions,
+      newCondition
+    ];
+    setFighter(newState); */
   };
 
   return (

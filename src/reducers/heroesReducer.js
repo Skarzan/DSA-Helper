@@ -32,59 +32,41 @@ const heroesReducer = (state = heroes, action) => {
       const name = action.payload[1];
       const heroId = action.payload[2];
 
-      return state.map(hero => {
-        if (hero.id == heroId) {
-          hero[name] = points;
-          console.log(hero);
-        }
+      let newState = state;
+      newState[heroId][name] = points;
 
-        return hero;
-      });
+      return [...newState];
     }
 
     case "DELETECONDITIONFROMHERO": {
       const heroId = action.payload[0];
       const conditionId = action.payload[1];
 
-      let filtered = state[heroId].conditions.filter(
-        (condition, index, arr) => {
-          return condition.conditionId != conditionId;
-        }
-      );
+      let newState = state;
 
-      return state.map(hero => {
-        if (hero.id === heroId) {
-          hero.conditions = filtered;
-        }
-        return hero;
-      });
+      newState[heroId].conditions.splice(conditionId, 1);
+
+      return [...newState];
     }
     case "ADDCONDITIONTOHERO": {
       const heroId = action.payload[0];
       const condition = action.payload[1];
 
-      const newConditions = [...state[heroId].conditions, condition];
-      return state.map(hero => {
-        if (hero.id === heroId) {
-          hero.conditions = newConditions;
-        }
-        return hero;
-      });
+      let newState = state;
+      newState[heroId].conditions = [...newState[heroId].conditions, condition];
+
+      return [...newState];
     }
     case "CHANGECONDITION": {
       const heroId = action.payload[0];
-      const condition = action.payload[1];
+      const conditionIndex = action.payload[1];
+      const condition = action.payload[2];
 
-      return state.map(hero => {
-        if (hero.id === heroId) {
-          let index = hero.conditions.findIndex(cond => {
-            return cond.id === condition.id;
-          });
+      let newState = state;
 
-          hero.conditions[index] = condition;
-        }
-        return hero;
-      });
+      newState[heroId].conditions[conditionIndex] = condition;
+
+      return [...newState];
     }
     case "CHANGEMONEY": {
       const heroId = action.payload[0];

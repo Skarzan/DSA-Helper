@@ -37,8 +37,13 @@ export default function FighterCard(props) {
    * Replaces a condition with the same id of the fighter.
    * @param {Object} condition the condition
    */
-  const changeFighterCondition = condition => {
-    props.changeCondition(props.index, condition);
+  const changeFighterCondition = (conditionIndex, condition) => {
+    props.changeCondition(
+      props.index,
+      conditionIndex,
+      condition.level,
+      condition.remainingRounds
+    );
   };
 
   /**
