@@ -21,7 +21,9 @@ export default function Purse(props) {
   const changeMoney = (operation, amount) => {
     //0 = sub, 1 = add
     if (operation === 0) {
-      setMoney(props.money - amount); // subtract
+      if (props.money - amount >= 0) {
+        setMoney(props.money - amount); // subtract
+      }
     } else {
       setMoney(props.money + amount); // add
     }

@@ -60,6 +60,7 @@ export default function CharacterCreator(props) {
                 name="initiative"
                 value={character.initiative}
                 onChange={e => handleChange(e)}
+                onClick={e => e.target.select()}
               />
             </Col>
           )}
@@ -72,6 +73,7 @@ export default function CharacterCreator(props) {
               name="maxLep"
               value={character.maxLep}
               onChange={e => handleChange(e)}
+              onClick={e => e.target.select()}
             />
           </Col>
           <Col>
@@ -81,6 +83,7 @@ export default function CharacterCreator(props) {
               name="maxAsp"
               value={character.maxAsp}
               onChange={e => handleChange(e)}
+              onClick={e => e.target.select()}
             />
           </Col>
           <Col>
@@ -90,6 +93,7 @@ export default function CharacterCreator(props) {
               name="maxKap"
               value={character.maxKap}
               onChange={e => handleChange(e)}
+              onClick={e => e.target.select()}
             />
           </Col>
         </Form.Row>

@@ -30,7 +30,7 @@ export default () => {
   const createLinks = () => {
     return menuLinks.map(link => {
       return (
-        <div className="link">
+        <div className="link" key={link.name}>
           <NavLink
             className="menuLink"
             exact

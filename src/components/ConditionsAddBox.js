@@ -110,6 +110,7 @@ export default function ConditionsAddBox(props) {
                   onChange={e => {
                     handleInput(e);
                   }}
+                  onClick={e => e.target.select()}
                 />
               </InputGroup>
             </Col>
