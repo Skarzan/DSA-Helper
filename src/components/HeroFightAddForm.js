@@ -30,11 +30,11 @@ export default function HeroFightAddForm(props) {
   const showHeroForm = () => {
     return heroes.map((hero, index) => {
       return (
-        <div className="singleHeroFrom">
+        <div className="singleHeroForm">
           <h4>{hero.name}</h4>
           <Form.Control
             type="number"
-            placeholder={`Initiative von ${hero.name}`}
+            placeholder={`0`}
             key={index}
             value={initiative[index]}
             onChange={e => handleChange(e)}
@@ -49,10 +49,11 @@ export default function HeroFightAddForm(props) {
   return (
     <div className="HeroFightAddForm">
       <h1 className="center">Füge Helden zum Kampf hinzu</h1>
+      <h2 className="center">Trage die Initiative ein</h2>
       <Form>
         <div className="heroForm"> {showHeroForm()}</div>
         <div className="center">
-          <Button type="submit" onClick={addHeroes}>
+          <Button className="addHeroesButton" type="submit" onClick={addHeroes}>
             Füge Helden hinzu
           </Button>
         </div>

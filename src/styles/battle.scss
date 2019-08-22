@@ -6,6 +6,12 @@
     font-size: 34px;
   }
 
+  .noHeroWarning {
+    @include center;
+    color: white;
+    margin-top: 15%;
+  }
+
   .newFighter {
     @include center;
   }
@@ -35,6 +41,7 @@
     background: $footerBackground;
 
     .footerFighterName {
+      text-align: center;
       color: white;
       align-self: center;
       font-size: 20px;
@@ -55,6 +62,24 @@
 
     .fighterCardHeader {
       font-size: 27px;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .round {
+      font-size: 29px;
+    }
+
+    .footerFighterName {
+      display: none;
+    }
+
+    .footerButton {
+      margin: 0 5px;
+
+      svg {
+        display: none;
+      }
     }
   }
 }

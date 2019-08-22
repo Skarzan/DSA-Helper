@@ -52,55 +52,65 @@ export default function Hero(props) {
       } else {
         painLevel = painLevel.level;
       }
-      switch (points) {
-        case 5: {
-          changePain = 1;
-          break;
-        }
-        case Math.round(maxLeP * 0.25): {
-          changePain = 1;
-          break;
-        }
-        case Math.round(maxLeP * 0.5): {
-          changePain = 1;
-          break;
-        }
-        case Math.round(maxLeP * 0.75): {
-          changePain = 1;
-          break;
-        }
-        /* heal pain */
-        case Math.round(maxLeP * 0.75) + 1: {
-          if (oldPoints < points) {
-            const index = props.hero.conditions.findIndex(condition => {
-              return condition.pain === true && condition.conditionId === 7;
-            });
-            if (index >= 0) {
-              deleteCondition(index);
-            }
-            dispatch(
-              addToast([props.hero.name, "Verliert eine Stufe Schmerz"])
-            );
-          }
-          break;
-        }
-        case Math.round(maxLeP * 0.5) + 1: {
-          changePain = 2;
-          break;
-        }
-        case Math.round(maxLeP * 0.25) + 1: {
-          changePain = 2;
-          break;
-        }
-        case 6: {
-          changePain = 2;
-          break;
-        }
 
-        default:
-          break;
+      if (oldPoints > points) {
+        switch (points) {
+          case 5: {
+            changePain = 1;
+            break;
+          }
+          case Math.round(maxLeP * 0.25): {
+            changePain = 1;
+            break;
+          }
+          case Math.round(maxLeP * 0.5): {
+            changePain = 1;
+            break;
+          }
+          case Math.round(maxLeP * 0.75): {
+            changePain = 1;
+            break;
+          }
+          default:
+            break;
+        }
       }
-      if (changePain == 1 && oldPoints > points) {
+
+      if (oldPoints < points) {
+        switch (points) {
+          /* heal pain */
+          case Math.round(maxLeP * 0.75) + 1: {
+            if (oldPoints < points) {
+              const index = props.hero.conditions.findIndex(condition => {
+                return condition.pain === true && condition.conditionId === 7;
+              });
+              if (index >= 0) {
+                deleteCondition(index);
+              }
+              dispatch(
+                addToast([props.hero.name, "Verliert eine Stufe Schmerz"])
+              );
+            }
+            break;
+          }
+          case Math.round(maxLeP * 0.5) + 1: {
+            changePain = 2;
+            break;
+          }
+          case Math.round(maxLeP * 0.25) + 1: {
+            changePain = 2;
+            break;
+          }
+          case 6: {
+            changePain = 2;
+            break;
+          }
+
+          default:
+            break;
+        }
+      }
+      if (changePain == 1) {
         addCondition({
           conditionId: 7,
           level: (Number(painLevel) + 1).toString(),
@@ -111,7 +121,7 @@ export default function Hero(props) {
         dispatch(addToast([props.hero.name, "Erhält eine Stufe Schmerz"]));
       }
 
-      if (changePain == 2 && oldPoints < points) {
+      if (changePain == 2) {
         addCondition({
           conditionId: 7,
           level: (Number(painLevel) - 1).toString(),

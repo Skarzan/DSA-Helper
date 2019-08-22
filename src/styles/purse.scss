@@ -1,14 +1,15 @@
 @import "./global.scss";
 
 .purse {
-  display: flex;
+  /*   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: space-evenly; */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(115px, 1fr));
 
   .purseSection {
+    margin-top: 5px;
     @include center;
-    width: 25%;
-    min-width: 130px;
   }
 
   .coinImage {

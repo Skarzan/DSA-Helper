@@ -1,6 +1,6 @@
 import heroes from "../assets/heroes";
 
-const heroesReducer = (state = heroes, action) => {
+const heroesReducer = (state = [], action) => {
   switch (action.type) {
     case "SETALLHEROES": {
       return action.payload;

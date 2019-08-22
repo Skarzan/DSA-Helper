@@ -31,6 +31,18 @@ export default function Battle() {
   /** set the id´s of the conditions TODO solve it in a function */
   const [conditionIdCounter, setConditionIdCounter] = useState(0);
 
+  const fighterListNotEmpty = () => {
+    if (fighter.length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  /**
+   * Adds all heroes heroes to the fighter list with their initiative
+   * @param {array} initiative an array of all heroes initiative
+   */
   const addAllHeroes = initiative => {
     let newHeroes = heroes;
 
@@ -92,61 +104,70 @@ export default function Battle() {
         painLevel = painLevel.level;
       }
 
-      switch (points) {
-        case 5: {
-          changePain = 1;
-          break;
-        }
-        case Math.round(maxLeP * 0.25): {
-          changePain = 1;
-          break;
-        }
-        case Math.round(maxLeP * 0.5): {
-          changePain = 1;
-          break;
-        }
-        case Math.round(maxLeP * 0.75): {
-          changePain = 1;
-          break;
-        }
-        /* heal pain */
-        case Math.round(maxLeP * 0.75) + 1: {
-          if (oldPoints < points) {
-            const index = fighter[fighterIndex].conditions.findIndex(
-              condition => {
-                return condition.pain === true && condition.conditionId === 7;
-              }
-            );
-            if (index >= 0) {
-              deleteCondition(fighterIndex, index);
-            }
-            dispatch(
-              addToast([
-                fighter[fighterIndex].name,
-                "Verliert eine Stufe Schmerz"
-              ])
-            );
+      if (oldPoints > points) {
+        switch (points) {
+          case 5: {
+            changePain = 1;
+            break;
           }
-          break;
+          case Math.round(maxLeP * 0.25): {
+            changePain = 1;
+            break;
+          }
+          case Math.round(maxLeP * 0.5): {
+            changePain = 1;
+            break;
+          }
+          case Math.round(maxLeP * 0.75): {
+            changePain = 1;
+            break;
+          }
+          default:
+            break;
         }
-        case Math.round(maxLeP * 0.5) + 1: {
-          changePain = 2;
-          break;
-        }
-        case Math.round(maxLeP * 0.25) + 1: {
-          changePain = 2;
-          break;
-        }
-        case 6: {
-          changePain = 2;
-          break;
-        }
-
-        default:
-          break;
       }
 
-      if (changePain == 1 && oldPoints > points) {
+      if (oldPoints < points) {
+        switch (points) {
+          /* heal pain */
+          case Math.round(maxLeP * 0.75) + 1: {
+            if (oldPoints < points) {
+              const index = fighter[fighterIndex].conditions.findIndex(
+                condition => {
+                  return condition.pain === true && condition.conditionId === 7;
+                }
+              );
+              if (index >= 0) {
+                deleteCondition(fighterIndex, index);
+              }
+              dispatch(
+                addToast([
+                  fighter[fighterIndex].name,
+                  "Verliert eine Stufe Schmerz"
+                ])
+              );
+            }
+            break;
+          }
+          case Math.round(maxLeP * 0.5) + 1: {
+            changePain = 2;
+            break;
+          }
+          case Math.round(maxLeP * 0.25) + 1: {
+            changePain = 2;
+            break;
+          }
+          case 6: {
+            changePain = 2;
+            break;
+          }
+
+          default:
+            break;
+        }
+      }
+
+      if (changePain == 1) {
         addCondition(fighterIndex, {
           conditionId: 7,
           level: (Number(painLevel) + 1).toString(),
@@ -159,7 +180,7 @@ export default function Battle() {
         );
       }
 
-      if (changePain == 2 && oldPoints < points) {
+      if (changePain == 2) {
         addCondition(fighterIndex, {
           conditionId: 7,
           level: (Number(painLevel) - 1).toString(),
@@ -277,12 +298,6 @@ export default function Battle() {
    * @param {number} conditionId the id of the conditon
    */
   const deleteCondition = (fighterId, conditionIndex) => {
-    /*     let filtered = fighter[fighterId].conditions.filter(
-      (condition, index, arr) => {
-        return condition.conditionId !== conditionId;
-      }
-    ); //return a list of all conditions excluding the condition about to delete */
-
     let newState = fighter;
 
     newState[fighterId].conditions.splice(conditionIndex, 1);
@@ -339,32 +354,20 @@ export default function Battle() {
       ];
       setFighter([...newState]);
     }
-
-    /*     // check if there are already a condition with the same conditionId
-    if (
-      fighter[fighterId].conditions.find(condition => {
-        return condition.conditionId === newCondition.conditionId;
-      })
-    ) {
-      // inform user that this fighter already has this condition
-      dispatch(
-        addToast([
-          "Hinweis",
-          `${fighter[fighterId].name} besitzt diesen zustand bereits`
-        ])
-      );
-    }
-    newState[fighterId].conditions = [
-      ...newState[fighterId].conditions,
-      newCondition
-    ];
-    setFighter(newState); */
   };
 
   return (
     <div className="battle">
-      {fighter < 1 ? <HeroFightAddForm addHeroes={addAllHeroes} /> : ""}
-      <div className="round">Kampfrunde {battleRound}</div>
+      {heroes.length !== 0 ? (
+        !fighterListNotEmpty() && <HeroFightAddForm addHeroes={addAllHeroes} />
+      ) : (
+        <h1 className="noHeroWarning">
+          Erstelle einen Helden um einen Kampf zu starten
+        </h1>
+      )}
+      {fighterListNotEmpty() && (
+        <div className="round">Kampfrunde {battleRound}</div>
+      )}
       <div className="fighterSection">
         <BattleFighterList
           deleteCondition={deleteCondition}
@@ -376,27 +379,30 @@ export default function Battle() {
           fighter={sortFightersByInitiative()}
         />
       </div>
-      <div className="battleFooter">
-        <Button onClick={() => showNewFighterModal()}>
-          Neuer Kämpfer
-          <UserPlusButton className="svgIconButton" />
-        </Button>
-        {fighter.length > 0 ? (
+      {fighterListNotEmpty() && (
+        <div className="battleFooter">
+          <Button
+            className="footerButton center"
+            onClick={() => showNewFighterModal()}
+          >
+            <span>Neuer Kämpfer</span>
+            <UserPlusButton className="svgIconButton" />
+          </Button>
+
           <div className="footerFighterName">
             Aktiver Kämpfer: <span>{fighter[activeFighter].name}</span>
           </div>
-        ) : (
-          ""
-        )}
-        <Button
-          className="footerButton"
-          onClick={() => {
-            nextFighter();
-          }}
-        >
-          Nächster Kämpfer <NextSVG className="svgIconButton" />
-        </Button>
-      </div>
+
+          <Button
+            className="footerButton center"
+            onClick={() => {
+              nextFighter();
+            }}
+          >
+            Nächster Kämpfer <NextSVG className="svgIconButton" />
+          </Button>
+        </div>
+      )}
     </div>
   );
 }

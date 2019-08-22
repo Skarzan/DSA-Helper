@@ -64,7 +64,7 @@ export default function Purse(props) {
       <div className="purseSection">
         <img
           class="coinImage"
-          src={require("../assets/img/coins_t_03.png")}
+          src={require("../assets/img/money1.png")}
           alt="Dukaten"
         />
         <Button onClick={() => changeMoney(0, 1000)} variant="secondary">
@@ -83,7 +83,7 @@ export default function Purse(props) {
       <div className="purseSection">
         <img
           class="coinImage"
-          src={require("../assets/img/coins_t_01.png")}
+          src={require("../assets/img/money2.png")}
           alt="Silber"
         />
         <Button onClick={() => changeMoney(0, 100)} variant="secondary">
@@ -102,7 +102,7 @@ export default function Purse(props) {
       <div className="purseSection">
         <img
           class="coinImage"
-          src={require("../assets/img/coins_t_02.png")}
+          src={require("../assets/img/money3.png")}
           alt="Heller"
         />
         <Button onClick={() => changeMoney(0, 10)} variant="secondary">
@@ -121,7 +121,7 @@ export default function Purse(props) {
       <div className="purseSection">
         <img
           class="coinImage"
-          src={require("../assets/img/coins_t_04.png")}
+          src={require("../assets/img/money4.png")}
           alt="Kreuzer"
         />
         <Button onClick={() => changeMoney(0, 1)} variant="secondary">

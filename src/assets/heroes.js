@@ -27,7 +27,7 @@ export default [
       {
         id: 0,
         conditionId: 0,
-        level: 2,
+        level: "2",
         remainingRounds: 3,
         comment: ""
       },
@@ -46,7 +46,7 @@ export default [
     maxLep: 29,
     maxAsp: 0,
     maxKap: 21,
-    LeP: 5,
+    LeP: 29,
     AsP: 0,
     KaP: 18,
     money: 20203,

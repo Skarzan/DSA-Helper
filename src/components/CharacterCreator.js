@@ -51,16 +51,18 @@ export default function CharacterCreator(props) {
               onChange={e => handleChange(e)}
             />
           </Col>
-          <Col>
-            {" "}
-            <Form.Label>Initiative: </Form.Label>
-            <Form.Control
-              type="number"
-              name="initiative"
-              value={character.initiative}
-              onChange={e => handleChange(e)}
-            />
-          </Col>
+
+          {!(props.parent === "heroList") && (
+            <Col>
+              <Form.Label>Initiative: </Form.Label>
+              <Form.Control
+                type="number"
+                name="initiative"
+                value={character.initiative}
+                onChange={e => handleChange(e)}
+              />
+            </Col>
+          )}
         </Form.Row>
         <Form.Row className="pointsSection">
           <Col>

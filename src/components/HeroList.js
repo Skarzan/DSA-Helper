@@ -54,15 +54,24 @@ export default function HeroList() {
    * Shows a modal with the characterCreator form
    */
   const showCharacterCreator = () => {
-    const creator = <CharacterCreator submitCharacter={addNewHero} />;
+    const creator = (
+      <CharacterCreator submitCharacter={addNewHero} parent={"heroList"} />
+    );
     dispatch(showModal(["Neuer Held", creator]));
   };
 
   return (
     <div className="heroList">
+      {!heroes.length > 0 && (
+        <h1 className="noHeroText center">Füge Helden zur Gruppe hinzu</h1>
+      )}
       <div className="heroes">{showHeroes()}</div>
       <div className="heroCreateButton">
-        <Button size="lg" onClick={() => showCharacterCreator()}>
+        <Button
+          className="center"
+          size="lg"
+          onClick={() => showCharacterCreator()}
+        >
           Neuer Held <UserPlusButton className="svgIconButton" />
         </Button>
       </div>

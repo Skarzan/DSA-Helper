@@ -18,7 +18,7 @@ export default function ConditionBox(props) {
           changeCondition={props.changeCondition}
           deleteCondition={props.deleteCondition}
           condition={condition}
-          key={condition.id}
+          key={`${index} ${condition.conditionId}`}
           index={index}
         />
       );

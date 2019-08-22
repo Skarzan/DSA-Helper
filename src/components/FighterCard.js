@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Points from "./Points";
 import ConditionsAddBox from "./ConditionsAddBox";
 import ConditionBox from "./ConditionBox";
@@ -6,6 +6,9 @@ import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
+
+import { useDispatch } from "react-redux";
+import { showModal, closeModal } from "../actions";
 
 import { ReactComponent as TrashSVG } from "../assets/svg/icons/trash.svg";
 import "../styles/fighterCard.scss";
@@ -22,7 +25,7 @@ import "../styles/fighterCard.scss";
  * @param {function}       props.killFighter       function to delete a fighter
  */
 export default function FighterCard(props) {
-  const [showConditionsAddBox, setShowConditionsAddBox] = useState(false);
+  const dispatch = useDispatch();
 
   /**
    * Sets a new value to the given property
@@ -60,7 +63,7 @@ export default function FighterCard(props) {
    */
   const addCondition = condition => {
     props.addCondition(props.index, condition);
-    setShowConditionsAddBox(!showConditionsAddBox);
+    dispatch(closeModal());
   };
 
   /**
@@ -68,6 +71,18 @@ export default function FighterCard(props) {
    */
   const setHeaderClass = () => {
     return props.fighter.isHero ? "hero" : "enemy";
+  };
+
+  /**
+   * Shows the modal to add a new condition to the hero
+   */
+  const showConditionAddBox = () => {
+    dispatch(
+      showModal([
+        `Neuer Status für ${props.fighter.name}`,
+        <ConditionsAddBox addCondition={addCondition} />
+      ])
+    );
   };
 
   return (
@@ -81,9 +96,9 @@ export default function FighterCard(props) {
           <div className="fighterButtons">
             <div className="center">
               <Button
-                variant="info"
+                variant="secondary"
                 onClick={() => {
-                  setShowConditionsAddBox(!showConditionsAddBox);
+                  showConditionAddBox();
                 }}
               >
                 Zustand/Status
@@ -102,15 +117,6 @@ export default function FighterCard(props) {
           </div>
         </Card.Header>
         <Card.Text className="fighterBody">
-          <Row>
-            <Col sm="12">
-              {showConditionsAddBox ? (
-                <ConditionsAddBox addCondition={addCondition} />
-              ) : (
-                ""
-              )}
-            </Col>
-          </Row>
           <Row className="row">
             <Col sm="12">
               <div className="pointsFighter">
