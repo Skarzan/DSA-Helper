@@ -20,7 +20,7 @@ export default function ConditionsAddBox(props) {
     let options = [];
     for (let condition in conditionsInformation) {
       options.push(
-        <option value={condition}>
+        <option key={condition} value={condition}>
           {conditionsInformation[condition].name}
         </option>
       );
@@ -50,89 +50,95 @@ export default function ConditionsAddBox(props) {
   };
 
   return (
-    <Form.Row>
-      <Col>
-        <Form>
-          <Form.Row>
-            <Col sm="9">
-              <Form.Label>Zustand</Form.Label>
-              <Form.Control
-                as="select"
-                name="conditionId"
-                value={formData.conditionId}
-                onChange={e => {
-                  handleInput(e);
-                }}
-              >
-                {showOptions()}
-              </Form.Control>
-            </Col>
-            <Col>
-              {conditionsInformation[formData.conditionId].hasLevel ? (
-                <div>
-                  <Form.Label>Stufe</Form.Label>
-                  <Form.Control
-                    className="romanFont"
-                    as="select"
-                    name="level"
-                    value={formData.level}
-                    onChange={e => handleInput(e)}
-                  >
-                    <option value="1">I</option>
-                    <option value="2">II</option>
-                    <option value="3">III</option>
-                    <option value="4">IV</option>
-                  </Form.Control>
-                </div>
-              ) : (
-                ""
-              )}
-            </Col>
-          </Form.Row>
-          <Form.Row>
-            <Col>
-              <Form.Label>Kampfrunden</Form.Label>
-              <InputGroup>
-                <InputGroup.Prepend>
-                  <InputGroup.Checkbox
-                    checked={roundsSwitch ? "checked" : ""}
-                    onClick={() => {
-                      toggleRounds();
-                    }}
-                  />
-                </InputGroup.Prepend>
+    <div className="ConditionsAddBox">
+      <Form.Row>
+        <Col>
+          <Form>
+            <Form.Row>
+              <Col sm="9">
+                <Form.Label>Zustand</Form.Label>
                 <Form.Control
-                  type="number"
-                  name="remainingRounds"
-                  min="1"
-                  disabled={roundsSwitch ? "" : "disabled"}
-                  value={formData.remainingRounds}
+                  className="conditionChooser"
+                  as="select"
+                  name="conditionId"
+                  value={formData.conditionId}
                   onChange={e => {
                     handleInput(e);
                   }}
-                  onClick={e => e.target.select()}
-                />
-              </InputGroup>
-            </Col>
-            <Col
-              style={{
-                display: "flex",
-                alignItems: "flex-end",
-                justifyContent: "right"
-              }}
-            >
-              <Button
-                type="submit"
-                variant="secondary"
-                onClick={e => submitData(e)}
+                >
+                  {showOptions()}
+                </Form.Control>
+              </Col>
+              <Col>
+                {conditionsInformation[formData.conditionId].hasLevel ? (
+                  <div className="level">
+                    <Form.Label>Stufe</Form.Label>
+                    <Form.Control
+                      className="romanFont"
+                      as="select"
+                      name="level"
+                      value={formData.level}
+                      onChange={e => handleInput(e)}
+                    >
+                      <option value="1">I</option>
+                      <option value="2">II</option>
+                      <option value="3">III</option>
+                      <option value="4">IV</option>
+                    </Form.Control>
+                  </div>
+                ) : (
+                  ""
+                )}
+              </Col>
+            </Form.Row>
+            <Form.Row>
+              <Col>
+                <Form.Label>Kampfrunden</Form.Label>
+                <InputGroup>
+                  <InputGroup.Prepend>
+                    <InputGroup.Checkbox
+                      checked={roundsSwitch ? "checked" : ""}
+                      onClick={() => {
+                        toggleRounds();
+                      }}
+                      onChange={() => {
+                        toggleRounds();
+                      }}
+                    />
+                  </InputGroup.Prepend>
+                  <Form.Control
+                    type="number"
+                    name="remainingRounds"
+                    min="1"
+                    disabled={roundsSwitch ? "" : "disabled"}
+                    value={formData.remainingRounds}
+                    onChange={e => {
+                      handleInput(e);
+                    }}
+                    onClick={e => e.target.select()}
+                  />
+                </InputGroup>
+              </Col>
+              <Col
+                style={{
+                  display: "flex",
+                  alignItems: "flex-end",
+                  justifyContent: "right"
+                }}
               >
-                Status hinzufügen
-              </Button>
-            </Col>
-          </Form.Row>
-          <Form.Row />
-        </Form>
-      </Col>
-    </Form.Row>
+                <Button
+                  type="submit"
+                  variant="secondary"
+                  onClick={e => submitData(e)}
+                >
+                  Status hinzufügen
+                </Button>
+              </Col>
+            </Form.Row>
+            <Form.Row />
+          </Form>
+        </Col>
+      </Form.Row>
+    </div>
   );
 }

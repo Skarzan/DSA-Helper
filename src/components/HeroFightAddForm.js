@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
-import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
 import { useSelector } from "react-redux";
@@ -30,12 +29,11 @@ export default function HeroFightAddForm(props) {
   const showHeroForm = () => {
     return heroes.map((hero, index) => {
       return (
-        <div className="singleHeroForm">
+        <div className="singleHeroForm" key={index}>
           <h4>{hero.name}</h4>
           <Form.Control
             type="number"
             placeholder={`0`}
-            key={index}
             value={initiative[index]}
             onChange={e => handleChange(e)}
             name={index}

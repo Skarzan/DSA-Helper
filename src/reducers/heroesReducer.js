@@ -38,36 +38,6 @@ const heroesReducer = (state = [], action) => {
       return [...newState];
     }
 
-    case "DELETECONDITIONFROMHERO": {
-      const heroId = action.payload[0];
-      const conditionId = action.payload[1];
-
-      let newState = state;
-
-      newState[heroId].conditions.splice(conditionId, 1);
-
-      return [...newState];
-    }
-    case "ADDCONDITIONTOHERO": {
-      const heroId = action.payload[0];
-      const condition = action.payload[1];
-
-      let newState = state;
-      newState[heroId].conditions = [...newState[heroId].conditions, condition];
-
-      return [...newState];
-    }
-    case "CHANGECONDITION": {
-      const heroId = action.payload[0];
-      const conditionIndex = action.payload[1];
-      const condition = action.payload[2];
-
-      let newState = state;
-
-      newState[heroId].conditions[conditionIndex] = condition;
-
-      return [...newState];
-    }
     case "CHANGEMONEY": {
       const heroId = action.payload[0];
       const money = action.payload[1];
@@ -79,6 +49,39 @@ const heroesReducer = (state = [], action) => {
 
         return hero;
       });
+    }
+
+    case "ADDCONDITIONTOHERO": {
+      const heroId = action.payload[0];
+      const condition = action.payload[1];
+
+      let newState = state;
+      newState[heroId].conditions = [...newState[heroId].conditions, condition];
+
+      return [...newState];
+    }
+
+    case "DELETECONDITIONFROMHERO": {
+      const heroId = action.payload[0];
+      const conditionId = action.payload[1];
+
+      let newState = state;
+
+      newState[heroId].conditions.splice(conditionId, 1);
+
+      return [...newState];
+    }
+
+    case "CHANGECONDITION": {
+      const heroId = action.payload[0];
+      const conditionIndex = action.payload[1];
+      const condition = action.payload[2];
+
+      let newState = state;
+
+      newState[heroId].conditions[conditionIndex] = condition;
+
+      return [...newState];
     }
 
     default:

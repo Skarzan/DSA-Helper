@@ -19,6 +19,7 @@ export default function BattleFighterList(props) {
     return props.fighter.map((character, index) => {
       return (
         <FighterCard
+          data-test="fighter"
           key={index}
           fighter={character}
           killFighter={props.killFighter}

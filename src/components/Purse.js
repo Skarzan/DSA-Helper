@@ -9,6 +9,10 @@ import "../styles/purse.scss";
  * @param {number} props.money the amount of money that should be displayed
  */
 export default function Purse(props) {
+  /**
+   *
+   * @param {number} money calls a redux action to set new money
+   */
   const setMoney = money => {
     props.changeMoney(money);
   };
@@ -65,7 +69,7 @@ export default function Purse(props) {
     <div className="purse">
       <div className="purseSection">
         <img
-          class="coinImage"
+          className="coinImage"
           src={require("../assets/img/money1.png")}
           alt="Dukaten"
         />
@@ -84,7 +88,7 @@ export default function Purse(props) {
       </div>
       <div className="purseSection">
         <img
-          class="coinImage"
+          className="coinImage"
           src={require("../assets/img/money2.png")}
           alt="Silber"
         />
@@ -103,7 +107,7 @@ export default function Purse(props) {
       </div>
       <div className="purseSection">
         <img
-          class="coinImage"
+          className="coinImage"
           src={require("../assets/img/money3.png")}
           alt="Heller"
         />
@@ -122,7 +126,7 @@ export default function Purse(props) {
       </div>
       <div className="purseSection">
         <img
-          class="coinImage"
+          className="coinImage"
           src={require("../assets/img/money4.png")}
           alt="Kreuzer"
         />

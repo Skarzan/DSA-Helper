@@ -31,6 +31,9 @@ export default function Battle() {
   /** set the id´s of the conditions TODO solve it in a function */
   const [conditionIdCounter, setConditionIdCounter] = useState(0);
 
+  /**
+   * Return a bool that indicates if fighterlist is empty to allow conditional rendering
+   */
   const fighterListNotEmpty = () => {
     if (fighter.length > 0) {
       return true;
@@ -270,9 +273,7 @@ export default function Battle() {
             dispatch(
               addToast([
                 character.name,
-                `${
-                  conditionsInformation[condition.conditionId].name
-                } wurde entfernt`
+                `${conditionsInformation[condition.conditionId].name} wurde entfernt`
               ])
             ); //show Toast
             condition = null;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import Popover from "react-bootstrap/Popover";
 import { OverlayTrigger } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
@@ -13,10 +13,12 @@ import conditionsInformation from "../assets/conditionsInformation";
 
 export default function ConditionIcon(props) {
   const [id, setId] = useState(0);
+  const [levelText, setLevelText] = useState("I");
 
   useEffect(() => {
     setId(props.condition.conditionId);
-  }, []);
+    setLevelText(showLevel());
+  }, [props.condition.level]);
 
   let deleteCondition = () => {
     props.deleteCondition(props.index);
@@ -122,7 +124,7 @@ export default function ConditionIcon(props) {
           )}
 
           {conditionsInformation[props.condition.conditionId].hasLevel ? (
-            <div className="level romanFont">{showLevel()}</div>
+            <div className="level romanFont">{levelText}</div>
           ) : (
             ""
           )}

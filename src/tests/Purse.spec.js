@@ -3,11 +3,13 @@ import { shallow, mount } from "enzyme";
 
 import Purse from "../components/Purse";
 
-describe("Purse", () => {
+const newMoney = jest.fn();
+
+describe("Purse component", () => {
   let component;
 
   beforeEach(() => {
-    component = mount(<Purse money="12345" />);
+    component = mount(<Purse money="12345" changeMoney={newMoney} />);
   });
 
   it("should render", () => {
@@ -21,6 +23,14 @@ describe("Purse", () => {
 
   it("has 8 change buttons", () => {
     expect(component.find("Button").length).toBe(8);
+  });
+
+  it("has 8 buttons that trigger changeMoney()", () => {
+    let buttons = component.find("Button");
+    buttons.forEach(button => {
+      button.simulate("click");
+    });
+    expect(newMoney).toHaveBeenCalledTimes(8);
   });
 
   afterEach(() => {

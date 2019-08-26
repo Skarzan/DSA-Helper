@@ -29,6 +29,12 @@ describe("Points Component", () => {
     });
   });
 
+  it("doesnt add more than max points", () => {
+    const component = setup({ current: 30, maxpoints: 30 });
+    component.find(".addButton").simulate("click");
+    expect(setPoints).not.toHaveBeenCalled();
+  });
+
   describe("with props", () => {
     beforeEach(() => {
       component = setup({
@@ -70,11 +76,5 @@ describe("Points Component", () => {
         expect(progressBar.prop("label")).toBe("LeP: 21/35");
       });
     });
-  });
-
-  it("doesnt add more than max points", () => {
-    const component = setup({ current: 30, maxpoints: 30 });
-    component.find(".addButton").simulate("click");
-    expect(setPoints).not.toHaveBeenCalled();
   });
 });
