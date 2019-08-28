@@ -27,6 +27,7 @@ export default function CharacterCreator(props) {
    */
   const handleChange = e => {
     setCharacter({ ...character, [e.target.name]: e.target.value });
+    console.log(character);
   };
 
   /**
@@ -39,12 +40,13 @@ export default function CharacterCreator(props) {
   };
 
   return (
-    <div className="characterCreator">
+    <div data-testid="characterCreator" className="characterCreator">
       <Form>
         <Form.Row>
           <Col>
             <Form.Label>Name: </Form.Label>
             <Form.Control
+              data-testid="name"
               type="text"
               name="name"
               value={character.name}
@@ -99,12 +101,12 @@ export default function CharacterCreator(props) {
         </Form.Row>
         <Form.Row>
           <Col>
-            <div className="characterSubmitButton">
-              <Button
-                type="submit"
-                variant="secondary"
-                onClick={e => submit(e)}
-              >
+            <div
+              className="characterSubmitButton"
+              data-testid="submitButton"
+              onClick={e => submit(e)}
+            >
+              <Button type="submit" variant="secondary">
                 Erstellen
               </Button>
             </div>

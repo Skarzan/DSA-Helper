@@ -9,9 +9,6 @@ import configureStore from "redux-mock-store";
 //import heroesReducer from "../reducers/heroesReducer";
 
 const mockStore = configureStore([]);
-/* const initialState = {
-  heroes: heroesReducer
-}; */
 const store = mockStore({ heroes: heroes });
 
 describe("Battle component", () => {
@@ -21,7 +18,7 @@ describe("Battle component", () => {
     beforeEach(() => {
       component = mount(
         <Provider store={store}>
-          <Battle></Battle>
+          <Battle />
         </Provider>
       );
     });
@@ -34,18 +31,18 @@ describe("Battle component", () => {
       expect(component.find("HeroFightAddForm").length).toBe(1);
     });
 
-    it("should give fighterList to <BattleFighterList/>", () => {
+    /*     it("should give fighterList to <BattleFighterList/>", () => {
       const wrapper = component.instance();
       const test = wrapper.fighterListNotEmpty();
       console.log(test);
-    });
+    }); */
   });
 
   describe("no heroes in store", () => {
     beforeEach(() => {
       component = mount(
         <Provider store={mockStore({ heroes: [] })}>
-          <Battle></Battle>
+          <Battle />
         </Provider>
       );
     });
