@@ -27,7 +27,6 @@ export default function CharacterCreator(props) {
    */
   const handleChange = e => {
     setCharacter({ ...character, [e.target.name]: e.target.value });
-    console.log(character);
   };
 
   /**
@@ -46,11 +45,11 @@ export default function CharacterCreator(props) {
           <Col>
             <Form.Label>Name: </Form.Label>
             <Form.Control
-              data-testid="name"
               type="text"
               name="name"
               value={character.name}
               onChange={e => handleChange(e)}
+              data-testid="name"
             />
           </Col>
 
@@ -63,6 +62,7 @@ export default function CharacterCreator(props) {
                 value={character.initiative}
                 onChange={e => handleChange(e)}
                 onClick={e => e.target.select()}
+                data-testid="initiative"
               />
             </Col>
           )}
@@ -76,6 +76,7 @@ export default function CharacterCreator(props) {
               value={character.maxLep}
               onChange={e => handleChange(e)}
               onClick={e => e.target.select()}
+              data-testid="maxLep"
             />
           </Col>
           <Col>
@@ -86,6 +87,7 @@ export default function CharacterCreator(props) {
               value={character.maxAsp}
               onChange={e => handleChange(e)}
               onClick={e => e.target.select()}
+              data-testid="maxAsp"
             />
           </Col>
           <Col>
@@ -96,17 +98,18 @@ export default function CharacterCreator(props) {
               value={character.maxKap}
               onChange={e => handleChange(e)}
               onClick={e => e.target.select()}
+              data-testid="maxKap"
             />
           </Col>
         </Form.Row>
         <Form.Row>
           <Col>
-            <div
-              className="characterSubmitButton"
-              data-testid="submitButton"
-              onClick={e => submit(e)}
-            >
-              <Button type="submit" variant="secondary">
+            <div className="characterSubmitButton" onClick={e => submit(e)}>
+              <Button
+                type="submit"
+                variant="secondary"
+                data-testid="submitButton"
+              >
                 Erstellen
               </Button>
             </div>

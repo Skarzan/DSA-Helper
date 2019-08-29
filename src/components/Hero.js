@@ -205,7 +205,7 @@ export default function Hero(props) {
             </Button>
           </div>
         </Card.Header>
-        <Card.Text className="heroInner">
+        <Card.Body className="heroInner">
           <Row className="row">
             <Col sm="12">
               <div className="pointsHeroContainer">
@@ -260,7 +260,7 @@ export default function Hero(props) {
               </div>
             </Col>
           </Row>
-        </Card.Text>
+        </Card.Body>
       </Card>
     </div>
   );

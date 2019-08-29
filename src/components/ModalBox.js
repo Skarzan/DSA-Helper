@@ -26,16 +26,13 @@ export default function ModalBox() {
   };
 
   return (
-    <Modal
-      className="ModalBox"
-      size="lg"
-      show={modalInformation.show}
-      onHide={handleClose}
-    >
-      <Modal.Header className="modalHeader" closeButton>
-        <Modal.Title>{modalInformation.heading}</Modal.Title>
-      </Modal.Header>
-      <Modal.Body className="modalBody">{modalInformation.text}</Modal.Body>
-    </Modal>
+    <div className="ModalBox">
+      <Modal size="lg" show={modalInformation.show} onHide={handleClose}>
+        <Modal.Header className="modalHeader" closeButton>
+          <Modal.Title>{modalInformation.heading}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="modalBody">{modalInformation.text}</Modal.Body>
+      </Modal>
+    </div>
   );
 }

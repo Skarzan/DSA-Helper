@@ -36,8 +36,8 @@ export default function HeroList() {
    * Creates Hero - Components for all heroes in the heroes - array
    */
   const showHeroes = () => {
-    return heroes.map(hero => {
-      return <Hero hero={hero} />;
+    return heroes.map((hero, index) => {
+      return <Hero hero={hero} key={index} />;
     });
   };
 
@@ -63,14 +63,19 @@ export default function HeroList() {
   return (
     <div className="heroList">
       {!heroes.length > 0 && (
-        <h1 className="noHeroText center">Füge Helden zur Gruppe hinzu</h1>
+        <h1 className="noHeroText center" data-testid="heroList-warningText">
+          Füge Helden zur Gruppe hinzu
+        </h1>
       )}
-      <div className="heroes">{showHeroes()}</div>
+      <div className="heroes" data-testid="heroList-heroes">
+        {showHeroes()}
+      </div>
       <div className="heroCreateButton">
         <Button
           className="center"
           size="lg"
           onClick={() => showCharacterCreator()}
+          data-testid="heroList-newHeroButton"
         >
           Neuer Held <UserPlusButton className="svgIconButton" />
         </Button>

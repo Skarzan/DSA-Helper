@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import ReactToast from "react-bootstrap/Toast";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteToast } from "../actions";
@@ -13,7 +13,7 @@ export default function Toast(props) {
   const showToasts = () => {
     return toasts.map((toast, index) => {
       return (
-        <div className="singleToast">
+        <div className="singleToast" key={`${index} ${toast.head}`}>
           <ReactToast
             show={toast.active}
             onClose={() => dispatch(deleteToast(index))}

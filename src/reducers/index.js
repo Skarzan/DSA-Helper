@@ -2,7 +2,7 @@ import heroesReducer from "./heroesReducer";
 import modalReducer from "./modalReducer";
 import toastReducer from "./toastReducer";
 
-import { combinedReducers, combineReducers } from "redux";
+import { combineReducers } from "redux";
 
 const allReducers = combineReducers({
   heroes: heroesReducer,

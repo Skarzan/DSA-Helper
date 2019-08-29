@@ -30,7 +30,7 @@ export default function HeroFightAddForm(props) {
     return heroes.map((hero, index) => {
       return (
         <div className="singleHeroForm" key={index}>
-          <h4>{hero.name}</h4>
+          <h4 data-testid="heroName">{hero.name}</h4>
           <Form.Control
             type="number"
             placeholder={`0`}
@@ -38,6 +38,7 @@ export default function HeroFightAddForm(props) {
             onChange={e => handleChange(e)}
             name={index}
             min="0"
+            data-testid="initiativeInput"
           />
         </div>
       );
@@ -51,7 +52,12 @@ export default function HeroFightAddForm(props) {
       <Form>
         <div className="heroForm"> {showHeroForm()}</div>
         <div className="center">
-          <Button className="addHeroesButton" type="submit" onClick={addHeroes}>
+          <Button
+            className="addHeroesButton"
+            type="submit"
+            onClick={addHeroes}
+            data-testid="submitButton"
+          >
             Füge Helden hinzu
           </Button>
         </div>

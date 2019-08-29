@@ -4,15 +4,6 @@ $headerBackground: rgb(82, 82, 82);
 $bodyBackground: rgb(230, 230, 230);
 
 .ModalBox {
-  .modalHeader {
-    background: $headerBackground;
-    color: white;
-
-    .close {
-      color: white;
-    }
-  }
-
   .modalBody {
     background: $bodyBackground;
   }
@@ -20,4 +11,13 @@ $bodyBackground: rgb(230, 230, 230);
 
 .popover {
   max-width: 100% !important;
+}
+
+.modalHeader {
+  background: $headerBackground;
+  color: white;
+
+  .close {
+    color: white;
+  }
 }

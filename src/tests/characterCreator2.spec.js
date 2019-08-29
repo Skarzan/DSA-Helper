@@ -1,5 +1,3 @@
-//import React from "react";
-//import '@testing-library/jest-dom/extend-expect'
 import React from "react";
 import { render, cleanup, fireEvent } from "@testing-library/react";
 import CharacterCreator from "../components/CharacterCreator";
@@ -60,5 +58,48 @@ describe("<CharacterCreator/>", () => {
       maxAsp: 0,
       maxKap: 0
     });
+  });
+
+  it("calls prop function with filled out form", () => {
+    const { getByTestId } = render(
+      <CharacterCreator submitCharacter={submitCharacter} />
+    );
+    const nameField = getByTestId("name");
+    fireEvent.change(nameField, {
+      target: { value: "Galarius", name: "name" }
+    });
+
+    const initiative = getByTestId("initiative");
+    fireEvent.change(initiative, {
+      target: { value: 14, name: "initiative" }
+    });
+
+    const maxLep = getByTestId("maxLep");
+    fireEvent.change(maxLep, {
+      target: { value: 34, name: "maxLep" }
+    });
+
+    const maxAsp = getByTestId("maxAsp");
+    fireEvent.change(maxAsp, {
+      target: { value: 25, name: "maxAsp" }
+    });
+
+    const submitButton = getByTestId("submitButton");
+    fireEvent.click(submitButton);
+    expect(submitCharacter).toHaveBeenLastCalledWith({
+      name: "Galarius",
+      initiative: "14",
+      conditions: [],
+      maxLep: "34",
+      maxAsp: "25",
+      maxKap: 0
+    });
+  });
+
+  it("does´nt show initiative if parent is heroList", () => {
+    const { queryByTestId } = render(
+      <CharacterCreator submitCharacter={submitCharacter} parent="heroList" />
+    );
+    expect(queryByTestId("initiative")).not.toBeTruthy();
   });
 });
