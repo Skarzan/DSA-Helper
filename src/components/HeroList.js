@@ -20,18 +20,6 @@ export default function HeroList() {
   const dispatch = useDispatch();
   const heroes = useSelector(state => state.heroes); // get the array of heroes from redux
 
-  /*   useEffect(() => {
-    return () => {
-      firebaseDB
-        .collection("DSA")
-        .doc("heroes")
-        .set({ heroes })
-        .catch(function(error) {
-          console.error("Error writing document: ", error);
-        });
-    };
-  }, []); */
-
   /**
    * Creates Hero - Components for all heroes in the heroes - array
    */
