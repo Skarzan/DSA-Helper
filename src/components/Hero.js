@@ -193,7 +193,7 @@ export default function Hero(props) {
     <div className="hero">
       <Card>
         <Card.Header as="h4" className="heroHeader">
-          <div>{props.hero.name}</div>
+          <div data-testid="hero-name">{props.hero.name}</div>
           <div>
             <Button
               variant="secondary"
@@ -209,7 +209,7 @@ export default function Hero(props) {
           <Row className="row">
             <Col sm="12">
               <div className="pointsHeroContainer">
-                <div className="lep">
+                <div className="lep" data-testid="hero-LeP">
                   <Points
                     name="LeP"
                     setPoint={setNewPoint}
@@ -218,7 +218,7 @@ export default function Hero(props) {
                   />
                 </div>
                 {props.hero.maxAsp ? (
-                  <div className="asp">
+                  <div className="asp" data-testid="hero-AsP">
                     <Points
                       name="AsP"
                       setPoint={setNewPoint}
@@ -230,7 +230,7 @@ export default function Hero(props) {
                   ""
                 )}
                 {props.hero.maxKap ? (
-                  <div className="kap">
+                  <div className="kap" data-testid="hero-KaP">
                     <Points
                       name="KaP"
                       setPoint={setNewPoint}
