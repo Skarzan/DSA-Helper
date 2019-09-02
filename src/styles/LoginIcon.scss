@@ -1,0 +1,78 @@
+@import "./global.scss";
+
+@mixin icon {
+  cursor: pointer;
+  margin-right: 10px;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  border: 2px solid white;
+}
+
+.LoginIcon {
+  position: relative;
+
+  .icon {
+    .loggedOut {
+      @include icon;
+      background: red;
+    }
+
+    .loggedIn {
+      @include icon;
+      background: green;
+    }
+  }
+
+  .overlay {
+    position: absolute;
+    top: 30px;
+    right: 0;
+    padding: 10px;
+    background: rgb(233, 233, 233);
+    z-index: 5;
+    display: none;
+  }
+
+  .saveMenu {
+    width: 320px;
+
+    .buttons {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .logoutArea {
+      display: flex;
+      justify-content: right;
+    }
+
+    a {
+      font-size: 15px;
+      margin-top: 7px;
+
+      &:hover {
+        text-decoration: underline;
+        color: rgb(54, 54, 54);
+      }
+    }
+  }
+
+  .loginForm {
+    width: 300px;
+
+    .loginButtons {
+      display: flex;
+      justify-content: right;
+      margin-top: 7px;
+
+      button {
+        width: 100%;
+      }
+    }
+  }
+
+  .show {
+    display: block;
+  }
+}

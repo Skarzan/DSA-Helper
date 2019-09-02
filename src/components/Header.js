@@ -1,12 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import LoginIcon from "./LoginIcon";
 
 import "../styles/header.scss";
-
-import firebaseDB from "../firebase/firebase";
-//Redux
-import { useSelector, useDispatch } from "react-redux";
-import { setAllHeroes } from "../actions";
 
 //array of the site links
 const menuLinks = [
@@ -28,28 +24,6 @@ const menuLinks = [
  * Renders a header with a menu
  */
 export default () => {
-  const dispatch = useDispatch();
-  const heroes = useSelector(state => state.heroes);
-  const setFireBaseHeroes = () => {
-    firebaseDB
-      .collection("DSA")
-      .doc("heroes")
-      .set({ heroes })
-      .catch(function(error) {
-        console.error("Error writing document: ", error);
-      });
-  };
-  const loadFireBaseHeroes = () => {
-    let fireHeroes;
-    firebaseDB
-      .collection("DSA")
-      .doc("heroes")
-      .get()
-      .then(doc => {
-        dispatch(setAllHeroes([...doc.data().heroes]));
-      });
-  };
-
   /**
    * Creates a list of NavLinks components. Uses React Router.
    */
@@ -74,13 +48,8 @@ export default () => {
     <div className="header">
       <nav>
         <div className="menu">
-          <div className="menuLink" onClick={loadFireBaseHeroes}>
-            load
-          </div>
-          <div className="menuLink" onClick={setFireBaseHeroes}>
-            save
-          </div>
           {createLinks()}
+          <LoginIcon></LoginIcon>
         </div>
       </nav>
     </div>
