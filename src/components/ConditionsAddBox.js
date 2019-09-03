@@ -13,7 +13,8 @@ export default function ConditionsAddBox(props) {
   const [formData, setFormData] = useState({
     conditionId: 0,
     level: "1",
-    remainingRounds: "1"
+    remainingRounds: "1",
+    name: ""
   });
 
   const showOptions = () => {
@@ -66,11 +67,15 @@ export default function ConditionsAddBox(props) {
                     handleInput(e);
                   }}
                 >
+                  <option key={"custom"} value={"custom"}>
+                    Zauber/Eigen
+                  </option>
                   {showOptions()}
                 </Form.Control>
               </Col>
               <Col>
-                {conditionsInformation[formData.conditionId].hasLevel ? (
+                {formData.conditionId === "custom" ||
+                conditionsInformation[formData.conditionId].hasLevel ? (
                   <div className="level">
                     <Form.Label>Stufe</Form.Label>
                     <Form.Control
@@ -89,6 +94,19 @@ export default function ConditionsAddBox(props) {
                 ) : (
                   ""
                 )}
+              </Col>
+            </Form.Row>
+            <Form.Row>
+              <Col>
+                <Form.Label>Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={e => {
+                    handleInput(e);
+                  }}
+                />
               </Col>
             </Form.Row>
             <Form.Row>

@@ -95,6 +95,13 @@ export default function FighterCard(props) {
           <div>{props.fighter.name}</div>
           <div className="fighterButtons">
             <div className="center">
+              {props.fighter.wikiLink && (
+                <a href={props.fighter.wikiLink} target="blank">
+                  <Button className="infoButton" variant="secondary">
+                    Info
+                  </Button>
+                </a>
+              )}
               <Button
                 variant="secondary"
                 onClick={() => {
@@ -116,7 +123,7 @@ export default function FighterCard(props) {
             </Button>
           </div>
         </Card.Header>
-        <Card.Text className="fighterBody">
+        <Card.Body className="fighterBody">
           <Row className="row">
             <Col sm="12">
               <div className="pointsFighter">
@@ -164,7 +171,7 @@ export default function FighterCard(props) {
               </div>
             </Col>
           </Row>
-        </Card.Text>
+        </Card.Body>
         <div className="initiative">{props.fighter.initiative}</div>
       </Card>
     </div>

@@ -3,6 +3,8 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 
+import enemys from "../utils/gameInformation/enemys";
+
 import "../styles/characterCreator.scss";
 
 /**
@@ -21,6 +23,8 @@ export default function CharacterCreator(props) {
     conditions: []
   });
 
+  const [group, setGroup] = useState(1);
+
   /**
    * Takes the name from the form element and changes the corresponding value in the state
    * @param {*} e event object
@@ -35,12 +39,81 @@ export default function CharacterCreator(props) {
    */
   const submit = e => {
     e.preventDefault();
-    props.submitCharacter(character);
+
+    if (group > 1) {
+      let fighters = [];
+      //add enemys as many as defined in group-variable
+      for (let index = 0; index < group; index++) {
+        let fighter = { ...character };
+        fighter.initiative =
+          Number(fighter.initiative) + Math.floor(Math.random() * 6 + 1);
+        fighter.name = `${fighter.name} ${index + 1}`;
+        fighter.conditions = [];
+        fighters[index] = fighter;
+      }
+      addFighter(fighters);
+    } else {
+      let fighter = { ...character };
+      fighter.conditions = [];
+      addFighter(fighter);
+    }
+  };
+
+  const addFighter = fighter => {
+    props.submitCharacter(fighter);
+  };
+
+  /**
+   * Creates a list of fighter stamps that will be displayed in a dropdown
+   */
+  const createEnemyList = () => {
+    return enemys.map((enemy, index) => {
+      return (
+        <option key={enemy.name} value={index}>
+          {enemy.name}
+        </option>
+      );
+    });
+  };
+
+  /**
+   * Copy all values of the selected stamp in the form
+   * @param {*} e event object
+   */
+  const setStampData = e => {
+    setCharacter({ ...enemys[e.target.value] });
   };
 
   return (
     <div data-testid="characterCreator" className="characterCreator">
       <Form>
+        {/*show only on battle*/ !(props.parent === "heroList") && (
+          <Form.Row>
+            <Col>
+              <Form.Label>Vorgefertigter Kämpfer</Form.Label>
+              <Form.Control
+                as="select"
+                name="fighterStamp"
+                onChange={e => {
+                  setStampData(e);
+                }}
+              >
+                {createEnemyList()}
+              </Form.Control>
+            </Col>
+            <Col>
+              <Form.Label>Gruppengröße</Form.Label>
+              <Form.Control
+                type="number"
+                name="group"
+                value={group}
+                onChange={e => setGroup(e.target.value)}
+                onClick={e => e.target.select()}
+              />
+            </Col>
+          </Form.Row>
+        )}
+
         <Form.Row>
           <Col>
             <Form.Label>Name: </Form.Label>
@@ -55,7 +128,7 @@ export default function CharacterCreator(props) {
 
           {!(props.parent === "heroList") && (
             <Col>
-              <Form.Label>Initiative: </Form.Label>
+              <Form.Label>Basis Initiative: </Form.Label>
               <Form.Control
                 type="number"
                 name="initiative"

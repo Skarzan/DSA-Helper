@@ -61,14 +61,30 @@ export default function Battle() {
    * @param {Object} newFighter the new fighter about to add to the fighter list
    */
   const addFighter = newFighter => {
-    newFighter = {
-      ...newFighter,
-      LeP: newFighter.maxLep,
-      AsP: newFighter.maxAsp,
-      KaP: newFighter.maxKap
-    };
+    if (Array.isArray(newFighter)) {
+      console.log("isArray");
+      let fighters = [];
 
-    setFighter([...fighter, newFighter]);
+      newFighter.forEach(element => {
+        element = {
+          ...element,
+          LeP: element.maxLep,
+          AsP: element.maxAsp,
+          KaP: element.maxKap
+        };
+        fighters.push(element);
+      });
+      setFighter([...fighter, ...fighters]);
+    } else {
+      newFighter = {
+        ...newFighter,
+        LeP: newFighter.maxLep,
+        AsP: newFighter.maxAsp,
+        KaP: newFighter.maxKap
+      };
+      setFighter([...fighter, newFighter]);
+    }
+
     dispatch(closeModal());
   };
 
@@ -273,7 +289,9 @@ export default function Battle() {
             dispatch(
               addToast([
                 character.name,
-                `${conditionsInformation[condition.conditionId].name} wurde entfernt`
+                `${
+                  conditionsInformation[condition.conditionId].name
+                } wurde entfernt`
               ])
             ); //show Toast
             condition = null;
