@@ -16,6 +16,7 @@ export default function CharacterCreator(props) {
   // initialize empty character
   let [character, setCharacter] = useState({
     name: "",
+    maxSchips: 0,
     maxLep: 0,
     maxAsp: 0,
     maxKap: 0,
@@ -51,15 +52,15 @@ export default function CharacterCreator(props) {
         fighter.conditions = [];
         fighters[index] = fighter;
       }
-      addFighter(fighters);
+      addCharacter(fighters);
     } else {
       let fighter = { ...character };
       fighter.conditions = [];
-      addFighter(fighter);
+      addCharacter(fighter);
     }
   };
 
-  const addFighter = fighter => {
+  const addCharacter = fighter => {
     props.submitCharacter(fighter);
   };
 
@@ -125,20 +126,34 @@ export default function CharacterCreator(props) {
               data-testid="name"
             />
           </Col>
-
-          {!(props.parent === "heroList") && (
-            <Col>
-              <Form.Label>Basis Initiative: </Form.Label>
-              <Form.Control
-                type="number"
-                name="initiative"
-                value={character.initiative}
-                onChange={e => handleChange(e)}
-                onClick={e => e.target.select()}
-                data-testid="initiative"
-              />
-            </Col>
-          )}
+          <Col>
+            <Form.Row>
+              <Col>
+                <Form.Label>Basis Initiative: </Form.Label>
+                <Form.Control
+                  type="number"
+                  name="initiative"
+                  value={character.initiative}
+                  onChange={e => handleChange(e)}
+                  onClick={e => e.target.select()}
+                  data-testid="initiative"
+                />
+              </Col>
+              {props.parent == "heroList" && (
+                <Col>
+                  <Form.Label>max. Schips: </Form.Label>
+                  <Form.Control
+                    type="number"
+                    name="maxSchips"
+                    value={character.maxSchips}
+                    onChange={e => handleChange(e)}
+                    onClick={e => e.target.select()}
+                    data-testid="schips"
+                  />
+                </Col>
+              )}
+            </Form.Row>
+          </Col>
         </Form.Row>
         <Form.Row className="pointsSection">
           <Col>

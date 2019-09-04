@@ -40,20 +40,51 @@
 
     .fighterButtons {
       display: flex;
+      position: absolute;
+      top: -13px;
+      right: -11px;
 
       .deleteButton {
         @include center;
-        @include roundButton(35px);
+        @include roundButton(40px);
         font-size: 21px;
         border: 2px solid white;
-        margin-left: 10px;
-
-        position: absolute;
-        top: -14px;
-        right: -10px;
+        margin-left: 5px;
 
         svg {
           margin: 0;
+        }
+      }
+
+      .infoButton {
+        @extend .deleteButton;
+        svg {
+          margin: 0;
+        }
+      }
+
+      .conditionButton {
+        @extend .deleteButton;
+        padding: 0;
+        background: rgb(195, 193, 34);
+        background: linear-gradient(
+          0deg,
+          rgba(195, 193, 34, 1) 0%,
+          rgba(253, 187, 45, 1) 100%
+        );
+
+        &:hover {
+          background: rgb(219, 217, 37);
+          background: linear-gradient(
+            0deg,
+            rgba(219, 217, 37, 1) 0%,
+            rgba(255, 186, 38, 1) 100%
+          );
+        }
+
+        svg {
+          margin: 0;
+          font-size: 20px;
         }
       }
     }

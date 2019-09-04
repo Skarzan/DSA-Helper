@@ -3,10 +3,10 @@ import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
-//import fire from "../firebase/firebase";
+import fire from "../firebase/firebase";
 
 export default function EnemyCreator() {
-  //const firebaseDB = fire.firestore();
+  const firebaseDB = fire.firestore();
 
   const [enemy, setEnemy] = useState({
     name: "",
@@ -24,19 +24,19 @@ export default function EnemyCreator() {
   const submit = e => {
     e.preventDefault();
 
-    /*     firebaseDB
-      .collection("Enemys")
+    firebaseDB
+      .collection("enemys")
       .doc(enemy.name)
       .set(enemy)
       .catch(function(error) {
         console.error("Error writing document: ", error);
-      }); */
+      });
 
     console.log(enemy);
     setEnemy({
       name: "",
       initiative: "0",
-      maxLinitiative: "0",
+      maxLep: "0",
       maxAsp: "0",
       maxKap: "0",
       wikiLink: ""

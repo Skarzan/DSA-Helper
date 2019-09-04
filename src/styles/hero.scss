@@ -13,6 +13,43 @@
     font-style: italic;
     text-shadow: 2px 2px 6px #000;
     color: white;
+
+    .heroButtons {
+      display: flex;
+      position: absolute;
+      top: -13px;
+      right: -8px;
+
+      .conditionButton {
+        @include center;
+        @include roundButton(50px);
+        font-size: 21px;
+        border: 2px solid white;
+        margin-left: 10px;
+        padding: 0;
+
+        background: rgb(195, 193, 34);
+        background: linear-gradient(
+          0deg,
+          rgba(195, 193, 34, 1) 0%,
+          rgba(253, 187, 45, 1) 100%
+        );
+
+        &:hover {
+          background: rgb(219, 217, 37);
+          background: linear-gradient(
+            0deg,
+            rgba(219, 217, 37, 1) 0%,
+            rgba(255, 186, 38, 1) 100%
+          );
+        }
+
+        svg {
+          margin: 0;
+          font-size: 25px;
+        }
+      }
+    }
   }
 
   .heroInner {

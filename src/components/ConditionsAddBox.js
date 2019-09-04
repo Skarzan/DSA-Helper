@@ -36,6 +36,12 @@ export default function ConditionsAddBox(props) {
   const submitData = e => {
     e.preventDefault();
 
+    if (formData.conditionId !== "custom") {
+      const helper = formData;
+      helper.name = null;
+      setFormData(helper);
+    }
+
     //manage rounds
     if (!roundsSwitch) {
       const helper = formData;
@@ -68,7 +74,7 @@ export default function ConditionsAddBox(props) {
                   }}
                 >
                   <option key={"custom"} value={"custom"}>
-                    Zauber/Eigen
+                    Zauber/ Eigen
                   </option>
                   {showOptions()}
                 </Form.Control>
@@ -96,19 +102,21 @@ export default function ConditionsAddBox(props) {
                 )}
               </Col>
             </Form.Row>
-            <Form.Row>
-              <Col>
-                <Form.Label>Name</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={e => {
-                    handleInput(e);
-                  }}
-                />
-              </Col>
-            </Form.Row>
+            {formData.conditionId === "custom" && (
+              <Form.Row>
+                <Col>
+                  <Form.Label>Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={e => {
+                      handleInput(e);
+                    }}
+                  />
+                </Col>
+              </Form.Row>
+            )}
             <Form.Row>
               <Col>
                 <Form.Label>Kampfrunden</Form.Label>

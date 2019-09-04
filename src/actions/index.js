@@ -43,6 +43,15 @@ export const changeMoney = payload => ({
 
 /**
  *
+ * @param {*} payload contains object{heroId, schips}
+ */
+export const setSchips = payload => ({
+  type: "SETSCHIPS",
+  payload
+});
+
+/**
+ *
  * @param {*} payload contains array [heroId, conditionId]
  */
 export const deleteConditionFromHero = payload => {

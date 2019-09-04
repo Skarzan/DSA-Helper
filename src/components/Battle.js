@@ -226,6 +226,7 @@ export default function Battle() {
   };
 
   const nextFighter = () => {
+    reduceConditionRounds(activeFighter);
     if (fighter.length - 1 === activeFighter) {
       endRound();
       setActiveFighter(0);
@@ -272,28 +273,22 @@ export default function Battle() {
    * Setting all up for a new battle round.
    */
   const endRound = () => {
-    reduceConditionRounds();
+    //reduceConditionRounds();
     setBattleRound(battleRound + 1);
   };
 
-  /**
-   * Reduces all remainingRounds of the conditions and deletes them if they reach 0
-   */
-  const reduceConditionRounds = () => {
+  /* const reduceConditionRounds = () => {
     let newState = fighter.map(character => {
       character.conditions = character.conditions.map(condition => {
         if (condition.remainingRounds > 0) {
           condition.remainingRounds = condition.remainingRounds - 1;
 
           if (condition.remainingRounds === 0) {
-            dispatch(
-              addToast([
-                character.name,
-                `${
-                  conditionsInformation[condition.conditionId].name
-                } wurde entfernt`
-              ])
-            ); //show Toast
+            const name = condition.name
+              ? condition.name
+              : conditionsInformation[condition.conditionId].name;
+
+            dispatch(addToast([character.name, `${name} wurde entfernt`])); //show Toast
             condition = null;
           }
         }
@@ -306,6 +301,36 @@ export default function Battle() {
       return character;
     });
 
+    setFighter([...newState]);
+  }; */
+
+  /**
+   * Reduces all remainingRounds of the conditions and deletes them if they reach 0
+   */
+  const reduceConditionRounds = fighterId => {
+    let newState = fighter;
+    let character = newState[fighterId];
+    character.conditions = character.conditions.map(condition => {
+      if (condition.remainingRounds > 0) {
+        condition.remainingRounds = condition.remainingRounds - 1;
+
+        if (condition.remainingRounds === 0) {
+          const name = condition.name
+            ? condition.name
+            : conditionsInformation[condition.conditionId].name;
+
+          dispatch(addToast([character.name, `${name} wurde entfernt`])); //show Toast
+          condition = null;
+        }
+      }
+      return condition;
+    });
+
+    character.conditions = character.conditions.filter(condition => {
+      return condition !== null;
+    });
+
+    console.log(newState);
     setFighter([...newState]);
   };
 

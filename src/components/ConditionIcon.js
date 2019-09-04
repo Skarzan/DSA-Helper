@@ -54,7 +54,9 @@ export default function ConditionIcon(props) {
             <Popover.Content className="Content">
               <div className="conditionPopoverBody">
                 <h3 className="conditionPopoverHeading">
-                  {conditionsInformation[id].name}{" "}
+                  {props.condition.name
+                    ? props.condition.name
+                    : conditionsInformation[id].name}
                 </h3>
                 <div className="conditionButtons">
                   <a href={conditionsInformation[id].wikiLink} target="blank">
@@ -127,6 +129,10 @@ export default function ConditionIcon(props) {
             <div className="level romanFont">{levelText}</div>
           ) : (
             ""
+          )}
+
+          {props.condition.name && (
+            <div className="customOverlay">{props.condition.name}</div>
           )}
         </div>
       </OverlayTrigger>

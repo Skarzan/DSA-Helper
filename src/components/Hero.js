@@ -1,25 +1,28 @@
-import React, { useState } from "react";
+import React from "react";
 import Purse from "./Purse";
 import Points from "./Points";
+import SchipSection from "./SchipSection";
 import ConditionsAddBox from "./ConditionsAddBox";
 import ConditionBox from "./ConditionBox";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+
+import { ReactComponent as ConditionSVG } from "../assets/svg/icons/condition.svg";
+
 import {
   showModal,
   closeModal,
   setPoint,
   changeMoney,
-  addToast
-} from "../actions";
-
-import {
+  addToast,
   addConditionToHero,
   changeCondition,
-  deleteConditionFromHero
+  deleteConditionFromHero,
+  setSchips
 } from "../actions";
+
 import { useDispatch } from "react-redux";
 
 import "../styles/hero.scss";
@@ -140,6 +143,10 @@ export default function Hero(props) {
     dispatch(changeMoney([props.hero.id, money]));
   };
 
+  const setHeroSchips = schips => {
+    dispatch(setSchips([props.hero.id, schips]));
+  };
+
   /**
    * Shows the modal to add a new condition to the hero
    */
@@ -194,14 +201,15 @@ export default function Hero(props) {
       <Card>
         <Card.Header as="h4" className="heroHeader">
           <div data-testid="hero-name">{props.hero.name}</div>
-          <div>
+          <div className="heroButtons">
             <Button
-              variant="secondary"
+              className="conditionButton"
+              variant="success"
               onClick={() => {
                 showConditionAddBox();
               }}
             >
-              Zustand/Status
+              <ConditionSVG className="svgIconButton" />
             </Button>
           </div>
         </Card.Header>
@@ -245,8 +253,15 @@ export default function Hero(props) {
             </Col>
           </Row>
           <Row>
-            <Col>
+            <Col sm="8">
               <Purse money={props.hero.money} changeMoney={changeHeroMoney} />
+            </Col>
+            <Col sm="4">
+              <SchipSection
+                setSchip={setHeroSchips}
+                current={props.hero.schips}
+                max={props.hero.maxSchips}
+              ></SchipSection>
             </Col>
           </Row>
           <Row>

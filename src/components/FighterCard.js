@@ -6,11 +6,13 @@ import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
+import { ReactComponent as InfoSVG } from "../assets/svg/icons/info.svg";
+import { ReactComponent as ConditionSVG } from "../assets/svg/icons/condition.svg";
+import { ReactComponent as TrashSVG } from "../assets/svg/icons/trash.svg";
 
 import { useDispatch } from "react-redux";
 import { showModal, closeModal } from "../actions";
 
-import { ReactComponent as TrashSVG } from "../assets/svg/icons/trash.svg";
 import "../styles/fighterCard.scss";
 
 /**
@@ -97,18 +99,19 @@ export default function FighterCard(props) {
             <div className="center">
               {props.fighter.wikiLink && (
                 <a href={props.fighter.wikiLink} target="blank">
-                  <Button className="infoButton" variant="secondary">
-                    Info
+                  <Button className="infoButton" variant="info">
+                    <InfoSVG className="svgIconButton" />
                   </Button>
                 </a>
               )}
               <Button
-                variant="secondary"
+                className="conditionButton"
+                variant="success"
                 onClick={() => {
                   showConditionAddBox();
                 }}
               >
-                Zustand/Status
+                <ConditionSVG className="svgIconButton" />
               </Button>
             </div>
             <Button

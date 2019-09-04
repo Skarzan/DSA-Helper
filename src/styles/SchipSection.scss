@@ -1,0 +1,40 @@
+@import "./global.scss";
+
+.SchipSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 43px;
+
+  .pointsSection {
+    height: 100%;
+    margin: 0 5px;
+    .icon {
+      height: 100%;
+      position: relative;
+
+      svg {
+        height: 100%;
+      }
+
+      .points {
+        @include center;
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        border-radius: 10px;
+        background: rgba(116, 116, 116, 0.781);
+        color: white;
+        text-shadow: 1px 1px 1px black;
+        font-weight: bold;
+      }
+    }
+  }
+  .minus,
+  .plus {
+    @include center;
+    @include roundButton(30px);
+    font-size: 17px;
+    border: 1px solid rgba(88, 88, 88, 0.5);
+  }
+}

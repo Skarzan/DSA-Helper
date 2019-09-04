@@ -9,6 +9,7 @@ const heroesReducer = (state = [], action) => {
       let hero = action.payload[0];
       hero.id = state.length;
       hero.conditions = [];
+      hero.schips = hero.maxSchips;
       hero.LeP = hero.maxLep;
       hero.AsP = hero.maxAsp;
       hero.KaP = hero.maxKap;
@@ -49,6 +50,16 @@ const heroesReducer = (state = [], action) => {
 
         return hero;
       });
+    }
+
+    case "SETSCHIPS": {
+      const heroId = action.payload[0];
+      const schips = action.payload[1];
+
+      let newState = state;
+      newState[heroId].schips = schips;
+
+      return [...newState];
     }
 
     case "ADDCONDITIONTOHERO": {

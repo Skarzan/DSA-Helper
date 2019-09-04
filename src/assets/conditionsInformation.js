@@ -1,4 +1,9 @@
 export default {
+  custom: {
+    name: "custom",
+    imagePath: require("./img/status/wizard-staff.png"),
+    hasLevel: true
+  },
   0: {
     name: "Animosität",
     imagePath: require("./img/status/confrontation.png"),
