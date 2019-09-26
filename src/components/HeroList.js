@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Hero from "./Hero";
 import CharacterCreator from "./CharacterCreator";
 import Button from "react-bootstrap/Button";

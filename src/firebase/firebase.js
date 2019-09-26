@@ -3,7 +3,6 @@ import "firebase/firestore";
 import "firebase/firebase-auth";
 import credentials from "./credentials";
 
-console.log("Test");
 var firebaseConfig = credentials;
 
 // Initialize Firebase

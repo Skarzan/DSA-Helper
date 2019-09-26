@@ -9,21 +9,41 @@ import { ReactComponent as InfoSVG } from "../assets/svg/icons/info.svg";
 
 import "../styles/conditionIcon.scss";
 
-import conditionsInformation from "../assets/conditionsInformation";
+import conditionsInformation from "../utils/gameInformation/conditionsInformation";
 
+/**
+ * Renders an Icon based on the condition information from the props.
+ * Allows to change the data of this condition or to delete it.
+ * @param {Object} props the props
+ * @param {Object} props.condition the condition to display
+ * @param {function} props.deleteCondition function to delete this condition
+ * @param {function} props.changeCondition function that changes the conditions data
+ */
 export default function ConditionIcon(props) {
+  //the id(index) of the condition
   const [id, setId] = useState(0);
+
+  //the roman number that indicates the level of the condition
   const [levelText, setLevelText] = useState("I");
 
+  /**
+   * when level of condition is changed, change the data
+   */
   useEffect(() => {
     setId(props.condition.conditionId);
     setLevelText(showLevel());
   }, [props.condition.level]);
 
+  /**
+   * Calls parent components function to delete this condition
+   */
   let deleteCondition = () => {
     props.deleteCondition(props.index);
   };
 
+  /**
+   * Return the roman number to display, based on the level of the condition
+   */
   const showLevel = () => {
     switch (props.condition.level) {
       case "1":
@@ -39,6 +59,10 @@ export default function ConditionIcon(props) {
     }
   };
 
+  /**
+   * Calls parent components changeCondition function with the new values of the condition
+   * @param {Object} e the change event
+   */
   const handleInput = e => {
     const condition = { ...props.condition, [e.target.name]: e.target.value };
     props.changeCondition(props.index, condition);

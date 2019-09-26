@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Header from "./components/Header";
 import Battle from "./components/Battle";
 import HeroList from "./components/HeroList";
@@ -7,7 +7,7 @@ import Toast from "./components/Toast";
 
 import bg from "./assets/img/background.png";
 // Router
-import { Route, Link, BrowserRouter as Router, Switch } from "react-router-dom";
+import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 
 //Redux
 import { createStore } from "redux";

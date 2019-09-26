@@ -1,15 +1,22 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 
-import conditionsInformation from "../assets/conditionsInformation";
+import conditionsInformation from "../utils/gameInformation/conditionsInformation";
 
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 
+/**
+ * Renders a form to create a new condition. Gives options to choose from a condition from a list or a custom condition
+ * @param {object} props the props
+ * @param {function} props.addCondition function to add this condition to the parent component
+ */
 export default function ConditionsAddBox(props) {
+  // switch to allow or not allow changings on rounds option
   const [roundsSwitch, setRoundsSwitch] = useState(false);
 
+  // the data of the form resembling one condition.
   const [formData, setFormData] = useState({
     conditionId: 0,
     level: "1",
@@ -17,8 +24,13 @@ export default function ConditionsAddBox(props) {
     name: ""
   });
 
+  /**
+   * Creates a list of <option> elements. One for every condition in the list
+   */
   const showOptions = () => {
     let options = [];
+
+    // create an <option> element for each condition
     for (let condition in conditionsInformation) {
       options.push(
         <option key={condition} value={condition}>
@@ -29,31 +41,43 @@ export default function ConditionsAddBox(props) {
     return options;
   };
 
+  /**
+   * Update the form data on user change
+   * @param {Object} e change event
+   */
   const handleInput = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  /**
+   * Toggles the option to alter the rounds variable
+   */
+  const toggleRounds = () => {
+    setRoundsSwitch(!roundsSwitch);
+  };
+
+  /**
+   * Sends the data of the new condition to the parent components addCondition function
+   * @param {Object} e the click event
+   */
   const submitData = e => {
     e.preventDefault();
 
+    // is condition a default condition?
     if (formData.conditionId !== "custom") {
       const helper = formData;
       helper.name = null;
       setFormData(helper);
     }
 
-    //manage rounds
+    // is condition a custom condition condition?
     if (!roundsSwitch) {
       const helper = formData;
       helper.remainingRounds = null;
       setFormData(helper);
     }
 
-    props.addCondition(formData);
-  };
-
-  const toggleRounds = () => {
-    setRoundsSwitch(!roundsSwitch);
+    props.addCondition(formData); //send condition data
   };
 
   return (

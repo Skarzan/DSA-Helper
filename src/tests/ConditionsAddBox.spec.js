@@ -3,7 +3,7 @@ import { mount } from "enzyme";
 
 import ConditionsAddBox from "../components/ConditionsAddBox";
 
-import conditionsInformation from "../assets/conditionsInformation";
+import conditionsInformation from "../utils/gameInformation/conditionsInformation";
 
 const addCondition = jest.fn();
 
@@ -28,7 +28,7 @@ describe("ConditionsAddBox component", () => {
   it("should have as many conditions as in conditionsInformation", () => {
     const wrapper = component.find(".conditionChooser");
     expect(wrapper.find("option").length).toBe(
-      Object.keys(conditionsInformation).length
+      Object.keys(conditionsInformation).length + 1 //+1 because 1 custom condition
     );
   });
 

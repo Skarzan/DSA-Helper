@@ -1,4 +1,4 @@
-import heroes from "../assets/heroes";
+//import heroes from "../utils/test/heroes";
 
 const heroesReducer = (state = [], action) => {
   switch (action.type) {

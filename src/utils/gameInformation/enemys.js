@@ -22,6 +22,6 @@ export default [
     maxAsp: "40",
     maxKap: "0",
     wikiLink:
-      "http://www.ulisses-gamereference.com/index.php/Best_Biestinger.htmlisses3.com"
+      "http://www.ulisses-gamereference.com/index.php/Best_Biestinger.html"
   }
 ];

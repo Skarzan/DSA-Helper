@@ -2,7 +2,7 @@ import React from "react";
 import { mount } from "enzyme";
 import { Provider } from "react-redux";
 
-import heroes from "../assets/heroes";
+import heroes from "../utils/test/heroes";
 
 import Battle from "../components/Battle";
 import configureStore from "redux-mock-store";

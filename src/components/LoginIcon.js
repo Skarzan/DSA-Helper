@@ -10,22 +10,58 @@ import { setAllHeroes, addToast } from "../actions";
 
 import "../styles/LoginIcon.scss";
 
+/**
+ * Manages login function. Allows to save and load heroes - data from firebase
+ */
 export default function LoginIcon() {
+  // the firebase database
   const firebaseDB = fire.firestore();
+
   const dispatch = useDispatch();
+
+  // the heroesarray from redux
   const heroes = useSelector(state => state.heroes);
 
+  // the logged in user
   const [user, setUser] = useState(null);
+
+  // the form data of the login form
   const [loginData, setLoginData] = useState({
     name: "",
     password: ""
   });
+
+  // bool that controls if the login section should be displayed or not
   const [show, setShow] = useState(false);
 
+  /**
+   * Check if user is logged in on loading
+   */
+  useEffect(() => {
+    authListener();
+  }, []);
+
+  /**
+   * Sets a listener to login state and changes the user accordingly
+   */
+  const authListener = () => {
+    fire.auth().onAuthStateChanged(user => {
+      if (user) {
+        setUser(user.uid);
+      } else {
+        setUser(null);
+      }
+    });
+  };
+
+  /**
+   * Returns css class if login form should be displayed or not
+   */
   const setShowStatus = () => {
     show ? setShow("") : setShow("show");
   };
 
+  /* Saves current heroes variable from redux in firebase database */
   const setFireBaseHeroes = () => {
     firebaseDB
       .collection("heroes")
@@ -37,6 +73,10 @@ export default function LoginIcon() {
     setShowStatus();
     dispatch(addToast(["Heldengruppe", "Heldengruppe gespeichert"]));
   };
+
+  /**
+   * Sets redux heroes - variable with data from firebase
+   */
   const loadFireBaseHeroes = () => {
     firebaseDB
       .collection("heroes")
@@ -49,24 +89,18 @@ export default function LoginIcon() {
     dispatch(addToast(["Heldengruppe", "Heldengruppe geladen"]));
   };
 
-  useEffect(() => {
-    authListener();
-  }, []);
-
-  const authListener = () => {
-    fire.auth().onAuthStateChanged(user => {
-      if (user) {
-        setUser(user.uid);
-      } else {
-        setUser(null);
-      }
-    });
-  };
-
+  /**
+   * Changes formdata on user input
+   * @param {object} e the change event
+   */
   const handleChange = e => {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
   };
 
+  /**
+   * Try to login with firebase
+   * @param {object} e click event
+   */
   const login = e => {
     e.preventDefault();
     fire.auth().signInWithEmailAndPassword(loginData.name, loginData.password);
@@ -74,6 +108,10 @@ export default function LoginIcon() {
     dispatch(addToast(["Login", "Erfolgreich eingeloggt"]));
   };
 
+  /**
+   * Log current user out with firebase
+   * @param {object} e click event
+   */
   const logout = e => {
     e.preventDefault();
     fire.auth().signOut();
@@ -81,6 +119,10 @@ export default function LoginIcon() {
     dispatch(addToast(["Logout", "Erfolgreich ausgeloggt"]));
   };
 
+  /**
+   * Registers a new user with username and Password
+   * @param {object} e click event
+   */
   const register = e => {
     e.preventDefault();
     fire
@@ -111,9 +153,13 @@ export default function LoginIcon() {
             <Button onClick={setFireBaseHeroes}>Gruppe speichern</Button>
           </div>
           <div className="logoutArea">
-            <a type="submit" onClick={e => logout(e)}>
+            <span
+              className="logOutButton"
+              type="submit"
+              onClick={e => logout(e)}
+            >
               Ausloggen
-            </a>
+            </span>
           </div>
         </div>
       ) : (

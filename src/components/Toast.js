@@ -5,11 +5,19 @@ import { deleteToast } from "../actions";
 
 import "../styles/Toast.scss";
 
-export default function Toast(props) {
+/**
+ * Displays a section with little status messages.
+ * The header and body text is provided by redux store
+ */
+export default function Toast() {
   const dispatch = useDispatch();
 
+  // the toasts - array
   const toasts = useSelector(state => state.toast);
 
+  /**
+   * creates a list of <ReactToast> elements with their corresponding titles and messages
+   */
   const showToasts = () => {
     return toasts.map((toast, index) => {
       return (

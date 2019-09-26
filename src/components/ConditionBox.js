@@ -4,7 +4,7 @@ import ConditionIcon from "./ConditionIcon";
 import "../styles/conditionBox.scss";
 
 /**
- * Renders an area of all conditions in a given list
+ * Renders an area of all conditions of a character from a given list
  * @param {Object} props the props
  * @param {function} changeConditon function to chnage a heros condition
  * @param {function} deleteCondition function to delete a heros condition

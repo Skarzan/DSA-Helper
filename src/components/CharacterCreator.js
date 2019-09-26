@@ -8,7 +8,9 @@ import enemys from "../utils/gameInformation/enemys";
 import "../styles/characterCreator.scss";
 
 /**
- * Creates a form to create a new character. Gives back the form values with the props.submitCharacter function
+ * Creates a form to create a new character.
+ * Can create hero or fighter, depending of the parent component.
+ * Gives back the form values with the props.submitCharacter function.
  * @param {Object} props the props
  * @param {function} props.submitCharacter sends the data of the character form to parent function
  */
@@ -24,6 +26,7 @@ export default function CharacterCreator(props) {
     conditions: []
   });
 
+  // fighter group
   const [group, setGroup] = useState(1);
 
   /**
@@ -35,7 +38,8 @@ export default function CharacterCreator(props) {
   };
 
   /**
-   * Submits the state to the parent submitCharacter function
+   * Submits the state to the parent submitCharacter function.
+   * Gives back the ew fighter, fighter group or hero
    * @param {*} e event object
    */
   const submit = e => {
@@ -52,20 +56,19 @@ export default function CharacterCreator(props) {
         fighter.conditions = [];
         fighters[index] = fighter;
       }
-      addCharacter(fighters);
+      props.submitCharacter(fighters);
     } else {
       let fighter = { ...character };
       fighter.conditions = [];
-      addCharacter(fighter);
+      // FIXME:   for fighter ok, but hero´s have a random initiative as well for now
+      fighter.initiative =
+        Number(fighter.initiative) + Math.floor(Math.random() * 6 + 1);
+      props.submitCharacter(fighter);
     }
   };
 
-  const addCharacter = fighter => {
-    props.submitCharacter(fighter);
-  };
-
   /**
-   * Creates a list of fighter stamps that will be displayed in a dropdown
+   * Creates a list of fighter stamps that will be displayed in a dropdown.
    */
   const createEnemyList = () => {
     return enemys.map((enemy, index) => {
@@ -139,7 +142,7 @@ export default function CharacterCreator(props) {
                   data-testid="initiative"
                 />
               </Col>
-              {props.parent == "heroList" && (
+              {props.parent === "heroList" && (
                 <Col>
                   <Form.Label>max. Schips: </Form.Label>
                   <Form.Control

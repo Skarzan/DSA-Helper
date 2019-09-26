@@ -47,9 +47,10 @@
       justify-content: right;
     }
 
-    a {
+    .logOutButton {
       font-size: 15px;
       margin-top: 7px;
+      -webkit-appearance: unset;
 
       &:hover {
         text-decoration: underline;

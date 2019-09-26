@@ -5,6 +5,10 @@ import Button from "react-bootstrap/Button";
 
 import fire from "../firebase/firebase";
 
+// TODO: delete when all enemys are filled in
+/**
+ * Only a formular to easily add enemy data. Only for developement
+ */
 export default function EnemyCreator() {
   const firebaseDB = fire.firestore();
 

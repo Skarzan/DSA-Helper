@@ -4,7 +4,7 @@ import Hero from "../components/Hero";
 import { Provider } from "react-redux";
 import configureStore from "redux-mock-store";
 
-import heroes from "../assets/heroes";
+import heroes from "../utils/test/heroes";
 
 const mockStore = configureStore([]);
 const store = mockStore({

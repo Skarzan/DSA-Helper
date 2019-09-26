@@ -20,6 +20,4 @@ describe("<ConditionIcon/>", () => {
     const component = container.querySelector(".conditionIcon");
     expect(component).toBeTruthy();
   });
-
-  it("");
 });

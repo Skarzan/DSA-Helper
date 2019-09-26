@@ -113,7 +113,9 @@ export default function Hero(props) {
             break;
         }
       }
-      if (changePain == 1) {
+
+      /* add pain */
+      if (changePain === 1) {
         addCondition({
           conditionId: 7,
           level: (Number(painLevel) + 1).toString(),
@@ -124,7 +126,8 @@ export default function Hero(props) {
         dispatch(addToast([props.hero.name, "Erhält eine Stufe Schmerz"]));
       }
 
-      if (changePain == 2) {
+      /* remove pain */
+      if (changePain === 2) {
         addCondition({
           conditionId: 7,
           level: (Number(painLevel) - 1).toString(),
@@ -139,10 +142,18 @@ export default function Hero(props) {
     dispatch(setPoint([points, name, props.hero.id]));
   };
 
+  /**
+   * Changes money of the hero
+   * @param {number} money the new money
+   */
   const changeHeroMoney = money => {
     dispatch(changeMoney([props.hero.id, money]));
   };
 
+  /**
+   * Changes schips of the hero
+   * @param {number} schips the new schips amount
+   */
   const setHeroSchips = schips => {
     dispatch(setSchips([props.hero.id, schips]));
   };
