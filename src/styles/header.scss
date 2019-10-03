@@ -3,11 +3,18 @@
 .header {
   .menu {
     font-family: "Noto Sans JP", sans-serif;
-    height: 50px;
+    height: 80px;
+    padding: 5px 5px 10px 5px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     background: $headerBackground;
+
+    .menuLinks {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
     .menuLink {
       font-size: 27px;

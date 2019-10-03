@@ -1,0 +1,14 @@
+#Logo {
+  height: 100%;
+
+  img {
+    height: 100%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  #Logo {
+    width: 64px;
+    overflow: hidden;
+  }
+}

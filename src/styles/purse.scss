@@ -5,7 +5,12 @@
   flex-wrap: wrap;
   justify-content: space-evenly; */
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(115px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
+
+  .coins2 {
+    display: flex;
+    justify-content: space-around;
+  }
 
   .purseSection {
     margin-top: 5px;

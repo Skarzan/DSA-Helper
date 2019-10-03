@@ -67,81 +67,85 @@ export default function Purse(props) {
 
   return (
     <div className="purse">
-      <div className="purseSection">
-        <img
-          className="coinImage"
-          src={require("../assets/img/money1.png")}
-          alt="Dukaten"
-        />
-        <Button onClick={() => changeMoney(0, 1000)} variant="secondary">
-          -
-        </Button>
-        <input
-          type="number"
-          value={Math.floor(props.money / 1000)}
-          onChange={e => directChange(1, e.target.value)}
-          onClick={e => e.target.select()}
-        />
-        <Button onClick={() => changeMoney(1, 1000)} variant="secondary">
-          +
-        </Button>
+      <div className="coins2">
+        <div className="purseSection">
+          <img
+            className="coinImage"
+            src={require("../assets/img/money1.png")}
+            alt="Dukaten"
+          />
+          <Button onClick={() => changeMoney(0, 1000)} variant="secondary">
+            -
+          </Button>
+          <input
+            type="number"
+            value={Math.floor(props.money / 1000)}
+            onChange={e => directChange(1, e.target.value)}
+            onClick={e => e.target.select()}
+          />
+          <Button onClick={() => changeMoney(1, 1000)} variant="secondary">
+            +
+          </Button>
+        </div>
+        <div className="purseSection">
+          <img
+            className="coinImage"
+            src={require("../assets/img/money2.png")}
+            alt="Silber"
+          />
+          <Button onClick={() => changeMoney(0, 100)} variant="secondary">
+            -
+          </Button>
+          <input
+            type="number"
+            value={Math.floor((props.money % 1000) / 100)}
+            onChange={e => directChange(2, e.target.value)}
+            onClick={e => e.target.select()}
+          />
+          <Button onClick={() => changeMoney(1, 100)} variant="secondary">
+            +
+          </Button>
+        </div>
       </div>
-      <div className="purseSection">
-        <img
-          className="coinImage"
-          src={require("../assets/img/money2.png")}
-          alt="Silber"
-        />
-        <Button onClick={() => changeMoney(0, 100)} variant="secondary">
-          -
-        </Button>
-        <input
-          type="number"
-          value={Math.floor((props.money % 1000) / 100)}
-          onChange={e => directChange(2, e.target.value)}
-          onClick={e => e.target.select()}
-        />
-        <Button onClick={() => changeMoney(1, 100)} variant="secondary">
-          +
-        </Button>
-      </div>
-      <div className="purseSection">
-        <img
-          className="coinImage"
-          src={require("../assets/img/money3.png")}
-          alt="Heller"
-        />
-        <Button onClick={() => changeMoney(0, 10)} variant="secondary">
-          -
-        </Button>
-        <input
-          type="number"
-          value={Math.floor((props.money % 100) / 10)}
-          onChange={e => directChange(3, e.target.value)}
-          onClick={e => e.target.select()}
-        />
-        <Button onClick={() => changeMoney(1, 10)} variant="secondary">
-          +
-        </Button>
-      </div>
-      <div className="purseSection">
-        <img
-          className="coinImage"
-          src={require("../assets/img/money4.png")}
-          alt="Kreuzer"
-        />
-        <Button onClick={() => changeMoney(0, 1)} variant="secondary">
-          -
-        </Button>
-        <input
-          type="number"
-          value={props.money % 10}
-          onChange={e => directChange(4, e.target.value)}
-          onClick={e => e.target.select()}
-        />
-        <Button onClick={() => changeMoney(1, 1)} variant="secondary">
-          +
-        </Button>
+      <div className="coins2">
+        <div className="purseSection">
+          <img
+            className="coinImage"
+            src={require("../assets/img/money3.png")}
+            alt="Heller"
+          />
+          <Button onClick={() => changeMoney(0, 10)} variant="secondary">
+            -
+          </Button>
+          <input
+            type="number"
+            value={Math.floor((props.money % 100) / 10)}
+            onChange={e => directChange(3, e.target.value)}
+            onClick={e => e.target.select()}
+          />
+          <Button onClick={() => changeMoney(1, 10)} variant="secondary">
+            +
+          </Button>
+        </div>
+        <div className="purseSection">
+          <img
+            className="coinImage"
+            src={require("../assets/img/money4.png")}
+            alt="Kreuzer"
+          />
+          <Button onClick={() => changeMoney(0, 1)} variant="secondary">
+            -
+          </Button>
+          <input
+            type="number"
+            value={props.money % 10}
+            onChange={e => directChange(4, e.target.value)}
+            onClick={e => e.target.select()}
+          />
+          <Button onClick={() => changeMoney(1, 1)} variant="secondary">
+            +
+          </Button>
+        </div>
       </div>
     </div>
   );

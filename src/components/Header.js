@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import LoginIcon from "./LoginIcon";
+import Logo from "./Logo";
 
 import "../styles/header.scss";
 
@@ -48,8 +49,11 @@ export default () => {
     <div className="header">
       <nav>
         <div className="menu">
-          {createLinks()}
-          <LoginIcon></LoginIcon>
+          <Logo></Logo>
+          <div className="menuLinks">
+            {createLinks()}
+            <LoginIcon></LoginIcon>
+          </div>
         </div>
       </nav>
     </div>
