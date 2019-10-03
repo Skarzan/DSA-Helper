@@ -13,6 +13,7 @@ import "../styles/characterCreator.scss";
  * Gives back the form values with the props.submitCharacter function.
  * @param {Object} props the props
  * @param {function} props.submitCharacter sends the data of the character form to parent function
+ * @param {string} props.parent the parent compoenent name
  */
 export default function CharacterCreator(props) {
   // initialize empty character
@@ -60,9 +61,10 @@ export default function CharacterCreator(props) {
     } else {
       let fighter = { ...character };
       fighter.conditions = [];
-      // FIXME:   for fighter ok, but hero´s have a random initiative as well for now
-      fighter.initiative =
-        Number(fighter.initiative) + Math.floor(Math.random() * 6 + 1);
+      if (props.parent !== "heroList") {
+        fighter.initiative =
+          Number(fighter.initiative) + Math.floor(Math.random() * 6 + 1);
+      }
       props.submitCharacter(fighter);
     }
   };

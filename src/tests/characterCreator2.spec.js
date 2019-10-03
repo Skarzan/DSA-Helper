@@ -41,7 +41,7 @@ describe("<CharacterCreator/>", () => {
 
   it("calls prop function with changed name", () => {
     const { getByTestId } = render(
-      <CharacterCreator submitCharacter={submitCharacter} />
+      <CharacterCreator submitCharacter={submitCharacter} parent="heroList" />
     );
     const nameField = getByTestId("name");
     fireEvent.change(nameField, {
@@ -63,7 +63,7 @@ describe("<CharacterCreator/>", () => {
 
   it("calls prop function with filled out form", () => {
     const { getByTestId } = render(
-      <CharacterCreator submitCharacter={submitCharacter} />
+      <CharacterCreator submitCharacter={submitCharacter} parent="heroList" />
     );
     const nameField = getByTestId("name");
     fireEvent.change(nameField, {
