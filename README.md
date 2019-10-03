@@ -6,7 +6,9 @@ This web-app is made to support game masters for the german pen and paper game "
 
 ### Code
 
-- React - React Router - Redux
+- React
+  - React Router
+  - Redux
 - Firebase
 
 ### Styling
