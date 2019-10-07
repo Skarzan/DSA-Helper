@@ -103,9 +103,16 @@ export default function LoginIcon() {
    */
   const login = e => {
     e.preventDefault();
-    fire.auth().signInWithEmailAndPassword(loginData.name, loginData.password);
-    setShowStatus();
-    dispatch(addToast(["Login", "Erfolgreich eingeloggt"]));
+    fire
+      .auth()
+      .signInWithEmailAndPassword(loginData.name, loginData.password)
+      .then(() => {
+        setShowStatus();
+        dispatch(addToast(["Login", "Erfolgreich eingeloggt"]));
+      })
+      .catch(error => {
+        dispatch(addToast(["Fehler:", error.message]));
+      });
   };
 
   /**
@@ -114,9 +121,16 @@ export default function LoginIcon() {
    */
   const logout = e => {
     e.preventDefault();
-    fire.auth().signOut();
-    setShowStatus();
-    dispatch(addToast(["Logout", "Erfolgreich ausgeloggt"]));
+    fire
+      .auth()
+      .signOut()
+      .then(() => {
+        setShowStatus();
+        dispatch(addToast(["Logout", "Erfolgreich ausgeloggt"]));
+      })
+      .catch(error => {
+        dispatch(addToast(["Fehler:", error.message]));
+      });
   };
 
   /**
@@ -127,14 +141,19 @@ export default function LoginIcon() {
     e.preventDefault();
     fire
       .auth()
-      .createUserWithEmailAndPassword(loginData.name, loginData.password);
-    setShowStatus();
-    dispatch(
-      addToast([
-        "Registriert",
-        "Erfolgreich registriert. Du kannst nun Heldengruppen speichern"
-      ])
-    );
+      .createUserWithEmailAndPassword(loginData.name, loginData.password)
+      .then(() => {
+        setShowStatus();
+        dispatch(
+          addToast([
+            "Registriert",
+            "Erfolgreich registriert. Du kannst nun Heldengruppen speichern"
+          ])
+        );
+      })
+      .catch(error => {
+        dispatch(addToast(["Fehler:", error.message]));
+      });
   };
 
   return (
