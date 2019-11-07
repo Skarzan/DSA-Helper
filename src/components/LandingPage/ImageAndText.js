@@ -18,10 +18,10 @@ export default props => {
 
   return (
     <div class="ImageAndText" style={stylesFromProps}>
-      <div class="textSection">
+      <div class="textSection" data-aos="fade-up">
         <div class="text">{props.text}</div>
       </div>
-      <div class="imageSection">
+      <div class="imageSection" data-aos="fade-up">
         <img src={props.imageURL} alt="altText" />
       </div>
     </div>

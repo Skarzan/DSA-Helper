@@ -2,6 +2,10 @@ import React from "react";
 import Banner from "./Banner";
 import ImageAndText from "./ImageAndText";
 
+import AOS from "aos";
+import "aos/dist/aos.css";
+AOS.init({ duration: 1000 });
+
 export default () => {
   return (
     <div class="LandingPage">
@@ -23,7 +27,7 @@ export default () => {
         background="rgba(0, 0, 0, 0) linear-gradient(rgb(217, 215, 215), rgb(147, 147, 147)) repeat scroll 0% 0%"
       />
       <ImageAndText
-        text="Neue Beschreibung, die ein wenig länger ist als die vorige, trotzdem nice"
+        text="Behalte in Kämpfen die Übersicht über die aktuelle Kampfsituation. Verwalte Helden und Gegner in einem übersichtlichen Initiative Zeitstrahl."
         imageURL="https://www.mt66.de/gib-workshops/img/gibweb007-001.jpg"
         altText="window"
         textPositionLeft={false}
