@@ -4,6 +4,7 @@ import Battle from "./components/Battle";
 import HeroList from "./components/HeroList";
 import ModalBox from "./components/ModalBox";
 import Toast from "./components/Toast";
+import LandingPage from "./components/LandingPage/LandingPage";
 
 import bg from "./assets/img/background.png";
 // Router
@@ -30,8 +31,9 @@ function App() {
           <ModalBox />
           <Toast />
           <Switch>
-            <Route exact path="/" component={HeroList} />
-            <Route path="/battle" component={Battle} />
+            <Route exact path="/" component={LandingPage} />
+            <Route path="/heldengruppe" component={HeroList} />
+            <Route path="/kampfmanager" component={Battle} />
             <Route path="/enemy" component={EnemyCreator} />
             <Route
               component={() => <h1>404 - you looked in the wrong place</h1>}

@@ -1,6 +1,8 @@
 @import "./global.scss";
 
 .header {
+  border-bottom: white 2px solid;
+
   .menu {
     font-family: "Noto Sans JP", sans-serif;
     height: 80px;
@@ -9,6 +11,10 @@
     justify-content: space-between;
     align-items: center;
     background: $headerBackground;
+
+    .logoContainer {
+      height: 100%;
+    }
 
     .menuLinks {
       display: flex;

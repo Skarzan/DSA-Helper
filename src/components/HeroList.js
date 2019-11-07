@@ -65,7 +65,7 @@ export default function HeroList() {
           onClick={() => showCharacterCreator()}
           data-testid="heroList-newHeroButton"
         >
-          Neuer Held <UserPlusButton className="svgIconButton" />
+          Held hinzufügen <UserPlusButton className="svgIconButton" />
         </Button>
       </div>
     </div>

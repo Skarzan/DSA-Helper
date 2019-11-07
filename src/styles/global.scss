@@ -18,14 +18,10 @@ body * {
 $headerBackground: linear-gradient(
   to bottom,
   #104e82 0%,
-  darken(#104e82, 10%) 70%,
-  #030a2446 92%,
-  #22222200 100%
+  darken(#104e82, 10%) 70%
 );
 $footerBackground: linear-gradient(
   to bottom,
-  #22222200 0%,
-  #030a2446 8%,
   darken(#104e82, 10%) 30%,
   #104e82 100%
 );

@@ -13,11 +13,11 @@ const menuLinks = [
   }, */
   {
     name: "Helden",
-    link: "/"
+    link: "/heldengruppe"
   },
   {
     name: "Kampf",
-    link: "/battle"
+    link: "/kampfmanager"
   }
 ];
 
@@ -49,7 +49,9 @@ export default () => {
     <div className="header">
       <nav>
         <div className="menu">
-          <Logo></Logo>
+          <NavLink exact to={"/"} className="logoContainer">
+            <Logo></Logo>
+          </NavLink>
           <div className="menuLinks">
             {createLinks()}
             <LoginIcon></LoginIcon>

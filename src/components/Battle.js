@@ -435,7 +435,7 @@ export default function Battle() {
             className="footerButton center"
             onClick={() => showNewFighterModal()}
           >
-            <span>Neuer Kämpfer</span>
+            <span>Kämpfer hinzufügen</span>
             <UserPlusButton className="svgIconButton" />
           </Button>
 
