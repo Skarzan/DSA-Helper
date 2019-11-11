@@ -2,12 +2,84 @@ import React from "react";
 import Banner from "./Banner";
 import ImageAndText from "./ImageAndText";
 import TextWithCTO from "./TextWithCTO";
+import Advantages from "./Advantages";
 
 import AOS from "aos";
 import "aos/dist/aos.css";
 AOS.init({ duration: 1000 });
 
 export default () => {
+  const heroAdvantages = [
+    {
+      text: "Lege dir ein Konto an und speichere deine Heldengruppe",
+      imageSrc: require("../../assets/img/Landingpage/Heldengruppe.png"),
+      altText: "Mein alt text",
+      background: "linear-gradient(-115deg, #3cd582 0%, #4d8447 100%)"
+    },
+    {
+      text: "Verwalte die Zustände deiner Helden und lege eigene Zustände fest",
+      imageSrc: require("../../assets/img/Landingpage/Heldengruppe.png"),
+      altText: "Mein alt text",
+      background: "linear-gradient(-115deg, #3cd582 0%, #4d8447 100%)"
+    },
+    {
+      text: "Habe die Geldbörsen und Schicksalsmarker immer im Blick",
+      imageSrc: require("../../assets/img/Landingpage/Heldengruppe.png"),
+      altText: "Mein alt text",
+      background: "linear-gradient(-115deg, #3cd582 0%, #4d8447 100%)"
+    },
+    {
+      text: "Einfache Visualisierung und Änderung der Lebenspunkte",
+      imageSrc: require("../../assets/img/Landingpage/Heldengruppe.png"),
+      altText: "Mein alt text",
+      background: "linear-gradient(-115deg, #3cd582 0%, #4d8447 100%)"
+    },
+    {
+      text: "Automatische Berechnung der Schmerzstufe",
+      imageSrc: require("../../assets/img/Landingpage/Heldengruppe.png"),
+      altText: "Mein alt text",
+      background: "linear-gradient(-115deg, #3cd582 0%, #4d8447 100%)"
+    }
+  ];
+
+  const battleAdvantages = [
+    {
+      text: "Lege dir ein Konto an und speichere deine Heldengruppe",
+      imageSrc: require("../../assets/img/Landingpage/Heldengruppe.png"),
+      altText: "Mein alt text",
+      background:
+        "linear-gradient(115deg, rgba(200,159,70,1),rgba(190,12,70,1))"
+    },
+    {
+      text: "Verwalte die Zustände deiner Helden und lege eigene Zustände fest",
+      imageSrc: require("../../assets/img/Landingpage/Heldengruppe.png"),
+      altText: "Mein alt text",
+      background:
+        "linear-gradient(115deg, rgba(200,159,70,1),rgba(190,12,70,1))"
+    },
+    {
+      text: "Habe die Geldbörsen und Schicksalsmarker immer im Blick",
+      imageSrc: require("../../assets/img/Landingpage/Heldengruppe.png"),
+      altText: "Mein alt text",
+      background:
+        "linear-gradient(115deg, rgba(200,159,70,1),rgba(190,12,70,1))"
+    },
+    {
+      text: "Einfache Visualisierung und Änderung der Lebenspunkte",
+      imageSrc: require("../../assets/img/Landingpage/Heldengruppe.png"),
+      altText: "Mein alt text",
+      background:
+        "linear-gradient(115deg, rgba(200,159,70,1),rgba(190,12,70,1))"
+    },
+    {
+      text: "Automatische Schmerzstufenberechnung",
+      imageSrc: require("../../assets/img/Landingpage/Heldengruppe.png"),
+      altText: "Mein alt text",
+      background:
+        "linear-gradient(115deg, rgba(200,159,70,1),rgba(190,12,70,1))"
+    }
+  ];
+
   return (
     <div class="LandingPage">
       <Banner
@@ -27,6 +99,9 @@ export default () => {
         textPositionLeft={true}
         background="rgba(0, 0, 0, 0) linear-gradient(-115deg, #3cd582 0%, #4d8447 100%) repeat scroll 0% 0%"
       />
+
+      <Advantages advantages={heroAdvantages}></Advantages>
+
       <ImageAndText
         text="Behalte in Kämpfen die Übersicht über die aktuelle Kampfsituation. Verwalte Helden und Gegner in einem übersichtlichen Initiative Zeitstrahl."
         imageURL={require("../../assets/img/Landingpage/Kampfmanager.png")}
@@ -34,8 +109,11 @@ export default () => {
         textPositionLeft={false}
         background="linear-gradient(115deg, rgba(200,159,70,1),rgba(190,12,70,1))"
       />
+
+      <Advantages advantages={battleAdvantages}></Advantages>
+
       <TextWithCTO
-        text="Schluss mit der Zettelwirtschaft! Teste jetzt den digitalen Meisterschirm"
+        text="Schluss mit der Zettelwirtschaft: teste jetzt den digitalen Meisterschirm!"
         buttonText="Kostenfrei ausprobieren"
         buttonLink="/heldengruppe"
         background="linear-gradient(to bottom, #104e82 0%, #0a3355 70%)"

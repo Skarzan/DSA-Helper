@@ -1,0 +1,12 @@
+.Advantages {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+
+  .Advantage {
+    width: 500px;
+    height: 281px;
+    margin: 20px;
+  }
+}
