@@ -1,0 +1,36 @@
+@import "../global.scss";
+
+.TextWithCTO {
+  @include center;
+  flex-direction: column;
+  min-height: 50vh;
+  padding: 30px;
+
+  .text {
+    text-align: center;
+    color: white;
+    font-size: 56px;
+    text-shadow: 1px 1px 1px black;
+    width: 70%;
+  }
+
+  .CallToActionButton {
+    margin-top: 20px;
+  }
+}
+
+@media screen and (max-width: 1145px) {
+  .TextWithCTO {
+    .text {
+      font-size: 35px;
+    }
+  }
+}
+
+@media screen and (max-width: 435px) {
+  .TextWithCTO {
+    .text {
+      font-size: 30px;
+    }
+  }
+}

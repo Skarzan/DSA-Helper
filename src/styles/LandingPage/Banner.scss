@@ -48,6 +48,8 @@
 
     .banner-right {
       height: 400px;
+      flex-grow: 1;
+
       img {
         height: 100%;
         width: auto;

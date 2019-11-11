@@ -1,6 +1,7 @@
 import React from "react";
 import Banner from "./Banner";
 import ImageAndText from "./ImageAndText";
+import TextWithCTO from "./TextWithCTO";
 
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -21,18 +22,24 @@ export default () => {
       />
       <ImageAndText
         text="In der Heldenübersicht hast du die Werte deiner Gruppe auf einem Blick. Ändere aktuelle Lebenspunkte, Schicksalmarker, Zustände und mehr mit nur einem Klick."
-        imageURL="https://www.mt66.de/gib-workshops/img/gibweb007-001.jpg"
+        imageURL={require("../../assets/img/Landingpage/Heldengruppe.png")}
         altText="window"
         textPositionLeft={true}
-        background="rgba(0, 0, 0, 0) linear-gradient(rgb(217, 215, 215), rgb(147, 147, 147)) repeat scroll 0% 0%"
+        background="rgba(0, 0, 0, 0) linear-gradient(-115deg, #3cd582 0%, #4d8447 100%) repeat scroll 0% 0%"
       />
       <ImageAndText
         text="Behalte in Kämpfen die Übersicht über die aktuelle Kampfsituation. Verwalte Helden und Gegner in einem übersichtlichen Initiative Zeitstrahl."
-        imageURL="https://www.mt66.de/gib-workshops/img/gibweb007-001.jpg"
+        imageURL={require("../../assets/img/Landingpage/Kampfmanager.png")}
         altText="window"
         textPositionLeft={false}
-        background="linear-gradient(rgba(200,159,70,1),rgba(190,12,70,1))"
+        background="linear-gradient(115deg, rgba(200,159,70,1),rgba(190,12,70,1))"
       />
+      <TextWithCTO
+        text="Schluss mit der Zettelwirtschaft! Teste jetzt den digitalen Meisterschirm"
+        buttonText="Kostenfrei ausprobieren"
+        buttonLink="/heldengruppe"
+        background="linear-gradient(to bottom, #104e82 0%, #0a3355 70%)"
+      ></TextWithCTO>
     </div>
   );
 };
