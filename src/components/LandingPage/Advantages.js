@@ -16,6 +16,7 @@ export default props => {
     return props.advantages.map(advantage => {
       return (
         <Advantage
+          key={advantage.text}
           text={advantage.text}
           imageSrc={advantage.imageSrc}
           altText={advantage.altText}

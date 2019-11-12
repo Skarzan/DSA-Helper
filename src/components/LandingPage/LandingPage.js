@@ -14,69 +14,74 @@ export default () => {
       text: "Lege dir ein Konto an und speichere deine Heldengruppe",
       imageSrc: require("../../assets/img/Landingpage/Heldengruppe.png"),
       altText: "Mein alt text",
-      background: "linear-gradient(-115deg, #3cd582 0%, #4d8447 100%)"
+      background:
+        "linear-gradient(-115deg, rgb(60,213,130,0.9) 0%, rgb(77,132,71,0.9) 100%)"
     },
     {
       text: "Verwalte die Zustände deiner Helden und lege eigene Zustände fest",
       imageSrc: require("../../assets/img/Landingpage/Heldengruppe.png"),
       altText: "Mein alt text",
-      background: "linear-gradient(-115deg, #3cd582 0%, #4d8447 100%)"
+      background:
+        "linear-gradient(-115deg, rgb(60,213,130,0.9) 0%, rgb(77,132,71,0.9) 100%)"
     },
     {
       text: "Habe die Geldbörsen und Schicksalsmarker immer im Blick",
       imageSrc: require("../../assets/img/Landingpage/Heldengruppe.png"),
       altText: "Mein alt text",
-      background: "linear-gradient(-115deg, #3cd582 0%, #4d8447 100%)"
+      background:
+        "linear-gradient(-115deg, rgb(60,213,130,0.9) 0%, rgb(77,132,71,0.9) 100%)"
     },
     {
       text: "Einfache Visualisierung und Änderung der Lebenspunkte",
       imageSrc: require("../../assets/img/Landingpage/Heldengruppe.png"),
       altText: "Mein alt text",
-      background: "linear-gradient(-115deg, #3cd582 0%, #4d8447 100%)"
+      background:
+        "linear-gradient(-115deg, rgb(60,213,130,0.9) 0%, rgb(77,132,71,0.9) 100%)"
     },
     {
       text: "Automatische Berechnung der Schmerzstufe",
       imageSrc: require("../../assets/img/Landingpage/Heldengruppe.png"),
       altText: "Mein alt text",
-      background: "linear-gradient(-115deg, #3cd582 0%, #4d8447 100%)"
+      background:
+        "linear-gradient(-115deg, rgb(60,213,130,0.9) 0%, rgb(77,132,71,0.9) 100%)"
     }
   ];
 
   const battleAdvantages = [
     {
-      text: "Lege dir ein Konto an und speichere deine Heldengruppe",
+      text: "Füge weitere Kämpfer zum Kampf hinzu",
       imageSrc: require("../../assets/img/Landingpage/Heldengruppe.png"),
       altText: "Mein alt text",
       background:
-        "linear-gradient(115deg, rgba(200,159,70,1),rgba(190,12,70,1))"
+        "linear-gradient(115deg, rgba(200,159,70,0.9),rgba(190,12,70,0.9))"
     },
     {
-      text: "Verwalte die Zustände deiner Helden und lege eigene Zustände fest",
+      text: "Alle Daten der Helden und Gegner auf einem Blick",
       imageSrc: require("../../assets/img/Landingpage/Heldengruppe.png"),
       altText: "Mein alt text",
       background:
-        "linear-gradient(115deg, rgba(200,159,70,1),rgba(190,12,70,1))"
+        "linear-gradient(115deg, rgba(200,159,70,0.9),rgba(190,12,70,0.9))"
     },
     {
-      text: "Habe die Geldbörsen und Schicksalsmarker immer im Blick",
+      text: "Automatisches Management von zeitlichen Status",
       imageSrc: require("../../assets/img/Landingpage/Heldengruppe.png"),
       altText: "Mein alt text",
       background:
-        "linear-gradient(115deg, rgba(200,159,70,1),rgba(190,12,70,1))"
+        "linear-gradient(115deg, rgba(200,159,70,0.9),rgba(190,12,70,0.9))"
     },
     {
       text: "Einfache Visualisierung und Änderung der Lebenspunkte",
       imageSrc: require("../../assets/img/Landingpage/Heldengruppe.png"),
       altText: "Mein alt text",
       background:
-        "linear-gradient(115deg, rgba(200,159,70,1),rgba(190,12,70,1))"
+        "linear-gradient(115deg, rgba(200,159,70,0.9),rgba(190,12,70,0.9))"
     },
     {
-      text: "Automatische Schmerzstufenberechnung",
+      text: "Optischer Indikator des aktuellen Helden",
       imageSrc: require("../../assets/img/Landingpage/Heldengruppe.png"),
       altText: "Mein alt text",
       background:
-        "linear-gradient(115deg, rgba(200,159,70,1),rgba(190,12,70,1))"
+        "linear-gradient(115deg, rgba(200,159,70,0.9),rgba(190,12,70,0.9))"
     }
   ];
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "../../styles/LandingPage/Advantage.scss";
 
@@ -12,18 +12,28 @@ import "../../styles/LandingPage/Advantage.scss";
  * @param {String}  props.text        text to display on the front
  */
 export default props => {
+  const [hover, setHover] = useState(false);
+
   /* create a style object from the given prop for the front */
   const styleFromProps = {
     background: props.background
   };
 
+  /* TODO: test on real mobile device.m Check if aos and flip effect work */
   return (
-    <div className="Advantage" data-aos="fade-up">
-      <div className="back">
-        <img src={props.imageSrc} alt={props.altText} />
-      </div>
-      <div className="front" style={styleFromProps}>
-        <div className="frontText">{props.text}</div>
+    <div
+      className={`Advantage ${hover ? "hover" : ""}`}
+      onTouchStart={() => (hover ? setHover(false) : setHover(true))}
+      data-aos="fade-up"
+      data-aos-disable="mobile"
+    >
+      <div class="flip">
+        <div className="front" style={styleFromProps}>
+          <div className="frontText">{props.text}</div>
+        </div>
+        <div className="back">
+          <img src={props.imageSrc} alt={props.altText} />
+        </div>
       </div>
     </div>
   );
