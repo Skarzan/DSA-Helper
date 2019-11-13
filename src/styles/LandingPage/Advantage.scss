@@ -6,10 +6,25 @@
   cursor: pointer;
 
   .back {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+    background-color: red;
+    border-radius: 0.25em;
+    color: white;
+
+    div {
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 20px;
+    }
+
     img {
-      height: 100%;
-      width: 100%;
-      border-radius: 0.25em;
+      flex-grow: 1;
+      max-width: 85%;
     }
   }
 
@@ -21,9 +36,9 @@
     font-size: 30px;
     position: absolute;
     top: 0;
-    background: rgba(144, 144, 240, 0.76);
     text-align: center;
     border-radius: 0.25em;
+    padding: 15px;
   }
 }
 

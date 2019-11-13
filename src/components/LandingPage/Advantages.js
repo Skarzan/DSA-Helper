@@ -6,7 +6,7 @@ import "../../styles/LandingPage/Advantages.scss";
 /**
  *Creates and renders a list of Advantage-components from a given array of objects.
  * @param {Object}                                                                            props             the props
- * @param {Array.<{text: String, imageSrc: String, altText: String, background: String}>}     props.advantages  array of advantage objects with the text, altText, imagaeSrc and background for all advantages to display
+ * @param {Array.<{text: String, description: String, imageSrc: String, altText: String, backgroundFront: String, backgroundBack: String}>}     props.advantages  array of advantage objects with the text, altText, imagaeSrc and background for all advantages to display
  */
 export default props => {
   /**
@@ -20,7 +20,9 @@ export default props => {
           text={advantage.text}
           imageSrc={advantage.imageSrc}
           altText={advantage.altText}
-          background={advantage.background}
+          backgroundFront={advantage.backgroundFront}
+          backgroundBack={advantage.backgroundBack}
+          description={advantage.description}
         ></Advantage>
       );
     });
