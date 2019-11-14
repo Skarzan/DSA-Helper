@@ -1,24 +1,21 @@
+@import "../global.scss";
+
 .Advantage {
+  @include center;
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   cursor: pointer;
 
   .back {
+    @include whiteFontWithShadow(14px);
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 5px;
-    background-color: red;
     border-radius: 0.25em;
-    color: white;
 
     div {
+      @include center;
       flex-grow: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       padding: 0 20px;
     }
 
@@ -29,11 +26,8 @@
   }
 
   .front {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-size: 30px;
+    @include center;
+    @include whiteFontWithShadow(30px);
     position: absolute;
     top: 0;
     text-align: center;
@@ -63,7 +57,6 @@
 .flip {
   transition: 0.6s;
   transform-style: preserve-3d;
-
   position: relative;
 }
 
@@ -87,4 +80,13 @@
 /* back, initially hidden pane */
 .back {
   transform: rotateY(180deg);
+}
+
+@media only screen and (max-width: 550px) {
+  .Advantage,
+  .front,
+  .back {
+    width: 300px;
+    height: 281px;
+  }
 }

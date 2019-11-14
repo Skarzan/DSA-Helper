@@ -7,10 +7,8 @@
   padding: 30px;
 
   .text {
+    @include whiteFontWithShadow(56px);
     text-align: center;
-    color: white;
-    font-size: 56px;
-    text-shadow: 1px 1px 1px black;
     width: 70%;
   }
 

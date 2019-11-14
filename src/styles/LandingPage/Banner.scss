@@ -1,3 +1,5 @@
+@import "../global.scss";
+
 .banner {
   display: flex;
   justify-content: space-around;
@@ -32,9 +34,7 @@
   }
 
   .banner-right {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include center;
 
     img {
       width: 80%;
@@ -57,9 +57,7 @@
     }
 
     .banner-left {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      @include center;
       width: 80%;
       padding: 20px 10%;
       height: 60%;

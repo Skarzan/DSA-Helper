@@ -11,16 +11,14 @@
 
   .textSection {
     @include center;
-    color: white;
     max-height: 100%;
     width: 50%;
     padding: 10px;
     text-align: left;
-    font-size: 30px;
 
     .text {
+      @include whiteFontWithShadow(30px);
       max-width: 25em;
-      text-shadow: 1px 1px 1px black;
       background: #46464661;
       padding: 35px 10px;
       border-radius: 0.25rem;
@@ -51,11 +49,13 @@
     .textSection,
     .imageSection {
       width: 100%;
+      font-size: 24px;
     }
 
     .imageSection {
       img {
         max-height: 100%;
+        width: 100%;
       }
     }
   }

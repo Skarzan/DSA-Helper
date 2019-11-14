@@ -15,7 +15,8 @@ import { createStore } from "redux";
 import allReducers from "./reducers";
 import { Provider } from "react-redux";
 
-import EnemyCreator from "./components/EnemyCreator";
+/* import EnemyCreator from "./components/EnemyCreator"; */
+import "./styles/App.scss";
 
 //set up Redux store
 const store = createStore(allReducers);
@@ -34,7 +35,7 @@ function App() {
             <Route exact path="/" component={LandingPage} />
             <Route path="/heldengruppe" component={HeroList} />
             <Route path="/kampfmanager" component={Battle} />
-            <Route path="/enemy" component={EnemyCreator} />
+            {/* <Route path="/enemy" component={EnemyCreator} /> */}
             <Route
               component={() => <h1>404 - you looked in the wrong place</h1>}
             />

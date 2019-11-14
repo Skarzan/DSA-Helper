@@ -1,25 +1,16 @@
+/*Google Fonts*/
 @import url("https://fonts.googleapis.com/css?family=Noto+Serif&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap");
 
 @import url("https://fonts.googleapis.com/css?family=Ubuntu:700&display=swap");
 
-body * {
-  padding: 0;
-  margin: 0;
-  font-family: "Ubuntu", sans-serif;
-}
-
-//bootstrap change
-.btn-secondary {
-  background-color: #4f5051;
-  border-color: #4f5051;
-}
 
 $headerBackground: linear-gradient(
   to bottom,
   #104e82 0%,
   darken(#104e82, 10%) 70%
 );
+
 $footerBackground: linear-gradient(
   to bottom,
   darken(#104e82, 10%) 30%,
@@ -44,35 +35,17 @@ $formLabelSize: 19px;
   border-radius: 50%;
 }
 
+@mixin whiteFontWithShadow($fontSize) {
+  color: white;
+  font-size: $fontSize;
+  text-shadow: 1px 1px 1px black;
+
+}
+
 @mixin appBackground {
   background-image: url("./background.png");
 }
 
-.center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.svgIconButton {
-  height: 1em;
-  margin: 0 7px;
-}
-
-.siteHeading {
-  color: white;
-  margin-left: 15px;
-}
-
-//modalFix
-.popover {
-  z-index: 2 !important;
-}
-
-.App {
-  min-height: 100vh;
-}
-
-.romanFont {
-  font-family: "Noto Serif", serif;
+:export {
+  header: $headerBackground;
 }
