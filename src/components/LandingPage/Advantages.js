@@ -15,15 +15,17 @@ export default props => {
   const renderAdvantages = () => {
     return props.advantages.map(advantage => {
       return (
-        <Advantage
-          key={advantage.text}
-          text={advantage.text}
-          imageSrc={advantage.imageSrc}
-          altText={advantage.altText}
-          backgroundFront={advantage.backgroundFront}
-          backgroundBack={advantage.backgroundBack}
-          description={advantage.description}
-        ></Advantage>
+        <div data-aos="fade-up">
+          <Advantage
+            key={advantage.text}
+            text={advantage.text}
+            imageSrc={advantage.imageSrc}
+            altText={advantage.altText}
+            backgroundFront={advantage.backgroundFront}
+            backgroundBack={advantage.backgroundBack}
+            description={advantage.description}
+          ></Advantage>
+        </div>
       );
     });
   };

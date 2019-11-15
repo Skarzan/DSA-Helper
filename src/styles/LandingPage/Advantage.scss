@@ -22,6 +22,8 @@
     img {
       flex-grow: 1;
       max-width: 85%;
+      border-radius: 5px;
+      box-shadow: 0px 0px 7px 2px black;
     }
   }
 
@@ -36,6 +38,7 @@
   }
 }
 
+/*flip effect*/
 /* entire container, keeps perspective */
 .Advantage {
   perspective: 1000px;

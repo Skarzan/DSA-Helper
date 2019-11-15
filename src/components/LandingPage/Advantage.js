@@ -26,13 +26,10 @@ export default props => {
     background: props.backgroundBack
   };
 
-  /* TODO: test on real mobile device.m Check if aos and flip effect work */
   return (
     <div
       className={`Advantage ${hover ? "hover" : ""}`}
       onTouchStart={() => (hover ? setHover(false) : setHover(true))}
-      data-aos="fade-up"
-      data-aos-disable="mobile"
     >
       <div class="flip">
         <div className="front" style={backgroundFront}>
